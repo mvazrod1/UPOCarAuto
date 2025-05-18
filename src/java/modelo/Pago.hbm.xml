@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-may-2025 22:13:48 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Pago" table="pago" catalog="upocarauto" optimistic-lock="version">
+        <id name="idPago" type="java.lang.Integer">
+            <column name="id_pago" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="reserva" class="modelo.Reserva" fetch="select">
+            <column name="id_reserva" not-null="true" />
+        </many-to-one>
+        <property name="fechaPago" type="date">
+            <column name="fecha_pago" length="10" not-null="true" />
+        </property>
+        <property name="precioTotal" type="big_decimal">
+            <column name="precio_total" precision="12" not-null="true" />
+        </property>
+        <property name="metodoPago" type="string">
+            <column name="metodo_pago" length="20" not-null="true" />
+        </property>
+        <property name="estadoPago" type="string">
+            <column name="estado_pago" length="20" not-null="true" />
+        </property>
+        <set name="transaccions" table="pago_transaccion" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="id_pago" not-null="true" />
+            </key>
+            <many-to-many entity-name="modelo.Transaccion">
+                <column name="id_transaccion" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
