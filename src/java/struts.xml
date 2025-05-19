@@ -7,4 +7,36 @@
     <package name="default" extends="struts-default">
         
     </package>
+    
+    <package name="cliente" namespace="/cliente" extends="struts-default">
+    
+        <!-- Acción para registrar un nuevo cliente -->
+        <action name="registrar" class="acciones.cliente.clienteAction" method="execute">
+            <result name="success">/clientes/listadoClientes.jsp</result>
+            <result name="input">/clientes/formularioCliente.jsp</result>
+        </action>
+
+        <!-- Formulario para modificar cliente -->
+        <action name="formModificar" class="acciones.cliente.clienteAction" method="formModificarCliente">
+            <result name="success">/clientes/formularioModificarCliente.jsp</result>
+        </action>
+
+        <!-- Acción para guardar modificación de cliente -->
+        <action name="modificar" class="acciones.cliente.clienteAction" method="modificarCliente">
+            <result name="success">/clientes/listadoClientes.jsp</result>
+            <result name="input">/clientes/formularioModificarCliente.jsp</result>
+        </action>
+
+        <!-- Acción para eliminar cliente -->
+        <action name="eliminar" class="acciones.cliente.clienteAction" method="eliminarCliente">
+            <result name="success">/clientes/listadoClientes.jsp</result>
+        </action>
+
+        <!-- Acción para buscar cliente -->
+        <action name="buscar" class="acciones.cliente.clienteAction" method="buscarCliente">
+            <result name="success">/clientes/listadoClientes.jsp</result>
+        </action>
+
+    </package>
+
 </struts>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-may-2025 22:13:48 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Reserva" table="reserva" catalog="upocarauto" optimistic-lock="version">
+        <id name="idReserva" type="java.lang.Integer">
+            <column name="id_reserva" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cliente" class="modelo.Cliente" fetch="select">
+            <column name="dni_cliente" length="20" not-null="true" />
+        </many-to-one>
+        <many-to-one name="vehiculo" class="modelo.Vehiculo" fetch="select">
+            <column name="matricula" length="20" not-null="true" unique="true" />
+        </many-to-one>
+        <property name="estado" type="string">
+            <column name="estado" length="20" not-null="true" />
+        </property>
+        <property name="fechaCreacion" type="date">
+            <column name="fecha_creacion" length="10" not-null="true" />
+        </property>
+        <property name="fechaRecogida" type="date">
+            <column name="fecha_recogida" length="10" />
+        </property>
+        <set name="pagos" table="pago" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_reserva" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Pago" />
+        </set>
+    </class>
+</hibernate-mapping>
