@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 18-may-2025 22:13:48 by Hibernate Tools 4.3.1 -->
+<!-- Generated 19-may-2025 18:33:37 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="modelo.Empleado" table="empleado" catalog="upocarauto" optimistic-lock="version">
         <id name="dni" type="string">
@@ -28,6 +28,9 @@
         </property>
         <property name="puesto" type="string">
             <column name="puesto" length="100" not-null="true" />
+        </property>
+        <property name="contrasenya" type="string">
+            <column name="contrasenya" not-null="true" />
         </property>
         <set name="inventarios" table="inventario" inverse="true" lazy="true" fetch="select">
             <key>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 18-may-2025 22:13:48 by Hibernate Tools 4.3.1 -->
+<!-- Generated 19-may-2025 18:33:37 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="modelo.Concesionario" table="concesionario" catalog="upocarauto" optimistic-lock="version">
         <id name="idConcesionario" type="java.lang.Integer">

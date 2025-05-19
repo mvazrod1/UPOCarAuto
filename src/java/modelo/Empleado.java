@@ -1,5 +1,5 @@
 package modelo;
-// Generated 18-may-2025 22:13:47 by Hibernate Tools 4.3.1
+// Generated 19-may-2025 18:33:36 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -19,13 +19,14 @@ public class Empleado  implements java.io.Serializable {
      private String telefono;
      private String direccion;
      private String puesto;
+     private String contrasenya;
      private Set inventarios = new HashSet(0);
 
     public Empleado() {
     }
 
 	
-    public Empleado(String dni, Concesionario concesionario, String nombre, String apellidos, String email, String telefono, String direccion, String puesto) {
+    public Empleado(String dni, Concesionario concesionario, String nombre, String apellidos, String email, String telefono, String direccion, String puesto, String contrasenya) {
         this.dni = dni;
         this.concesionario = concesionario;
         this.nombre = nombre;
@@ -34,8 +35,9 @@ public class Empleado  implements java.io.Serializable {
         this.telefono = telefono;
         this.direccion = direccion;
         this.puesto = puesto;
+        this.contrasenya = contrasenya;
     }
-    public Empleado(String dni, Concesionario concesionario, String nombre, String apellidos, String email, String telefono, String direccion, String puesto, Set inventarios) {
+    public Empleado(String dni, Concesionario concesionario, String nombre, String apellidos, String email, String telefono, String direccion, String puesto, String contrasenya, Set inventarios) {
        this.dni = dni;
        this.concesionario = concesionario;
        this.nombre = nombre;
@@ -44,6 +46,7 @@ public class Empleado  implements java.io.Serializable {
        this.telefono = telefono;
        this.direccion = direccion;
        this.puesto = puesto;
+       this.contrasenya = contrasenya;
        this.inventarios = inventarios;
     }
    
@@ -102,6 +105,13 @@ public class Empleado  implements java.io.Serializable {
     
     public void setPuesto(String puesto) {
         this.puesto = puesto;
+    }
+    public String getContrasenya() {
+        return this.contrasenya;
+    }
+    
+    public void setContrasenya(String contrasenya) {
+        this.contrasenya = contrasenya;
     }
     public Set getInventarios() {
         return this.inventarios;
