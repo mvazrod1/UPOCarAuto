@@ -17,19 +17,19 @@ import org.hibernate.Transaction;
  * @author marin
  */
 public class ClienteDAO {
-    
+
     Session session = null;
 
     public ClienteDAO() {
     }
-    
+
     public void altaCliente(Cliente c) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
         session.save(c);
         tx.commit();
     }
-    
+
     public void bajaCliente(Cliente c) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
@@ -43,24 +43,24 @@ public class ClienteDAO {
         session.update(c);
         tx.commit();
     }
-    
-    public Cliente consultarCliente(int idCliente) {
+
+    public Cliente consultarCliente(String dni) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
-        Query q = session.createQuery("FROM Cliente WHERE idCliente = " + idCliente);
+        Query q = session.createQuery("FROM Cliente WHERE dni = :dni");
+        q.setParameter("dni", dni);
         Cliente c = (Cliente) q.uniqueResult();
         tx.commit();
         return c;
     }
 
-    public List<Cliente> buscarCliente(String termino) {
+    public List<Cliente> listarClientes() {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
-        Query q = session.createQuery("FROM Cliente WHERE dni LIKE :termino OR telefono LIKE :termino");
-        q.setParameter("termino", "%" + termino + "%");
+        Query q = session.createQuery("FROM Cliente");
         List<Cliente> lista = q.list();
         tx.commit();
         return lista;
     }
-    
+
 }
