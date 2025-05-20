@@ -7,4 +7,38 @@
     <package name="default" extends="struts-default">
         
     </package>
+    
+    <package name="clientes" namespace="/Cliente" extends="struts-default">
+        <action name="indexCliente" class="acciones.ClienteAction" method="execute">
+            <result>/Cliente/indexCliente.jsp</result>
+        </action>
+        
+        <action name="altaCliente" class="acciones.ClienteAction" method="mostrarAltaClienteForm">
+            <result>/Cliente/formAltaCliente.jsp</result>
+        </action>
+        
+        <action name="registrarCliente" class="acciones.ClienteAction" method="registrarCliente">
+            <result name="success" type="redirectAction">indexCliente</result>
+            <result name="input">/Cliente/formAltaCliente.jsp</result>
+        </action>
+
+        <action name="consultarCliente" class="acciones.ClienteAction" method="consultarCliente">
+            <result>/Cliente/detallesCliente.jsp</result>
+        </action>
+
+        <action name="editarCliente" class="acciones.ClienteAction" method="mostrarModificarClienteForm">
+            <result>/Cliente/modificarCliente.jsp</result>
+        </action>
+        
+        <action name="guardarModfCliente" class="acciones.ClienteAction" method="modificarCliente">
+            <result name="success" type="redirectAction">indexCliente</result>
+            <result name="input">/Cliente/indexCliente.jsp</result>
+        </action>
+
+        <action name="eliminarCliente" class="acciones.ClienteAction" method="eliminarCliente">
+            <result name="success" type="redirectAction">indexCliente</result>
+            <result name="input">/Cliente/indexCliente.jsp</result>
+        </action>
+    </package>
+
 </struts>
