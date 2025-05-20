@@ -26,8 +26,13 @@
             <result>/Cliente/detallesCliente.jsp</result>
         </action>
 
-        <action name="editarCliente" class="acciones.ClienteAction" method="modificarCliente">
-            <result>/Cliente/formAltaCliente.jsp</result>
+        <action name="editarCliente" class="acciones.ClienteAction" method="mostrarModificarClienteForm">
+            <result>/Cliente/modificarCliente.jsp</result>
+        </action>
+        
+        <action name="guardarModfCliente" class="acciones.ClienteAction" method="modificarCliente">
+            <result name="success" type="redirectAction">indexCliente</result>
+            <result name="input">/Cliente/indexCliente.jsp</result>
         </action>
 
         <action name="eliminarCliente" class="acciones.ClienteAction" method="eliminarCliente">

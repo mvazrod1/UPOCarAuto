@@ -44,6 +44,7 @@ public class ClienteDAO {
         Transaction tx = session.beginTransaction();
         session.update(c);
         tx.commit();
+        System.out.println("Cliente actualizado correctamente");
     }
 
     public Cliente consultarCliente(String dni) {

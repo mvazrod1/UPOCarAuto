@@ -56,6 +56,12 @@ public class ClienteAction extends ActionSupport {
         return SUCCESS;
     }
 
+    public String mostrarModificarClienteForm() {
+        cliente = dao.consultarCliente(dni);
+        return SUCCESS;
+    }
+    
+    /*
     public String modificarCliente() {
         cliente = dao.consultarCliente(dni);
         if (cliente != null) {
@@ -66,6 +72,12 @@ public class ClienteAction extends ActionSupport {
             cliente.setDireccion(direccion);
             dao.actualizarCliente(cliente);
         }
+        return SUCCESS;
+    }*/
+    
+    public String modificarCliente() {
+        Cliente c = new Cliente(dni, nombre, apellidos, email, telefono, direccion, new java.util.Date());
+        dao.actualizarCliente(c);
         return SUCCESS;
     }
 
