@@ -30,10 +30,12 @@ public class ClienteDAO {
         tx.commit();
     }
 
-    public void bajaCliente(Cliente c) {
+    public void bajaCliente(String dni) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
-        session.delete(c);
+        Query query = session.createQuery("delete from Cliente where dni = :dni");
+        query.setParameter("dni", dni);
+        int result = query.executeUpdate();
         tx.commit();
     }
 

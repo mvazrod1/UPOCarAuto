@@ -37,10 +37,7 @@ public class ClienteAction extends ActionSupport {
     }
 
     public String eliminarCliente() {
-        cliente = dao.consultarCliente(dni);
-        if (cliente != null) {
-            dao.bajaCliente(cliente);
-        }
+        dao.bajaCliente(dni);
         return SUCCESS;
     }
 
