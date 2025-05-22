@@ -39,6 +39,12 @@
             <result name="success" type="redirectAction">indexCliente</result>
             <result name="input">/Cliente/indexCliente.jsp</result>
         </action>
+        
+    </package>
+    <package name="vehiculos" namespace="/Vehiculo" extends="struts-default">
+        <action name="indexVehiculo" class="acciones.VehiculoAction" >
+            <result>/Vehiculo/indexVehiculo.jsp</result>
+        </action>
     </package>
 
 </struts>
