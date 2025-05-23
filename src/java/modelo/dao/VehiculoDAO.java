@@ -33,16 +33,16 @@ public class VehiculoDAO {
         return lista;
     }
     
-    public List<Vehiculo> buscarPorMatricula(String m) {
+    public Vehiculo buscarPorMatricula(String m) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
-        List<Vehiculo> lista;
+        Vehiculo v;
         Query q = session.createQuery("select distinct v " +
                 "from Vehiculo v left join fetch v.reservas where v.matricula = '" + m +"'");
         
-        lista = q.list();
+        v = (Vehiculo) q.uniqueResult();
         tx.commit();
-        return lista;
+        return v;
     }
 
 

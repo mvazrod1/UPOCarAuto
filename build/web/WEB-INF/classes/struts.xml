@@ -53,7 +53,7 @@
         <action name="consultarVehiculo"
                  class="acciones.VehiculoAction"
                  method="consultar">
-            <result>/Vehiculo/detallesVehiculo.jsp</result>
+            <result name="success">/Vehiculo/detallesVehiculo.jsp</result>
             <result name="input">/Vehiculo/indexVehiculo.jsp</result>
         </action>
 

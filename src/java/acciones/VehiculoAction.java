@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 package acciones;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 import modelo.Vehiculo;
@@ -24,9 +26,9 @@ public class VehiculoAction extends ActionSupport {
     private String matricula;
     private static final Pattern MATRICULA_ES
             = Pattern.compile("^[0-9]{4}[A-HJ-NP-TV-Z]{3}$");
-    ActionInvocation ai =
-            ActionContext.getContext().getActionInvocation();  
-    String metodo = ai.getProxy().getMethod(); 
+    ActionInvocation ai
+            = ActionContext.getContext().getActionInvocation();
+    String metodo = ai.getProxy().getMethod();
 
     public VehiculoAction() {
     }
@@ -38,8 +40,15 @@ public class VehiculoAction extends ActionSupport {
     }
 
     public String buscar() throws Exception {
-        lista = dao.buscarPorMatricula(matricula);
-        
+        vehiculo = dao.buscarPorMatricula(matricula);
+        lista = new ArrayList<>(); 
+        lista.add(vehiculo);
+
+        return SUCCESS;
+    }
+
+    public String consultar() {
+        vehiculo = dao.buscarPorMatricula(matricula);
 
         return SUCCESS;
     }
@@ -54,6 +63,12 @@ public class VehiculoAction extends ActionSupport {
             }
         }
 
+        if ("consultar".equals(metodo)) {
+            if (matricula == null || matricula.trim().isEmpty()) {
+                addFieldError("matricula", "Debes seleccionar un vehículo");
+            }
+        }
+
     }
 
     public List<Vehiculo> getLista() {
@@ -63,5 +78,11 @@ public class VehiculoAction extends ActionSupport {
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
+
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+    
+    
 
 }

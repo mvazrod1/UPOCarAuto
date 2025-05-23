@@ -39,7 +39,7 @@
                 <tr>
                     <td>
                         <input type="radio"
-                               name="selectedMatricula"
+                               name="matricula"
                                class="selectVehiculo"
                                value="<s:property value='#vehiculo.matricula'/>"/>
                     </td>
@@ -59,10 +59,7 @@
         <br/>
 
         <!-- Formularios de acción (mantener iguales) -->
-        <s:form id="formConsultar"
-                action="consultarVehiculo"
-                method="post"
-                theme="simple">
+        <s:form id="formConsultar" action="consultarVehiculo" method="post">
             <s:hidden name="matricula" id="hcConsultar"/>
             <s:submit id="btnConsultar"
                       value="Consultar"
@@ -71,8 +68,7 @@
 
         <s:form id="formEditar"
                 action="editarVehiculo"
-                method="post"
-                theme="simple">
+                method="post">
             <s:hidden name="matricula" id="hcEditar"/>
             <s:submit id="btnEditar"
                       value="Modificar"
@@ -81,8 +77,7 @@
 
         <s:form id="formEliminar"
                 action="eliminarVehiculo"
-                method="post"
-                theme="simple">
+                method="post">
             <s:hidden name="matricula" id="hcEliminar"/>
             <s:submit id="btnEliminar"
                       value="Eliminar"
@@ -91,9 +86,8 @@
         </s:form>
 
         <s:form action="altaVehiculo"
-                method="get"
-                theme="simple">
-            <s:submit value="Nuevo Vehículo"/>
+                method="get">
+            <s:submit value="Alta vehículo"/>
         </s:form>
 
         <script>
