@@ -16,42 +16,45 @@
         <h2>Formulario de Alta de Cliente</h2>
 
         <s:form action="/Cliente/registrarCliente" method="post">
-            <table>
-                <tr>
-                    <td>DNI:</td>
-                    <td><s:textfield name="dni" /></td>
-                    <td><s:fielderror fieldName="dni" /></td>
-                </tr>
-                <tr>
-                    <td>Nombre:</td>
-                    <td><s:textfield name="nombre" /></td>
-                    <td><s:fielderror fieldName="nombre" /></td>
-                </tr>
-                <tr>
-                    <td>Apellidos:</td>
-                    <td><s:textfield name="apellidos" /></td>
-                    <td><s:fielderror fieldName="apellidos" /></td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td><s:textfield name="email" /></td>
-                    <td><s:fielderror fieldName="email" /></td>
-                </tr>
-                <tr>
-                    <td>Teléfono:</td>
-                    <td><s:textfield name="telefono" /></td>
-                    <td><s:fielderror fieldName="telefono" /></td>
-                </tr>
-                <tr>
-                    <td>Dirección:</td>
-                    <td><s:textfield name="direccion" /></td>
-                    <td><s:fielderror fieldName="direccion" /></td>
-                </tr>
-            </table>
-            <br>
-            <s:submit value="Registrar Cliente" />
-            <s:reset value="Limpiar" />
+            <div>
+                <label for="dni">DNI:</label>
+                <s:textfield name="dni" id="dni" theme="simple"/>
+                <s:fielderror fieldName="dni"/>
+            </div>
+            <div>
+                <label for="nombre">Nombre:</label>
+                <s:textfield name="nombre" id="nombre" theme="simple"/>
+                <s:fielderror fieldName="nombre"/>
+            </div>
+            <div>
+                <label for="apellidos">Apellidos:</label>
+                <s:textfield name="apellidos" id="apellidos" theme="simple"/>
+                <s:fielderror fieldName="apellidos"/>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <s:textfield name="email" id="email" theme="simple"/>
+                <s:fielderror fieldName="email"/>
+            </div>
+            <div>
+                <label for="telefono">Teléfono:</label>
+                <s:textfield name="telefono" id="telefono" theme="simple"/>
+                <s:fielderror fieldName="telefono"/>
+            </div>
+            <div>
+                <label for="direccion">Dirección:</label>
+                <s:textfield name="direccion" id="direccion" theme="simple"/>
+                <s:fielderror fieldName="direccion"/>
+            </div>
+
+            <br/>
+            <div>
+                <s:submit value="Registrar Cliente"/>
+                <s:reset value="Limpiar"/>
+            </div>
         </s:form>
+
+
 
         <br/>
         <s:form action="/Cliente/indexCliente" method="get">
@@ -59,3 +62,4 @@
         </s:form>
     </body>
 </html>
+

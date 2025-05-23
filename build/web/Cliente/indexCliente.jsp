@@ -14,7 +14,11 @@
         <script>
             function onClienteSeleccionado(dni) {
                 document.getElementById("dniSeleccionado").value = dni;
-                document.getElementById("botones").style.display = 'block';
+
+                // Habilitar los botones
+                document.getElementById("btnConsultar").disabled = false;
+                document.getElementById("btnActualizar").disabled = false;
+                document.getElementById("btnEliminar").disabled = false;
             }
 
             function enviarAccion(accion) {
@@ -29,20 +33,38 @@
         <s:form id="clienteForm" method="post">
             <input type="hidden" id="dniSeleccionado" name="dni" />
 
-            <s:iterator value="listaClientes" var="c">
-                <label>
-                    <input type="radio" name="clienteRadio" onclick="onClienteSeleccionado(this.value)" value="<s:property value="#c.dni" />" />
-                    <s:property value="#c.nombre"/> <s:property value="#c.apellidos"/>
-                </label><br/>
-            </s:iterator>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Seleccionar</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>DNI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <s:iterator value="listaClientes" var="c">
+                        <tr>
+                            <td>
+                                <input type="radio" name="clienteRadio" 
+                                       onclick="onClienteSeleccionado(this.value)" 
+                                       value="<s:property value="#c.dni" />" />
+                            </td>
+                            <td><s:property value="#c.nombre"/></td>
+                            <td><s:property value="#c.apellidos"/></td>
+                            <td><s:property value="#c.dni"/></td>
+                        </tr>
+                    </s:iterator>
+                </tbody>
+            </table>
 
-            <div id="botones" style="display:none; margin-top:15px;">
-                <input type="button" value="Consultar Cliente"
-                       onclick="enviarAccion('<s:url value="/Cliente/consultarCliente.action"/>')" />
-                <input type="button" value="Actualizar Cliente"
-                       onclick="enviarAccion('<s:url value="/Cliente/editarCliente.action"/>')" />
-                <input type="button" value="Eliminar Cliente"
-                       onclick="enviarAccion('<s:url value="/Cliente/eliminarCliente.action"/>')" />
+            <div id="botones" style="margin-top:15px;">
+                <input type="button" id="btnConsultar" value="Consultar Cliente"
+                       onclick="enviarAccion('<s:url value="/Cliente/consultarCliente.action"/>')" disabled />
+                <input type="button" id="btnActualizar" value="Actualizar Cliente"
+                       onclick="enviarAccion('<s:url value="/Cliente/editarCliente.action"/>')" disabled />
+                <input type="button" id="btnEliminar" value="Eliminar Cliente"
+                       onclick="enviarAccion('<s:url value="/Cliente/eliminarCliente.action"/>')" disabled />
             </div>
         </s:form>
 
