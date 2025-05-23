@@ -50,7 +50,7 @@ public class ClienteDAO {
     public Cliente consultarCliente(String dni) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
-        Query q = session.createQuery("FROM Cliente WHERE dni = :dni");
+        Query q = session.createQuery("SELECT c FROM Cliente c LEFT JOIN FETCH c.reservas WHERE c.dni = :dni");
         q.setParameter("dni", dni);
         Cliente c = (Cliente) q.uniqueResult();
         tx.commit();

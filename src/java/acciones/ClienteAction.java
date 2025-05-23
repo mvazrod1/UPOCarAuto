@@ -19,6 +19,7 @@ import modelo.dao.ClienteDAO;
 public class ClienteAction extends ActionSupport {
 
     private String dni;
+    private String matricula;
     private String nombre;
     private String apellidos;
     private String email;
@@ -60,48 +61,51 @@ public class ClienteAction extends ActionSupport {
         cliente = dao.consultarCliente(dni);
         return SUCCESS;
     }
-    
-    /*
-    public String modificarCliente() {
-        cliente = dao.consultarCliente(dni);
-        if (cliente != null) {
-            cliente.setNombre(nombre);
-            cliente.setApellidos(apellidos);
-            cliente.setEmail(email);
-            cliente.setTelefono(telefono);
-            cliente.setDireccion(direccion);
-            dao.actualizarCliente(cliente);
-        }
-        return SUCCESS;
-    }*/
-    
+
     public String modificarCliente() {
         Cliente c = new Cliente(dni, nombre, apellidos, email, telefono, direccion, new java.util.Date());
         dao.actualizarCliente(c);
         return SUCCESS;
     }
 
-    // Validación
     @Override
     public void validate() {
         String actionName = ActionContext.getContext().getName();
 
         if (actionName.equals("registrarCliente") || actionName.equals("modificarCliente")) {
+
+            // DNI
             if (this.dni == null || this.dni.trim().isEmpty()) {
                 addFieldError("dni", "Introduce el DNI");
+            } else if (!this.dni.matches("^[0-9]{8}[A-Za-z]$")) {
+                addFieldError("dni", "El DNI debe tener 8 números seguidos de una letra");
             }
+
+            // Nombre
             if (this.nombre == null || this.nombre.trim().isEmpty()) {
                 addFieldError("nombre", "Introduce el nombre");
             }
+
+            // Apellidos
             if (this.apellidos == null || this.apellidos.trim().isEmpty()) {
                 addFieldError("apellidos", "Introduce los apellidos");
             }
+
+            // Email
             if (this.email == null || this.email.trim().isEmpty()) {
                 addFieldError("email", "Introduce el email");
+            } else if (!this.email.matches("^[\\w\\.-]+@[\\w\\.-]+\\.[a-zA-Z]{2,6}$")) {
+                addFieldError("email", "Introduce un email válido");
             }
+
+            // Teléfono
             if (this.telefono == null || this.telefono.trim().isEmpty()) {
                 addFieldError("telefono", "Introduce el teléfono");
+            } else if (!this.telefono.matches("^[0-9]{9}$")) {
+                addFieldError("telefono", "El teléfono debe tener exactamente 9 dígitos");
             }
+
+            // Dirección
             if (this.direccion == null || this.direccion.trim().isEmpty()) {
                 addFieldError("direccion", "Introduce la dirección");
             }
@@ -123,6 +127,14 @@ public class ClienteAction extends ActionSupport {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 
     public String getApellidos() {
