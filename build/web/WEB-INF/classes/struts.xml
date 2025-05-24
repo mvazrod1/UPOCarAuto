@@ -57,9 +57,7 @@
             <result name="input">/Vehiculo/indexVehiculo.jsp</result>
         </action>
 
-        <action name="altaVehiculo"
-                class="acciones.VehiculoAction"
-                method="mostrarFormAlta">
+        <action name="altaVehiculo" class="acciones.VehiculoAction">
             <result>/Vehiculo/formAltaVehiculo.jsp</result>
         </action>
 

@@ -49,7 +49,7 @@
 
         <br/>
         <!-- Botón para volver al listado -->
-        <a href="<s:url action='indexVehiculo'/>">← Volver al listado</a>
+        <a href="<s:url action='indexVehiculo'/>">Volver</a>
 
     </body>
 </html>

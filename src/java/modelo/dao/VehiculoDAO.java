@@ -20,30 +20,35 @@ public class VehiculoDAO {
 
     Session session = null;
 
-
     public List<Vehiculo> listarTodos() {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
         List<Vehiculo> lista;
-        Query q = session.createQuery("select distinct v " +
-            "from Vehiculo v left join fetch v.reservas");
-        
+        Query q = session.createQuery("select distinct v "
+                + "from Vehiculo v left join fetch v.reservas");
+
         lista = q.list();
         tx.commit();
         return lista;
     }
-    
+
     public Vehiculo buscarPorMatricula(String m) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
         Vehiculo v;
-        Query q = session.createQuery("select distinct v " +
-                "from Vehiculo v left join fetch v.reservas where v.matricula = '" + m +"'");
-        
+        Query q = session.createQuery("select distinct v "
+                + "from Vehiculo v left join fetch v.reservas where v.matricula = '" + m + "'");
+
         v = (Vehiculo) q.uniqueResult();
         tx.commit();
         return v;
     }
 
+    public void crear(Vehiculo v) {
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        session.save(v);
+        tx.commit();
 
+    }
 }
