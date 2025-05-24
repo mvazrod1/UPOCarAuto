@@ -51,4 +51,11 @@ public class VehiculoDAO {
         tx.commit();
 
     }
+    
+    public void actualizar(Vehiculo v) {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        session.update(v);
+        tx.commit();
+    }
 }

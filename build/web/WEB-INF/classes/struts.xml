@@ -68,23 +68,16 @@
             <result name="input">/Vehiculo/formAltaVehiculo.jsp</result>
         </action>
 
-        <action name="editarVehiculo"
-                class="acciones.VehiculoAction"
-                method="mostrarModificar">
+        <action name="editarVehiculo" class="acciones.VehiculoAction" method="modificar">
             <result>/Vehiculo/modificarVehiculo.jsp</result>
-            <result name="input">/Vehiculo/indexVehiculo.jsp</result>
         </action>
 
-        <action name="actualizarVehiculo"
-                class="acciones.VehiculoAction"
-                method="guardarModificacion">
+        <action name="actualizarVehiculo" class="acciones.VehiculoAction" method="guardarModificacion">
             <result name="success" type="redirectAction">indexVehiculo</result>
             <result name="input">/Vehiculo/modificarVehiculo.jsp</result>
         </action>
 
-        <action name="eliminarVehiculo"
-                class="acciones.VehiculoAction"
-                method="eliminar">
+        <action name="eliminarVehiculo" class="acciones.VehiculoAction" method="eliminar">
             <result name="success" type="redirectAction">indexVehiculo</result>
             <result name="input">/Vehiculo/indexVehiculo.jsp</result>
         </action>

@@ -63,16 +63,45 @@ public class VehiculoAction extends ActionSupport {
     }
 
     public String guardarAlta() {
-        // construimos el objeto a partir de los campos bindados
         vehiculo = new Vehiculo();
         Inventario inv = new Inventario();
         inv.setIdInventario(idInventario);
-        
+
         vehiculo = new Vehiculo(matricula.trim().toUpperCase(), inv, marca.trim(), modelo.trim(), anio, precio, estado, disponibilidad);
-        // Llamada al DAO
         dao.crear(vehiculo);
 
         return SUCCESS; // hace redirect a indexVehiculo
+    }
+
+    public String modificar() {
+        vehiculo = dao.buscarPorMatricula(matricula);
+        idInventario   = vehiculo.getInventario().getIdInventario();
+        marca          = vehiculo.getMarca();
+        modelo         = vehiculo.getModelo();
+        anio           = vehiculo.getAnio();
+        precio         = vehiculo.getPrecio();
+        estado         = vehiculo.getEstado();
+        disponibilidad = vehiculo.isDisponibilidad();
+        return SUCCESS;
+    }
+    
+    public String guardarModificacion() {
+        // reconstruir relación Inventario
+        Inventario inv = new Inventario();
+        inv.setIdInventario(idInventario);
+        // rellenar el POJO
+        Vehiculo v = new Vehiculo(
+            matricula.trim().toUpperCase(), 
+            inv,
+            marca.trim(), 
+            modelo.trim(), 
+            anio, 
+            precio, 
+            estado, 
+            disponibilidad
+        );
+        dao.actualizar(v);
+        return SUCCESS;  // redirige a indexVehiculo
     }
 
     @Override
@@ -90,8 +119,8 @@ public class VehiculoAction extends ActionSupport {
                 addFieldError("matricula", "Debes seleccionar un vehículo");
             }
         }
-        
-         if ("guardarAlta".equals(metodo)) {
+
+        if ("guardarAlta".equals(metodo) || "guardarModificacion".equals(metodo)) {
             // matrícula
             if (matricula == null || matricula.trim().isEmpty()) {
                 addFieldError("matricula", "Matrícula es obligatoria");
@@ -125,7 +154,7 @@ public class VehiculoAction extends ActionSupport {
             if (estado == null || estado.trim().isEmpty()) {
                 addFieldError("estado", "Debes seleccionar un estado");
             }
-         }
+        }
     }
 
     public List<Vehiculo> getLista() {
