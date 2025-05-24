@@ -51,11 +51,22 @@ public class VehiculoDAO {
         tx.commit();
 
     }
-    
+
     public void actualizar(Vehiculo v) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
         session.update(v);
+        tx.commit();
+    }
+
+    public void eliminarPorMatricula(String matricula) {
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        // Recupera directamente en esta sesión, SIN llamar a otro método que abra tx:
+        Vehiculo v = (Vehiculo) session.get(Vehiculo.class, matricula.trim().toUpperCase());
+        if (v != null) {
+            session.delete(v);
+        }
         tx.commit();
     }
 }

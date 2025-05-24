@@ -70,7 +70,7 @@ public class VehiculoAction extends ActionSupport {
         vehiculo = new Vehiculo(matricula.trim().toUpperCase(), inv, marca.trim(), modelo.trim(), anio, precio, estado, disponibilidad);
         dao.crear(vehiculo);
 
-        return SUCCESS; // hace redirect a indexVehiculo
+        return SUCCESS; 
     }
 
     public String modificar() {
@@ -86,10 +86,8 @@ public class VehiculoAction extends ActionSupport {
     }
     
     public String guardarModificacion() {
-        // reconstruir relación Inventario
         Inventario inv = new Inventario();
         inv.setIdInventario(idInventario);
-        // rellenar el POJO
         Vehiculo v = new Vehiculo(
             matricula.trim().toUpperCase(), 
             inv,
@@ -101,7 +99,16 @@ public class VehiculoAction extends ActionSupport {
             disponibilidad
         );
         dao.actualizar(v);
-        return SUCCESS;  // redirige a indexVehiculo
+        return SUCCESS;  
+    }
+    
+    public String eliminar() {
+        if (matricula == null || matricula.trim().isEmpty()) {
+            addActionError("Debes seleccionar un vehículo para eliminar");
+            return INPUT;
+        }
+        dao.eliminarPorMatricula(matricula.trim().toUpperCase());
+        return SUCCESS;
     }
 
     @Override
@@ -127,18 +134,18 @@ public class VehiculoAction extends ActionSupport {
             } else if (!MATRICULA.matcher(matricula.trim().toUpperCase()).matches()) {
                 addFieldError("matricula", "Formato inválido (####ABC)");
             }
-            // inventario
+            
             if (idInventario == null) {
                 addFieldError("idInventario", "Debes indicar el inventario");
             }
-            // marca / modelo
+            
             if (marca == null || marca.trim().isEmpty()) {
                 addFieldError("marca", "Marca es obligatoria");
             }
             if (modelo == null || modelo.trim().isEmpty()) {
                 addFieldError("modelo", "Modelo es obligatorio");
             }
-            // año
+            
             if (anio == null) {
                 addFieldError("anio", "Año es obligatorio");
             } else if (anio < 1900) {
