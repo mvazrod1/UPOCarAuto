@@ -41,13 +41,13 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="upocarauto"/>
-  <table-filter match-name="reserva"/>
-  <table-filter match-name="inventario"/>
-  <table-filter match-name="pago"/>
-  <table-filter match-name="pago_transaccion"/>
-  <table-filter match-name="transaccion"/>
-  <table-filter match-name="vehiculo"/>
-  <table-filter match-name="cliente"/>
-  <table-filter match-name="empleado"/>
   <table-filter match-name="concesionario"/>
+  <table-filter match-name="vehiculo"/>
+  <table-filter match-name="transaccion"/>
+  <table-filter match-name="inventario"/>
+  <table-filter match-name="empleado"/>
+  <table-filter match-name="pago"/>
+  <table-filter match-name="cliente"/>
+  <table-filter match-name="reserva"/>
+  <table-filter match-name="pago_transaccion"/>
 </hibernate-reverse-engineering>

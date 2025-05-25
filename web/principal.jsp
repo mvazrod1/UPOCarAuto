@@ -18,9 +18,8 @@
         <s:form action="/Cliente/indexCliente" method="post"> 
             <s:submit value="Gestión de clientes" />
         </s:form>
-                
-        <s:form action="/Reserva/indexReserva" method="post"> 
-            <s:submit value="Gestión de reservas" />
+        <s:form action="/Vehiculo/indexVehiculo" method="post"> 
+            <s:submit value="Gestión de vehículos" />
         </s:form>
     </body>
 </html>

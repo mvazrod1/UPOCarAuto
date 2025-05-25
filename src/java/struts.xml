@@ -39,6 +39,48 @@
             <result name="success" type="redirectAction">indexCliente</result>
             <result name="input">/Cliente/indexCliente.jsp</result>
         </action>
+        
+    </package>
+    <package name="vehiculos" namespace="/Vehiculo" extends="struts-default">
+        <action name="indexVehiculo" class="acciones.VehiculoAction" >
+            <result>/Vehiculo/indexVehiculo.jsp</result>
+        </action>
+        <action name="buscarVehiculo" class="acciones.VehiculoAction" method="buscar" >
+            <result name="success">/Vehiculo/indexVehiculo.jsp</result>
+            <result name="input">/Vehiculo/indexVehiculo.jsp</result>
+        </action>
+        
+        <action name="consultarVehiculo"
+                 class="acciones.VehiculoAction"
+                 method="consultar">
+            <result name="success">/Vehiculo/detallesVehiculo.jsp</result>
+            <result name="input">/Vehiculo/indexVehiculo.jsp</result>
+        </action>
+
+        <action name="altaVehiculo" class="acciones.VehiculoAction">
+            <result>/Vehiculo/formAltaVehiculo.jsp</result>
+        </action>
+
+        <action name="guardarVehiculo"
+                class="acciones.VehiculoAction"
+                method="guardarAlta">
+            <result name="success" type="redirectAction">indexVehiculo</result>
+            <result name="input">/Vehiculo/formAltaVehiculo.jsp</result>
+        </action>
+
+        <action name="editarVehiculo" class="acciones.VehiculoAction" method="modificar">
+            <result>/Vehiculo/modificarVehiculo.jsp</result>
+        </action>
+
+        <action name="actualizarVehiculo" class="acciones.VehiculoAction" method="guardarModificacion">
+            <result name="success" type="redirectAction">indexVehiculo</result>
+            <result name="input">/Vehiculo/modificarVehiculo.jsp</result>
+        </action>
+
+        <action name="eliminarVehiculo" class="acciones.VehiculoAction" method="eliminar">
+            <result name="success" type="redirectAction">indexVehiculo</result>
+            <result name="input">/Vehiculo/indexVehiculo.jsp</result>
+        </action>
     </package>
     
     <package name="reservas" namespace="/Reserva" extends="struts-default">
