@@ -38,7 +38,7 @@ public class Reserva  implements java.io.Serializable {
        this.fechaRecogida = fechaRecogida;
        this.pagos = pagos;
     }
-   
+
     public Integer getIdReserva() {
         return this.idReserva;
     }
@@ -88,9 +88,6 @@ public class Reserva  implements java.io.Serializable {
     public void setPagos(Set pagos) {
         this.pagos = pagos;
     }
-
-
-
 
 }
 

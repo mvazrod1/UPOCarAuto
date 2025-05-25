@@ -30,6 +30,22 @@
     <body>
         <h2>Clientes Registrados</h2>
 
+        <s:form action="buscarCliente" method="post" theme="simple">
+            <s:textfield name="dni"
+                         placeholder="Introduzca dni"
+                         size="15"/>
+            <s:submit value="Buscar"/>
+            <a href="<s:url action='indexCliente'/>">Mostrar todos</a>
+        </s:form>
+
+        <s:if test="hasActionMessages()">
+            <div style="color: red; font-weight: bold;">
+                <s:actionmessage />
+            </div>
+        </s:if>
+
+        <br/>
+
         <s:form id="clienteForm" method="post">
             <input type="hidden" id="dniSeleccionado" name="dni" />
 
@@ -71,6 +87,10 @@
         <br/><br/>
         <s:form action="/Cliente/altaCliente" method="post"> 
             <s:submit value="Alta cliente" />
+        </s:form>
+        <br>
+        <s:form action="/principal.jsp" method="post"> 
+            <s:submit value="Volver a la página principal" />
         </s:form>
     </body>
 </html>
