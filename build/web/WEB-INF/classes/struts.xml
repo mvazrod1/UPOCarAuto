@@ -13,6 +13,11 @@
             <result>/Cliente/indexCliente.jsp</result>
         </action>
         
+        <action name="buscarCliente" class="acciones.ClienteAction" method="buscar" >
+            <result name="success">/Cliente/indexCliente.jsp</result>
+            <result name="input">/Cliente/indexCliente.jsp</result>
+        </action>
+        
         <action name="altaCliente" class="acciones.ClienteAction" method="mostrarAltaClienteForm">
             <result>/Cliente/formAltaCliente.jsp</result>
         </action>
@@ -86,6 +91,11 @@
     <package name="reservas" namespace="/Reserva" extends="struts-default">
         <action name="indexReserva" class="acciones.ReservaAction" method="execute">
             <result>/Reserva/indexReserva.jsp</result>
+        </action>
+        
+        <action name="buscarReserva" class="acciones.ReservaAction" method="buscar" >
+            <result name="success">/Reserva/indexReserva.jsp</result>
+            <result name="input">/Reserva/indexReserva.jsp</result>
         </action>
         
         <action name="altaReserva" class="acciones.ReservaAction" method="mostrarAltaReservaForm">

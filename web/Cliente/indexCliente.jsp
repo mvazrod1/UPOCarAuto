@@ -30,6 +30,22 @@
     <body>
         <h2>Clientes Registrados</h2>
 
+        <s:form action="buscarCliente" method="post" theme="simple">
+            <s:textfield name="dni"
+                         placeholder="Introduzca dni"
+                         size="15"/>
+            <s:submit value="Buscar"/>
+            <a href="<s:url action='indexCliente'/>">Mostrar todos</a>
+        </s:form>
+
+        <s:if test="hasActionMessages()">
+            <div style="color: red; font-weight: bold;">
+                <s:actionmessage />
+            </div>
+        </s:if>
+
+        <br/>
+
         <s:form id="clienteForm" method="post">
             <input type="hidden" id="dniSeleccionado" name="dni" />
 

@@ -30,6 +30,22 @@
     <body>
         <h2>Reservas Registrados</h2>
 
+        <s:form action="buscarReserva" method="post" theme="simple">
+            <s:textfield name="idReserva"
+                         placeholder="Introduzca id de Reserva"
+                         size="15"/>
+            <s:submit value="Buscar"/>
+            <a href="<s:url action='indexReserva'/>">Mostrar todos</a>
+        </s:form>
+
+        <s:if test="hasActionMessages()">
+            <div style="color: red; font-weight: bold;">
+                <s:actionmessage />
+            </div>
+        </s:if>
+
+        <br/>
+
         <s:form id="reservaForm" method="post">
             <input type="hidden" id="idSeleccionado" name="idReserva" />
 

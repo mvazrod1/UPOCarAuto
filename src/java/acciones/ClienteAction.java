@@ -8,6 +8,7 @@ package acciones;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.ArrayList;
 import java.util.List;
 import modelo.Cliente;
 import modelo.dao.ClienteDAO;
@@ -39,6 +40,20 @@ public class ClienteAction extends ActionSupport {
 
     public String eliminarCliente() {
         dao.bajaCliente(dni);
+        return SUCCESS;
+    }
+    
+    public String buscar() throws Exception {
+        cliente = dao.consultarCliente(dni);
+        listaClientes = new ArrayList<>();
+        
+        if (cliente == null) {
+            addActionMessage("El clienre con dni " + dni + " no existe.");
+            return INPUT;
+        }
+        
+        listaClientes.add(cliente);
+
         return SUCCESS;
     }
 

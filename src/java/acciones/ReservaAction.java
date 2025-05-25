@@ -8,11 +8,11 @@ package acciones;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import modelo.Cliente;
 import modelo.Reserva;
-import modelo.Vehiculo;
 import modelo.dao.ClienteDAO;
 import modelo.dao.ReservaDAO;
 
@@ -20,15 +20,15 @@ import modelo.dao.ReservaDAO;
  *
  * @author marin
  */
-public class ReservaAction extends ActionSupport{
-    
+public class ReservaAction extends ActionSupport {
+
     private Integer idReserva;
-    private String dni_cliente; 
-    private String matricula;   
+    private String dni_cliente;
+    private String matricula;
     private String estado;
     private Date fecha_creacion;
     private Date fecha_recogida;
-    
+
     private List<Reserva> listaReservas;
     private Reserva reserva;
 
@@ -44,6 +44,19 @@ public class ReservaAction extends ActionSupport{
 
     public String eliminarReserva() {
         dao.bajaReserva(idReserva);
+        return SUCCESS;
+    }
+
+    public String buscar() throws Exception {
+        reserva = dao.consultarReserva(idReserva);
+        listaReservas = new ArrayList<>();
+
+        if (reserva == null) {
+            addActionMessage("La reserva con ID " + idReserva + " no existe.");
+            return INPUT;
+        }
+        listaReservas.add(reserva);
+
         return SUCCESS;
     }
 
@@ -217,6 +230,5 @@ public class ReservaAction extends ActionSupport{
     public void setVehiculoDAO(VehiculoDAO vehiculoDAO) {
         this.vehiculoDAO = vehiculoDAO;
     }*/
-    
-    
+
 }
