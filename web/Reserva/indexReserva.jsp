@@ -22,6 +22,13 @@
             }
 
             function enviarAccion(accion) {
+                if (btnEliminar) {
+                    var id = document.getElementById("idSeleccionado").value;
+                    var confirmar = confirm("¿Seguro que quiere eliminar la reserva con ID: " + id + "?");
+                    if (!confirmar) {
+                        return;
+                    }
+                }
                 document.getElementById("reservaForm").action = accion;
                 document.getElementById("reservaForm").submit();
             }
