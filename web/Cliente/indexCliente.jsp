@@ -22,6 +22,13 @@
             }
 
             function enviarAccion(accion) {
+                if (btnEliminar) {
+                    var dni = document.getElementById("dniSeleccionado").value;
+                    var confirmar = confirm("¿Seguro que quiere eliminar al cliente con DNI: " + dni + "?");
+                    if (!confirmar) {
+                        return;
+                    }
+                }
                 document.getElementById("clienteForm").action = accion;
                 document.getElementById("clienteForm").submit();
             }
