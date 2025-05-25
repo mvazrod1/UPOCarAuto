@@ -40,11 +40,38 @@
                 <label>Fecha Recogida:</label>
                 <span><s:property value="reserva.fechaRecogida"/></span>
             </div>
-            <br>
-            <s:form action="/Reserva/indexReserva" method="get">
-                <button type="submit">Volver a la lista</button>
-            </s:form>
         </div>
+
+        <div>
+            <h3>Pagos</h3>
+            <s:if test="!reserva.pagos.isEmpty()">
+                <table border="1">
+                    <tr>
+                        <th>ID Pago</th>
+                        <th>Precio</th>
+                        <th>Fecha de Pago</th>
+                        <th>Método de Pago</th>
+                        <th>Estado de Pago</th>
+                    </tr>
+                    <s:iterator value="reserva.pagos" var="pago">
+                        <tr>
+                            <td><s:property value="#pago.idPago" /></td>
+                            <td><s:property value="#pago.precioTotal" /></td>
+                            <td><s:property value="#pago.fechaPago" /></td>
+                            <td><s:property value="#pago.metodoPago" /></td>
+                            <td><s:property value="#pago.estadoPago" /></td>
+                        </tr>
+                    </s:iterator>
+                </table>
+            </s:if>
+            <s:else>
+                <p>No hay pagos registrados para esta reserva.</p>
+            </s:else>
+        </div>
+        <br>
+        <s:form action="/Reserva/indexReserva" method="get">
+            <button type="submit">Volver a la lista</button>
+        </s:form>
     </body>
 </html>
 

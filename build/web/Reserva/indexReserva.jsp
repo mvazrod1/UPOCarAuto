@@ -72,5 +72,9 @@
         <s:form action="/Reserva/altaReserva" method="post"> 
             <s:submit value="Alta Reserva" />
         </s:form>
+        <br>
+        <s:form action="/principal.jsp" method="post"> 
+            <s:submit value="Volver a la página principal" />
+        </s:form>
     </body>
 </html>
