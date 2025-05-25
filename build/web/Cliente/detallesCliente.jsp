@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Detllas Cliente</title>
+        <title>Detalles Cliente</title>
     </head>
     <body>
         <div class="detalle-cliente">

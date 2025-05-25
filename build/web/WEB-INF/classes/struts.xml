@@ -40,5 +40,38 @@
             <result name="input">/Cliente/indexCliente.jsp</result>
         </action>
     </package>
+    
+    <package name="reservas" namespace="/Reserva" extends="struts-default">
+        <action name="indexReserva" class="acciones.ReservaAction" method="execute">
+            <result>/Reserva/indexReserva.jsp</result>
+        </action>
+        
+        <action name="altaReserva" class="acciones.ReservaAction" method="mostrarAltaReservaForm">
+            <result>/Reserva/formAltaReserva.jsp</result>
+        </action>
+        
+        <action name="registrarReserva" class="acciones.ReservaAction" method="registrarReserva">
+            <result name="success" type="redirectAction">indexReserva</result>
+            <result name="input">/Reserva/formAltaReserva.jsp</result>
+        </action>
+
+        <action name="consultarReserva" class="acciones.ReservaAction" method="consultarReserva">
+            <result>/Reserva/detallesReserva.jsp</result>
+        </action>
+
+        <action name="editarReserva" class="acciones.ReservaAction" method="mostrarModificarReservaForm">
+            <result>/Reserva/modificarReserva.jsp</result>
+        </action>
+        
+        <action name="guardarModfReserva" class="acciones.ReservaAction" method="modificarReserva">
+            <result name="success" type="redirectAction">indexReserva</result>
+            <result name="input">/Reserva/indexReserva.jsp</result>
+        </action>
+
+        <action name="eliminarReserva" class="acciones.ReservaAction" method="eliminarReserva">
+            <result name="success" type="redirectAction">indexReserva</result>
+            <result name="input">/Reserva/indexReserva.jsp</result>
+        </action>
+    </package>
 
 </struts>
