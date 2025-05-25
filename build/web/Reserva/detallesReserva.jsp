@@ -38,7 +38,12 @@
             </div>
             <div>
                 <label>Fecha Recogida:</label>
-                <span><s:property value="reserva.fechaRecogida"/></span>
+                <span><s:if test="#r.fechaRecogida != null">
+                        <s:property value="#r.fechaRecogida"/>
+                    </s:if>
+                    <s:else>
+                        Fecha aún no fijada
+                    </s:else></span>
             </div>
         </div>
 

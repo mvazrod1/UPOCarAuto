@@ -9,10 +9,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Listado de Vehículos</title>
+        <title>Gestión de Vehículos</title>
     </head>
     <body>
-
+        
+        <h2>Vehículos Registrados</h2>
         <s:actionerror/><br/>
 
         <!-- Buscador -->
@@ -88,6 +89,10 @@
         <s:form action="altaVehiculo"
                 method="get">
             <s:submit value="Alta vehículo"/>
+        </s:form>
+        <br>
+        <s:form action="/principal.jsp" method="post"> 
+            <s:submit value="Volver a la página principal" />
         </s:form>
 
         <script>
