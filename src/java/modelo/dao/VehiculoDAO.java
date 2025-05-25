@@ -69,4 +69,13 @@ public class VehiculoDAO {
         }
         tx.commit();
     }
+
+    public List<Vehiculo> listarVehiculosDisponibles() {
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        Query q = session.createQuery("FROM Vehiculo v WHERE v.disponibilidad = true");
+        List<Vehiculo> listaVehiculos = q.list();
+        tx.commit();
+        return listaVehiculos;
+    }
 }

@@ -26,6 +26,7 @@
                 document.getElementById("reservaForm").submit();
             }
         </script>
+
     </head>
     <body>
         <h2>Reservas Registrados</h2>

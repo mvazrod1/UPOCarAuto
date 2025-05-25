@@ -56,8 +56,8 @@
         </action>
         
         <action name="consultarVehiculo"
-                 class="acciones.VehiculoAction"
-                 method="consultar">
+                class="acciones.VehiculoAction"
+                method="consultar">
             <result name="success">/Vehiculo/detallesVehiculo.jsp</result>
             <result name="input">/Vehiculo/indexVehiculo.jsp</result>
         </action>
@@ -123,6 +123,7 @@
         <action name="eliminarReserva" class="acciones.ReservaAction" method="eliminarReserva">
             <result name="success" type="redirectAction">indexReserva</result>
             <result name="input">/Reserva/indexReserva.jsp</result>
+            <result name="error">/Reserva/errorReserva.jsp</result>
         </action>
     </package>
 
