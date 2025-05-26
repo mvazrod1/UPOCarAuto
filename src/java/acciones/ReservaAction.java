@@ -8,6 +8,7 @@ package acciones;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,6 +34,7 @@ public class ReservaAction extends ActionSupport {
     private String estado;
     private Date fecha_creacion;
     private String fecha_recogida;
+    private String fechaCreacionFormateada;
 
     private List<Cliente> listaDnis;
     private List<Vehiculo> listaMatriculas;
@@ -53,25 +55,25 @@ public class ReservaAction extends ActionSupport {
     public String eliminarReserva() throws Exception {
 
         try {
-        Reserva reserva = dao.consultarReserva(idReserva);
-        if (reserva == null) {
-            addActionError("La reserva no existe.");
-            return INPUT;
+            Reserva reserva = dao.consultarReserva(idReserva);
+            if (reserva == null) {
+                addActionError("La reserva no existe.");
+                return INPUT;
+            }
+
+            Vehiculo vehiculo = reserva.getVehiculo();
+
+            dao.bajaReserva(idReserva);
+
+            vehiculo.setDisponibilidad(true);
+            vehiculoDAO.actualizar(vehiculo);
+
+            return SUCCESS;
+
+        } catch (Exception e) {
+            addActionError(e.getMessage());
+            return ERROR;
         }
-
-        Vehiculo vehiculo = reserva.getVehiculo();
-
-        dao.bajaReserva(idReserva);
-
-        vehiculo.setDisponibilidad(true);
-        vehiculoDAO.actualizar(vehiculo);
-
-        return SUCCESS;
-
-    } catch (Exception e) {
-        addActionError(e.getMessage());
-        return ERROR;
-    }
 
     }
 
@@ -139,6 +141,11 @@ public class ReservaAction extends ActionSupport {
             estado = reserva.getEstado();
             fecha_creacion = reserva.getFechaCreacion();
 
+            if (fecha_creacion != null) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                fechaCreacionFormateada = sdf.format(fecha_creacion);
+            }
+
             Date fechaRecogidaDate = reserva.getFechaRecogida();
             if (fechaRecogidaDate != null) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -166,19 +173,28 @@ public class ReservaAction extends ActionSupport {
                 fechaRecogidaDate = sdf.parse(fecha_recogida);
             }
 
+            Reserva reservaOriginal = dao.consultarReserva(idReserva);
+            if (reservaOriginal == null) {
+                addActionError("La reserva no existe.");
+                return INPUT;
+            }
+
             reserva = new Reserva();
             reserva.setIdReserva(idReserva);
             reserva.setCliente(cliente);
             reserva.setVehiculo(vehiculo);
             reserva.setEstado(estado);
-            reserva.setFechaCreacion(fecha_creacion != null ? fecha_creacion : new Date());
+            reserva.setFechaCreacion(reservaOriginal.getFechaCreacion());
             reserva.setFechaRecogida(fechaRecogidaDate);
 
             if ("Rechazada".equalsIgnoreCase(estado)) {
                 vehiculo.setDisponibilidad(true);
                 vehiculoDAO.actualizar(vehiculo);
+            } else {
+                vehiculo.setDisponibilidad(false);
+                vehiculoDAO.actualizar(vehiculo);
             }
-            
+
             dao.actualizarReserva(reserva);
 
         } catch (Exception e) {
@@ -195,7 +211,7 @@ public class ReservaAction extends ActionSupport {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setLenient(false);
 
-        if (actionName.equals("registrarReserva") || actionName.equals("modificarReserva")) {
+        if (actionName.equals("registrarReserva")) {
             if (dni_cliente == null || dni_cliente.trim().isEmpty()) {
                 addFieldError("dni_cliente", "Introduce el DNI del cliente");
             }
@@ -221,6 +237,29 @@ public class ReservaAction extends ActionSupport {
             listaDnis = clienteDAO.listarClientes();
             listaMatriculas = vehiculoDAO.listarVehiculosDisponibles();
         }
+
+        if (actionName.equals("guardarModfReserva")) {
+            try {
+                Date fechaRecogidaDate = sdf.parse(fecha_recogida);
+                Date hoy = sdf.parse(sdf.format(new Date()));
+
+                if (fechaRecogidaDate.before(hoy)) {
+                    addFieldError("fecha_recogida", "La fecha de recogida no puede ser anterior a la fecha actual.");
+                }
+
+                if (fecha_creacion == null) {
+                    addFieldError("fecha_recogida", "La fecha de creación no está definida.");
+                } else {
+                    Date fechaCreacionDate = sdf.parse(sdf.format(fecha_creacion));
+                    if (fechaRecogidaDate.before(fechaCreacionDate)) {
+                        addFieldError("fecha_recogida", "La fecha de recogida no puede ser anterior a la fecha de creación.");
+                    }
+                }
+
+            } catch (Exception e) {
+                addFieldError("fecha_recogida", "Formato de fecha inválido. Usa yyyy-MM-dd.");
+            }
+        }
     }
 
     public Integer getIdReserva() {
@@ -237,6 +276,14 @@ public class ReservaAction extends ActionSupport {
 
     public void setDni_cliente(String dni_cliente) {
         this.dni_cliente = dni_cliente;
+    }
+
+    public String getFechaCreacionFormateada() {
+        return fechaCreacionFormateada;
+    }
+
+    public void setFechaCreacionFormateada(String fechaCreacionFormateada) {
+        this.fechaCreacionFormateada = fechaCreacionFormateada;
     }
 
     public String getMatricula() {
@@ -259,8 +306,13 @@ public class ReservaAction extends ActionSupport {
         return fecha_creacion;
     }
 
-    public void setFecha_creacion(Date fecha_creacion) {
-        this.fecha_creacion = fecha_creacion;
+    public void setFecha_creacion(String fecha_creacion) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            this.fecha_creacion = sdf.parse(fecha_creacion);
+        } catch (ParseException e) {
+            this.fecha_creacion = null;
+        }
     }
 
     public String getFecha_recogida() {

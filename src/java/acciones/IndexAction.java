@@ -77,9 +77,8 @@ public class IndexAction extends ActionSupport {
         } catch (Exception ex) {
             addActionError("Error al registrar empleado: " + ex.getMessage());
             try {
-                listaConcesionarios = concesionarioDAO.listar(); // recarga lista si error
+                listaConcesionarios = concesionarioDAO.listar();
             } catch (Exception e) {
-                // Ignorar por ahora
             }
             return ERROR;
         }
@@ -102,6 +101,8 @@ public class IndexAction extends ActionSupport {
 
             if (this.getDni().equals("")) {
                 addFieldError("dni", "Introduce el dni");
+            }else if (!this.getDni().matches("^[0-9]{8}[A-Za-z]$")) {
+                addFieldError("dni", "El DNI debe tener 8 números seguidos de una letra");
             }
 
             if (this.getContrasenya().equals("")) {

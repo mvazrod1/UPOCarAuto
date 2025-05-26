@@ -1,6 +1,6 @@
 <%-- 
-    Document   : errorReserva
-    Created on : 25-may-2025, 18:23:47
+    Document   : errorCliente
+    Created on : 26-may-2025, 17:06:14
     Author     : marin
 --%>
 
@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Error al eliminar la reserva</title>
+        <title>Error al eliminar el cliente</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/general.css">
     </head>
@@ -19,7 +19,7 @@
 
         <div class="container my-5">
             <div class="alert alert-danger">
-                <h1 class="text-danger">Error al eliminar la reserva</h1>
+                <h1 class="text-danger">Error al eliminar el cliente</h1>
             </div>
 
             <s:if test="hasActionErrors()">
@@ -28,7 +28,7 @@
                 </div>
             </s:if>
 
-            <s:form action="indexReserva" namespace="/Reserva" method="post">
+            <s:form action="indexCliente" namespace="/Cliente" method="post">
                 <s:submit value="Volver a la lista" cssClass="btn-rojo mt-3"/>
             </s:form>
         </div>
@@ -37,4 +37,3 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
-

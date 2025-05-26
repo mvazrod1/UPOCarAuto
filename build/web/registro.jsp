@@ -10,83 +10,91 @@
 <html>
     <head>
         <title>Registro de Empleado</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/general.css">
     </head>
     <body>
+        <jsp:include page="HEADER.jsp" />
+        <div class="container mt-5">
+            <h2 class="text-center mb-4" style="color: var(--color-rojo);">Registro de nuevo empleado</h2>
 
-        <h2>Registro de nuevo empleado</h2>
+            <s:form action="registrar" method="post" cssClass="p-4 border rounded bg-light shadow-sm" style="max-width: 600px; margin: auto;">
+                <div class="mb-3">
+                    <label for="dni" class="form-label">DNI:</label>
+                    <s:textfield name="dni" id="dni" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="dni" cssClass="text-danger small"/>
+                </div>
 
-        <s:form action="registrar" method="post">
-            <div>
-                <label for="dni">DNI:</label>
-                <s:textfield name="dni" id="dni" theme="simple"/>
-                <s:fielderror fieldName="dni"/>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre:</label>
+                    <s:textfield name="nombre" id="nombre" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="nombre" cssClass="text-danger small"/>
+                </div>
+
+                <div class="mb-3">
+                    <label for="apellidos" class="form-label">Apellidos:</label>
+                    <s:textfield name="apellidos" id="apellidos" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="apellidos" cssClass="text-danger small"/>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <s:textfield name="email" id="email" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="email" cssClass="text-danger small"/>
+                </div>
+
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">Teléfono:</label>
+                    <s:textfield name="telefono" id="telefono" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="telefono" cssClass="text-danger small"/>
+                </div>
+
+                <div class="mb-3">
+                    <label for="direccion" class="form-label">Dirección:</label>
+                    <s:textfield name="direccion" id="direccion" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="direccion" cssClass="text-danger small"/>
+                </div>
+
+                <div class="mb-3">
+                    <label for="puesto" class="form-label">Puesto:</label>
+                    <s:textfield name="puesto" id="puesto" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="puesto" cssClass="text-danger small"/>
+                </div>
+
+                <div class="mb-3">
+                    <label for="idConcesionario" class="form-label">Concesionario:</label>
+                    <s:select name="idConcesionario"
+                              id="idConcesionario"
+                              list="listaConcesionarios"
+                              listKey="idConcesionario"
+                              listValue="nombre"
+                              headerKey="" headerValue="-- Seleccione --"
+                              theme="simple"
+                              cssClass="form-select"/>
+                    <s:fielderror fieldName="idConcesionario" cssClass="text-danger small"/>
+                </div>
+
+                <div class="mb-3">
+                    <label for="contrasenya" class="form-label">Contraseña:</label>
+                    <s:password name="contrasenya" id="contrasenya" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="contrasenya" cssClass="text-danger small"/>
+                </div>
+
+                <div class="d-flex justify-content-center mt-4">
+                    <s:submit value="Registrar Empleado" cssClass="btn-rojo"/>
+                    <s:reset value="Limpiar" cssClass="btn btn-secondary"/>
+                </div>
+            </s:form>
+
+            <div class="d-flex justify-content-center mt-4">
+                <s:form action="volverInicio">
+                    <s:submit value="Volver al inicio" cssClass="btn btn-outline-secondary"/>
+                </s:form>
             </div>
-
-            <div>
-                <label for="nombre">Nombre:</label>
-                <s:textfield name="nombre" id="nombre" theme="simple"/>
-                <s:fielderror fieldName="nombre"/>
-            </div>
-
-            <div>
-                <label for="apellidos">Apellidos:</label>
-                <s:textfield name="apellidos" id="apellidos" theme="simple"/>
-                <s:fielderror fieldName="apellidos"/>
-            </div>
-
-            <div>
-                <label for="email">Email:</label>
-                <s:textfield name="email" id="email" theme="simple"/>
-                <s:fielderror fieldName="email"/>
-            </div>
-
-            <div>
-                <label for="telefono">Teléfono:</label>
-                <s:textfield name="telefono" id="telefono" theme="simple"/>
-                <s:fielderror fieldName="telefono"/>
-            </div>
-
-            <div>
-                <label for="direccion">Dirección:</label>
-                <s:textfield name="direccion" id="direccion" theme="simple"/>
-                <s:fielderror fieldName="direccion"/>
-            </div>
-
-            <div>
-                <label for="puesto">Puesto:</label>
-                <s:textfield name="puesto" id="puesto" theme="simple"/>
-                <s:fielderror fieldName="puesto"/>
-            </div>
-
-            <div>
-                <label for="idConcesionario">Concesionario:</label>
-                <s:select name="idConcesionario"
-                          id="idConcesionario"
-                          list="listaConcesionarios"
-                          listKey="idConcesionario"
-                          listValue="nombre"
-                          headerKey="" headerValue="-- Seleccione --" theme="simple"/>
-                <s:fielderror fieldName="idConcesionario"/>
-            </div>
-
-            <div>
-                <label for="contrasenya">Contraseña:</label>
-                <s:password name="contrasenya" id="contrasenya" theme="simple"/>
-                <s:fielderror fieldName="contrasenya"/>
-            </div>
-
-            <div style="margin-top:10px;">
-                <s:submit value="Registrar Empleado"/>
-                <s:reset value="Limpiar"/>
-            </div>
-        </s:form>
-
-        <br/>
-
-        <s:form action="volverInicio">
-            <s:submit value="Volver al inicio"/>
-        </s:form>
-
+        </div>
+        <jsp:include page="FOOTER.jsp" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
+
 

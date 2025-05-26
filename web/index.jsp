@@ -11,14 +11,15 @@
     <head>
         <meta charset="UTF-8">
         <title>Inicio</title>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/general.css">
     </head>
     <body>
-        <%--<jsp:include page="HEADER.jsp" />--%>
+        <jsp:include page="HEADER.jsp" />
 
         <div class="container-fluid pt-3 pb-3" style="min-height: 70vh">
             <div class="row mt-2 text-center">
-                <h1>¡BIENVENIDO A UPOCARAUTO!</h1>
+                <h1>¡BIENVENIDO!</h1>
                 <div class="container-fluid">
                     <div class="row">
                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000" data-bs-wrap="true">
@@ -48,20 +49,20 @@
             <div style="margin-top: 40px; display: flex; justify-content: space-around;">
                 <div style="width: 45%; text-align: center;">
                     <h2>¿Ya eres empleado de UPOCarAuto?</h2>
-                    <a href="<s:url action='loginForm'/>" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px;">
+                    <a href="<s:url action='loginForm'/>" class="btn-rojo">
                         <s:text name="Iniciar Sesión" />
                     </a>
                 </div>
                 <div style="width: 45%; text-align: center;">
                     <h2>¿Aún no te has registrado como empleado?</h2>
-                    <a href="<s:url action='mostrarRegistro'/>" style="display: inline-block; padding: 10px 20px; background-color: #28a745; color: white; text-decoration: none; border-radius: 4px;">
+                    <a href="<s:url action='mostrarRegistro'/>"class="btn-rojo">
                         <s:text name="Registrar" />
                     </a>   
                 </div>
             </div>
         </div>
         <s:actionmessage />
-
-        <%--<jsp:include page="FOOTER.jsp" />--%>
+        <jsp:include page="FOOTER.jsp" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

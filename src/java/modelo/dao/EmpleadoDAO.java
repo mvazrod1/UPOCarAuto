@@ -81,12 +81,14 @@ public class EmpleadoDAO {
         tx.commit();
         return lista;
     }
-    
-    public Empleado loginEmpleado(String dni, String contrasenya){
-        session=HibernateUtil.getSessionFactory().getCurrentSession();
-        Transaction tx=session.beginTransaction();
-        Query q=session.createQuery("From Empleado where dni='"+dni+"' and contrasenya='"+contrasenya+"'");
-        Empleado e = (Empleado)q.uniqueResult();
+
+    public Empleado loginEmpleado(String dni, String contrasenya) {
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        Query q = session.createQuery("FROM Empleado WHERE dni = :dni AND contrasenya = :contrasenya");
+        q.setParameter("dni", dni);
+        q.setParameter("contrasenya", contrasenya);
+        Empleado e = (Empleado) q.uniqueResult();
         tx.commit();
         return e;
     }

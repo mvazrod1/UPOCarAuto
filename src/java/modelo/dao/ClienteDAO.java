@@ -30,13 +30,38 @@ public class ClienteDAO {
         tx.commit();
     }
 
-    public void bajaCliente(String dni) {
-        session = HibernateUtil.getSessionFactory().getCurrentSession();
-        Transaction tx = session.beginTransaction();
-        Query query = session.createQuery("delete from Cliente where dni = :dni");
-        query.setParameter("dni", dni);
-        int result = query.executeUpdate();
-        tx.commit();
+    public void bajaCliente(String dni) throws Exception {
+        Session session = null;
+        Transaction tx = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            tx = session.beginTransaction();
+
+            Long reservasRelacionadas = (Long) session.createQuery(
+                    "select count(r) from Reserva r where r.cliente.dni = :dni")
+                    .setParameter("dni", dni)
+                    .uniqueResult();
+
+            if (reservasRelacionadas != null && reservasRelacionadas > 0) {
+                throw new Exception("No es posible borrar el cliente porque tiene reservas relacionadas.");
+            }
+
+            // Si no tiene reservas, borrar el cliente
+            Query query = session.createQuery("delete from Cliente where dni = :dni");
+            query.setParameter("dni", dni);
+            query.executeUpdate();
+
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            throw e;
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
 
     public void actualizarCliente(Cliente c) {
