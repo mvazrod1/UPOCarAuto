@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Detllas Cliente</title>
+        <title>Detalles Cliente</title>
     </head>
     <body>
         <div class="detalle-cliente">
@@ -41,6 +41,40 @@
                 <span><s:property value="cliente.direccion"/></span>
             </div>
 
+            <div>
+                <h3>Reservas Asociadas</h3>
+                <s:if test="!cliente.reservas.isEmpty()">
+                    <table border="1">
+                        <tr>
+                            <th>ID</th>
+                            <th>Matrícula</th>
+                            <th>Estado</th>
+                            <th>Fecha Creación</th>
+                            <th>Fecha Recogida</th>
+                        </tr>
+                        <s:iterator value="cliente.reservas" var="r">
+                            <tr>
+                                <td><s:property value="#r.idReserva"/></td>
+                                <td><s:property value="#r.vehiculo.matricula"/></td>
+                                <td><s:property value="#r.estado"/></td>
+                                <td><s:property value="#r.fechaCreacion"/></td>
+                                <td>
+                                    <s:if test="#r.fechaRecogida != null">
+                                        <s:property value="#r.fechaRecogida"/>
+                                    </s:if>
+                                    <s:else>
+                                        Fecha aún no fijada
+                                    </s:else>
+                                </td>
+                            </tr>
+                        </s:iterator>
+                    </table>
+                </s:if>
+                <s:else>
+                    <p>Este cliente no tiene reservas asociadas.</p>
+                </s:else>
+            </div>
+            <br>
             <s:form action="/Cliente/indexCliente" method="get">
                 <button type="submit">Volver a la lista</button>
             </s:form>

@@ -18,13 +18,14 @@
         <s:form action="/Cliente/indexCliente" method="post"> 
             <s:submit value="Gestión de clientes" />
         </s:form>
-
         <s:form action="/Vehiculo/indexVehiculo" method="post"> 
             <s:submit value="Gestión de vehículos" />
         </s:form>
         <s:form action="/Empleado/indexEmpleado" method="post"> 
             <s:submit value="Gestión de empleados" />
         </s:form>
-
+        <s:form action="/Reserva/indexReserva" method="post"> 
+            <s:submit value="Gestión de reservas" />
+        </s:form>
     </body>
 </html>

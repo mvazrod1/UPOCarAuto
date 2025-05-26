@@ -44,7 +44,7 @@ public class Cliente  implements java.io.Serializable {
        this.fechaRegistro = fechaRegistro;
        this.reservas = reservas;
     }
-   
+    
     public String getDni() {
         return this.dni;
     }
