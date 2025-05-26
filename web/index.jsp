@@ -25,13 +25,13 @@
                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000" data-bs-wrap="true">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="FOTOS/concesionario.jpg" class="d-block w-100" alt="Concesionario 1" style="object-fit: contain; height: 800px;">
+                                    <img src="${pageContext.request.contextPath}/FOTOS/concesionario.jpg" class="d-block w-100" alt="Concesionario 1" style="object-fit: contain; height: 800px;">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="FOTOS/mecanico.jpg" class="d-block w-100" alt="Concesionario 2" style="object-fit: contain; height: 800px;">
+                                    <img src="${pageContext.request.contextPath}/FOTOS/mecanico.jpg" class="d-block w-100" alt="Concesionario 2" style="object-fit: contain; height: 800px;">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="FOTOS/vendedor.jpg" class="d-block w-100" alt="Concesionario 3" style="object-fit: contain; height: 800px;">
+                                    <img src="${pageContext.request.contextPath}/FOTOS/vendedor.jpg" class="d-block w-100" alt="Concesionario 3" style="object-fit: contain; height: 800px;">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

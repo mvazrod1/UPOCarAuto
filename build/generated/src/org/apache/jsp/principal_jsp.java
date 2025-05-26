@@ -14,6 +14,7 @@ public final class principal_jsp extends org.apache.jasper.runtime.HttpJspBase
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_s_submit_value_cssClass_nobody;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_s_form_style_method_action;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_s_form_action;
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_s_property_value_nobody;
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
@@ -25,12 +26,14 @@ public final class principal_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_tagPool_s_submit_value_cssClass_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_s_form_style_method_action = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_s_form_action = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _jspx_tagPool_s_property_value_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
   }
 
   public void _jspDestroy() {
     _jspx_tagPool_s_submit_value_cssClass_nobody.release();
     _jspx_tagPool_s_form_style_method_action.release();
     _jspx_tagPool_s_form_action.release();
+    _jspx_tagPool_s_property_value_nobody.release();
   }
 
   public void _jspService(HttpServletRequest request, HttpServletResponse response)
@@ -76,8 +79,14 @@ public final class principal_jsp extends org.apache.jasper.runtime.HttpJspBase
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "HEADER.jsp", out, false);
       out.write("\r\n");
       out.write("        <div class=\"container mt-5 text-center\">\r\n");
-      out.write("            <h1 class=\"mb-3\" style=\"color: var(--color-rojo);\">Página principal</h1>\r\n");
-      out.write("            <h2 class=\"mb-4\">Elige la acción deseada</h2>\r\n");
+      out.write("            <h1 class=\"mb-3\" style=\"color: var(--color-rojo);\">Bienvenido ");
+      if (_jspx_meth_s_property_0(_jspx_page_context))
+        return;
+      out.write(". Puesto de ");
+      if (_jspx_meth_s_property_1(_jspx_page_context))
+        return;
+      out.write("</h1>\r\n");
+      out.write("            <h2 class=\"mb-4\">¿Qué acción deseas realizar?</h2>\r\n");
       out.write("\r\n");
       out.write("            <div class=\"d-flex flex-column align-items-center gap-3\" style=\"max-width: 300px; margin: auto;\">\r\n");
       out.write("                ");
@@ -126,6 +135,42 @@ public final class principal_jsp extends org.apache.jasper.runtime.HttpJspBase
     } finally {
       _jspxFactory.releasePageContext(_jspx_page_context);
     }
+  }
+
+  private boolean _jspx_meth_s_property_0(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  s:property
+    org.apache.struts2.views.jsp.PropertyTag _jspx_th_s_property_0 = (org.apache.struts2.views.jsp.PropertyTag) _jspx_tagPool_s_property_value_nobody.get(org.apache.struts2.views.jsp.PropertyTag.class);
+    _jspx_th_s_property_0.setPageContext(_jspx_page_context);
+    _jspx_th_s_property_0.setParent(null);
+    _jspx_th_s_property_0.setValue("#session.empleado.nombre");
+    int _jspx_eval_s_property_0 = _jspx_th_s_property_0.doStartTag();
+    if (_jspx_th_s_property_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_s_property_value_nobody.reuse(_jspx_th_s_property_0);
+      return true;
+    }
+    _jspx_tagPool_s_property_value_nobody.reuse(_jspx_th_s_property_0);
+    return false;
+  }
+
+  private boolean _jspx_meth_s_property_1(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  s:property
+    org.apache.struts2.views.jsp.PropertyTag _jspx_th_s_property_1 = (org.apache.struts2.views.jsp.PropertyTag) _jspx_tagPool_s_property_value_nobody.get(org.apache.struts2.views.jsp.PropertyTag.class);
+    _jspx_th_s_property_1.setPageContext(_jspx_page_context);
+    _jspx_th_s_property_1.setParent(null);
+    _jspx_th_s_property_1.setValue("#session.empleado.puesto");
+    int _jspx_eval_s_property_1 = _jspx_th_s_property_1.doStartTag();
+    if (_jspx_th_s_property_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_s_property_value_nobody.reuse(_jspx_th_s_property_1);
+      return true;
+    }
+    _jspx_tagPool_s_property_value_nobody.reuse(_jspx_th_s_property_1);
+    return false;
   }
 
   private boolean _jspx_meth_s_form_0(PageContext _jspx_page_context)
