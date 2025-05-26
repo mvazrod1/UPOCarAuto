@@ -66,7 +66,7 @@ public class EmpleadoDAO {
         Transaction tx = session.beginTransaction();
         Empleado e;
         Query q = session.createQuery("select distinct e "
-                + "from Empleado e left join fetch e.inventario where e.dni = '" + dni + "'");
+                + "from Empleado e left join fetch e.inventarios where e.dni = '" + dni + "'");
 
         e = (Empleado) q.uniqueResult();
         tx.commit();

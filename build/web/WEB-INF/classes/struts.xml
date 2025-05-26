@@ -196,4 +196,62 @@
             <result name="success" type="redirectAction">indexEmpleado</result>
         </action>
     </package>
+    
+    <package name="inventarios" namespace="/Inventario" extends="struts-default">
+
+        <!-- Listado de inventarios -->
+        <action name="indexInventario" class="acciones.InventarioAction" method="execute">
+            <result>/Inventario/indexInventario.jsp</result>
+        </action>
+
+        <!-- Buscar inventario (por id, o por otro criterio que implementes) -->
+        <action name="buscarInventario" class="acciones.InventarioAction" method="buscar">
+            <result name="success">/Inventario/indexInventario.jsp</result>
+            <result name="input">/Inventario/indexInventario.jsp</result>
+        </action>
+
+        <!-- Consulta de un inventario concreto -->
+        <action name="consultarInventario"
+                class="acciones.InventarioAction"
+                method="consultar">
+            <result name="success">/Inventario/detallesInventario.jsp</result>
+            <result name="input">/Inventario/indexInventario.jsp</result>
+        </action>
+
+        <!-- Formulario de alta -->
+        <action name="altaInventario" class="acciones.InventarioAction" >
+            <result>/Inventario/formAltaInventario.jsp</result>
+        </action>
+
+        <!-- Guardar nuevo inventario -->
+        <action name="guardarInventario"
+                class="acciones.InventarioAction"
+                method="guardarAlta">
+            <result name="success" type="redirectAction">indexInventario</result>
+            <result name="input">/Inventario/formAltaInventario.jsp</result>
+        </action>
+
+        <!-- Formulario de modificación (carga datos previos) -->
+        <action name="editarInventario" class="acciones.InventarioAction" method="modificar">
+            <result>/Inventario/modificarInventario.jsp</result>
+        </action>
+
+        <!-- Guardar cambios en el inventario -->
+        <action name="actualizarInventario"
+                class="acciones.InventarioAction"
+                method="guardarModificacion">
+            <result name="success" type="redirectAction">indexInventario</result>
+            <result name="input">/Inventario/modificarInventario.jsp</result>
+        </action>
+
+        <!-- Eliminar un inventario -->
+        <action name="eliminarInventario" class="acciones.InventarioAction" method="eliminar">
+            <result name="success" type="redirectAction">indexInventario</result>
+            <result name="input">/Inventario/indexInventario.jsp</result>
+        </action>
+
+    </package>
+
+    
+    
 </struts>
