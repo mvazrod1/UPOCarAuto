@@ -37,6 +37,10 @@ public class Concesionario  implements java.io.Serializable {
        this.inventarios = inventarios;
        this.empleados = empleados;
     }
+
+    public Concesionario(Integer idConcesionario) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
    
     public Integer getIdConcesionario() {
         return this.idConcesionario;

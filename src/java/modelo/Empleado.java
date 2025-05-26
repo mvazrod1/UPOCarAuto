@@ -49,6 +49,10 @@ public class Empleado  implements java.io.Serializable {
        this.contrasenya = contrasenya;
        this.inventarios = inventarios;
     }
+
+    public Empleado(String dniEmpleado) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
    
     public String getDni() {
         return this.dni;

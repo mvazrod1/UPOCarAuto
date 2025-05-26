@@ -126,47 +126,6 @@
             <result name="error">/Reserva/errorReserva.jsp</result>
         </action>
     </package>
-    <package name="vehiculos" namespace="/Vehiculo" extends="struts-default">
-        <action name="indexVehiculo" class="acciones.VehiculoAction" >
-            <result>/Vehiculo/indexVehiculo.jsp</result>
-        </action>
-        <action name="buscarVehiculo" class="acciones.VehiculoAction" method="buscar" >
-            <result name="success">/Vehiculo/indexVehiculo.jsp</result>
-            <result name="input">/Vehiculo/indexVehiculo.jsp</result>
-        </action>
-        
-        <action name="consultarVehiculo"
-                class="acciones.VehiculoAction"
-                method="consultar">
-            <result name="success">/Vehiculo/detallesVehiculo.jsp</result>
-            <result name="input">/Vehiculo/indexVehiculo.jsp</result>
-        </action>
-
-        <action name="altaVehiculo" class="acciones.VehiculoAction">
-            <result>/Vehiculo/formAltaVehiculo.jsp</result>
-        </action>
-
-        <action name="guardarVehiculo"
-                class="acciones.VehiculoAction"
-                method="guardarAlta">
-            <result name="success" type="redirectAction">indexVehiculo</result>
-            <result name="input">/Vehiculo/formAltaVehiculo.jsp</result>
-        </action>
-
-        <action name="editarVehiculo" class="acciones.VehiculoAction" method="modificar">
-            <result>/Vehiculo/modificarVehiculo.jsp</result>
-        </action>
-
-        <action name="actualizarVehiculo" class="acciones.VehiculoAction" method="guardarModificacion">
-            <result name="success" type="redirectAction">indexVehiculo</result>
-            <result name="input">/Vehiculo/modificarVehiculo.jsp</result>
-        </action>
-
-        <action name="eliminarVehiculo" class="acciones.VehiculoAction" method="eliminar">
-            <result name="success" type="redirectAction">indexVehiculo</result>
-            <result name="input">/Vehiculo/indexVehiculo.jsp</result>
-        </action>
-    </package>
     
     <package name="empleados" namespace="/Empleado" extends="struts-default">
 
@@ -207,4 +166,62 @@
             <result name="success" type="redirectAction">indexEmpleado</result>
         </action>
     </package>
+    
+    <package name="inventarios" namespace="/Inventario" extends="struts-default">
+
+        <!-- Listado de inventarios -->
+        <action name="indexInventario" class="acciones.InventarioAction" method="execute">
+            <result>/Inventario/indexInventario.jsp</result>
+        </action>
+
+        <!-- Buscar inventario (por id, o por otro criterio que implementes) -->
+        <action name="buscarInventario" class="acciones.InventarioAction" method="buscar">
+            <result name="success">/Inventario/indexInventario.jsp</result>
+            <result name="input">/Inventario/indexInventario.jsp</result>
+        </action>
+
+        <!-- Consulta de un inventario concreto -->
+        <action name="consultarInventario"
+                class="acciones.InventarioAction"
+                method="consultar">
+            <result name="success">/Inventario/detallesInventario.jsp</result>
+            <result name="input">/Inventario/indexInventario.jsp</result>
+        </action>
+
+        <!-- Formulario de alta -->
+        <action name="altaInventario" class="acciones.InventarioAction" >
+            <result>/Inventario/formAltaInventario.jsp</result>
+        </action>
+
+        <!-- Guardar nuevo inventario -->
+        <action name="guardarInventario"
+                class="acciones.InventarioAction"
+                method="guardarAlta">
+            <result name="success" type="redirectAction">indexInventario</result>
+            <result name="input">/Inventario/formAltaInventario.jsp</result>
+        </action>
+
+        <!-- Formulario de modificación (carga datos previos) -->
+        <action name="editarInventario" class="acciones.InventarioAction" method="modificar">
+            <result>/Inventario/modificarInventario.jsp</result>
+        </action>
+
+        <!-- Guardar cambios en el inventario -->
+        <action name="actualizarInventario"
+                class="acciones.InventarioAction"
+                method="guardarModificacion">
+            <result name="success" type="redirectAction">indexInventario</result>
+            <result name="input">/Inventario/modificarInventario.jsp</result>
+        </action>
+
+        <!-- Eliminar un inventario -->
+        <action name="eliminarInventario" class="acciones.InventarioAction" method="eliminar">
+            <result name="success" type="redirectAction">indexInventario</result>
+            <result name="input">/Inventario/indexInventario.jsp</result>
+        </action>
+
+    </package>
+
+    
+    
 </struts>

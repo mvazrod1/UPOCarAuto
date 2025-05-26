@@ -27,5 +27,8 @@
         <s:form action="/Reserva/indexReserva" method="post"> 
             <s:submit value="Gestión de reservas" />
         </s:form>
+        <s:form action="/Inventario/indexInventario" method="post"> 
+            <s:submit value="Gestión de inventarios" />
+        </s:form>
     </body>
 </html>
