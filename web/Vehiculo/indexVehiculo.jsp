@@ -16,7 +16,7 @@
         <h2>Vehículos Registrados</h2>
         <s:actionerror/><br/>
 
-        <!-- Buscador -->
+        
         <s:form action="buscarVehiculo" method="post" theme="simple">
             <s:textfield name="matricula"
                          placeholder="Introduzca matrícula"
@@ -27,7 +27,7 @@
 
         <br/>
 
-        <!-- Tabla simplificada: solo los campos clave -->
+        
         <table border="1" cellpadding="5">
             <tr>
                 <th>Seleccionar</th>
@@ -59,7 +59,7 @@
 
         <br/>
 
-        <!-- Formularios de acción (mantener iguales) -->
+        
         <s:form id="formConsultar" action="consultarVehiculo" method="post">
             <s:hidden name="matricula" id="hcConsultar"/>
             <s:submit id="btnConsultar"
