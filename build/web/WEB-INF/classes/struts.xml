@@ -5,6 +5,31 @@
 <struts>
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
+        <action name="inicio">
+            <result>/index.jsp</result>
+        </action>
+        <action name="loginForm">
+            <result>/login.jsp</result>
+        </action>
+        <action name="volverInicio">
+            <result>/index.jsp</result>
+        </action>  
+        
+        <action name="mostrarRegistro" class="acciones.IndexAction" method="mostrarRegistroForm">
+            <result name="success">/registro.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <action name="registrar" class="acciones.IndexAction" method="registrarEmpleado">
+            <result name="success">/login.jsp</result>
+            <result name="error">/registro.jsp</result>
+        </action>
+        
+        <action name="login" class="acciones.IndexAction">
+            <result name="empleado">/principal.jsp</result>
+            <result name="error">/login.jsp</result>
+            <result name="input">/login.jsp</result>
+        </action>
         
     </package>
     

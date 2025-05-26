@@ -1,0 +1,67 @@
+<%-- 
+    Document   : index
+    Created on : 26-may-2025, 12:54:16
+    Author     : marin
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%> 
+<%@taglib prefix="s" uri="/struts-tags" %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Inicio</title>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body>
+        <%--<jsp:include page="HEADER.jsp" />--%>
+
+        <div class="container-fluid pt-3 pb-3" style="min-height: 70vh">
+            <div class="row mt-2 text-center">
+                <h1>¡BIENVENIDO A UPOCARAUTO!</h1>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000" data-bs-wrap="true">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="FOTOS/concesionario.jpg" class="d-block w-100" alt="Concesionario 1" style="object-fit: contain; height: 800px;">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="FOTOS/mecanico.jpg" class="d-block w-100" alt="Concesionario 2" style="object-fit: contain; height: 800px;">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="FOTOS/vendedor.jpg" class="d-block w-100" alt="Concesionario 3" style="object-fit: contain; height: 800px;">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Registro y login -->
+            <div style="margin-top: 40px; display: flex; justify-content: space-around;">
+                <div style="width: 45%; text-align: center;">
+                    <h2>¿Ya eres empleado de UPOCarAuto?</h2>
+                    <a href="<s:url action='loginForm'/>" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px;">
+                        <s:text name="Iniciar Sesión" />
+                    </a>
+                </div>
+                <div style="width: 45%; text-align: center;">
+                    <h2>¿Aún no te has registrado como empleado?</h2>
+                    <a href="<s:url action='mostrarRegistro'/>" style="display: inline-block; padding: 10px 20px; background-color: #28a745; color: white; text-decoration: none; border-radius: 4px;">
+                        <s:text name="Registrar" />
+                    </a>   
+                </div>
+            </div>
+        </div>
+        <s:actionmessage />
+
+        <%--<jsp:include page="FOOTER.jsp" />--%>
+    </body>
+</html>
