@@ -9,18 +9,32 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
         <title>Error al eliminar la reserva</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/general.css">
     </head>
     <body>
-        <h1>Error al eliminar la reserva</h1>
-    <s:if test="hasActionErrors()">
-        <div style="color: red; font-weight: bold;">
-            <s:actionerror />
+        <jsp:include page="../HEADER.jsp" />
+
+        <div class="container my-5">
+            <div class="alert alert-danger">
+                <h1 class="text-danger">Error al eliminar la reserva</h1>
+            </div>
+
+            <s:if test="hasActionErrors()">
+                <div class="alert alert-warning">
+                    <s:actionerror />
+                </div>
+            </s:if>
+
+            <s:form action="indexReserva" namespace="/Reserva" method="post">
+                <s:submit value="Volver a la lista" cssClass="btn-rojo mt-3"/>
+            </s:form>
         </div>
-    </s:if>
-    <s:form action="indexReserva" namespace="/Reserva" method="post">
-        <button type="submit">Volver a la lista</button>
-    </s:form>
-</body>
+
+        <jsp:include page="../FOOTER.jsp" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
 </html>
+

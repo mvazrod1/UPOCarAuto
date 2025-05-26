@@ -39,19 +39,32 @@ public class ClienteAction extends ActionSupport {
     }
 
     public String eliminarCliente() {
-        dao.bajaCliente(dni);
-        return SUCCESS;
+        try {
+            Cliente cliente = dao.consultarCliente(dni);
+            if (cliente == null) {
+                addActionError("El cliente no existe.");
+                return INPUT;
+            }
+
+            dao.bajaCliente(dni);
+
+            return SUCCESS;
+
+        } catch (Exception e) {
+            addActionError(e.getMessage());
+            return ERROR;
+        }
     }
-    
+
     public String buscar() throws Exception {
         cliente = dao.consultarCliente(dni);
         listaClientes = new ArrayList<>();
-        
+
         if (cliente == null) {
             addActionMessage("El clienre con dni " + dni + " no existe.");
             return INPUT;
         }
-        
+
         listaClientes.add(cliente);
 
         return SUCCESS;
@@ -87,8 +100,11 @@ public class ClienteAction extends ActionSupport {
     public void validate() {
         String actionName = ActionContext.getContext().getName();
 
-        if (actionName.equals("registrarCliente") || actionName.equals("modificarCliente")) {
+        if (actionName.equals("registrarCliente") || actionName.equals("guardarModfCliente")) {
 
+            if (this.cliente == null && this.dni != null) {
+                this.cliente = dao.consultarCliente(this.dni);
+            }
             // DNI
             if (this.dni == null || this.dni.trim().isEmpty()) {
                 addFieldError("dni", "Introduce el DNI");

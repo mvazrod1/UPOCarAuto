@@ -5,6 +5,35 @@
 <struts>
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
+        <action name="inicio">
+            <result>/index.jsp</result>
+        </action>
+        <action name="loginForm">
+            <result>/login.jsp</result>
+        </action>
+        <action name="volverInicio">
+            <result>/index.jsp</result>
+        </action>  
+        
+        <action name="logout" class="acciones.EmpleadoAction" method="logout">
+            <result>/index.jsp</result>
+        </action>
+        
+        <action name="mostrarRegistro" class="acciones.IndexAction" method="mostrarRegistroForm">
+            <result name="success">/registro.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <action name="registrar" class="acciones.IndexAction" method="registrarEmpleado">
+            <result name="success">/login.jsp</result>
+            <result name="error">/registro.jsp</result>
+        </action>
+        
+        <action name="login" class="acciones.IndexAction">
+            <result name="empleado">/principal.jsp</result>
+            <result name="error">/login.jsp</result>
+            <result name="input">/login.jsp</result>
+        </action>
         
     </package>
     
@@ -37,12 +66,13 @@
         
         <action name="guardarModfCliente" class="acciones.ClienteAction" method="modificarCliente">
             <result name="success" type="redirectAction">indexCliente</result>
-            <result name="input">/Cliente/indexCliente.jsp</result>
+            <result name="input">/Cliente/modificarCliente.jsp</result>
         </action>
 
         <action name="eliminarCliente" class="acciones.ClienteAction" method="eliminarCliente">
             <result name="success" type="redirectAction">indexCliente</result>
             <result name="input">/Cliente/indexCliente.jsp</result>
+            <result name="error">/Cliente/errorCliente.jsp</result>
         </action>
         
     </package>
@@ -117,7 +147,7 @@
         
         <action name="guardarModfReserva" class="acciones.ReservaAction" method="modificarReserva">
             <result name="success" type="redirectAction">indexReserva</result>
-            <result name="input">/Reserva/indexReserva.jsp</result>
+            <result name="input">/Reserva/modificarReserva.jsp</result>
         </action>
 
         <action name="eliminarReserva" class="acciones.ReservaAction" method="eliminarReserva">
