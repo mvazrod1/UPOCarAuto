@@ -15,6 +15,10 @@
             <result>/index.jsp</result>
         </action>  
         
+        <action name="logout" class="acciones.EmpleadoAction" method="logout">
+            <result>/index.jsp</result>
+        </action>
+        
         <action name="mostrarRegistro" class="acciones.IndexAction" method="mostrarRegistroForm">
             <result name="success">/registro.jsp</result>
             <result name="error">/error.jsp</result>

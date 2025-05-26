@@ -85,9 +85,15 @@ public class EmpleadoDAO {
     public Empleado loginEmpleado(String dni, String contrasenya) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
-        Query q = session.createQuery("FROM Empleado WHERE dni = :dni AND contrasenya = :contrasenya");
+
+        Query q = session.createQuery(
+                "select e from Empleado e "
+                + " left join fetch e.concesionario "
+                + " where e.dni = :dni and e.contrasenya = :contrasenya"
+        );
         q.setParameter("dni", dni);
         q.setParameter("contrasenya", contrasenya);
+
         Empleado e = (Empleado) q.uniqueResult();
         tx.commit();
         return e;

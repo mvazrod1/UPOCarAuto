@@ -17,8 +17,8 @@
     <body>
         <jsp:include page="HEADER.jsp" />
         <div class="container mt-5 text-center">
-            <h1 class="mb-3" style="color: var(--color-rojo);">Página principal</h1>
-            <h2 class="mb-4">Elige la acción deseada</h2>
+            <h1 class="mb-3" style="color: var(--color-rojo);">Bienvenido <s:property value="#session.empleado.nombre"/>. Puesto de <s:property value="#session.empleado.puesto"/></h1>
+            <h2 class="mb-4">¿Qué acción deseas realizar?</h2>
 
             <div class="d-flex flex-column align-items-center gap-3" style="max-width: 300px; margin: auto;">
                 <s:form action="/Cliente/indexCliente" method="post" style="width: 100%;"> 
