@@ -39,6 +39,9 @@
                 <s:form action="/Pago/indexPago" method="post" style="width: 100%;"> 
                     <s:submit value="Gestión de pagos" cssClass="btn-rojo w-100"/>
                 </s:form>
+                <s:form action="/Transaccion/indexTransaccion" method="post" style="width: 100%;"> 
+                    <s:submit value="Gestión de transacciones" cssClass="btn-rojo w-100"/>
+                </s:form>
                 <s:form action="/Inventario/indexInventario" method="post"> 
                     <s:submit value="Gestión de inventarios" />
                 </s:form>

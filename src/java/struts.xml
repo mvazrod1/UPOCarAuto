@@ -289,6 +289,41 @@
         </action>
 
     </package>
+    <package name="transacciones" namespace="/Transaccion" extends="struts-default">
+
+        <action name="indexTransaccion" class="acciones.TransaccionAction" method="execute">
+            <result>/Transaccion/indexTransaccion.jsp</result>
+        </action>
+        
+        <action name="consultarTransaccion" class="acciones.TransaccionAction" method="consultarTransaccion">
+            <result>/Transaccion/detallesTransaccion.jsp</result>
+        </action>
+        
+        <action name="editarTransaccion" class="acciones.TransaccionAction" method="modificar">
+            <result>/Transaccion/modificarTransaccion.jsp</result>
+        </action>
+
+        <action name="guardarModfTransaccion" class="acciones.TransaccionAction" method="guardarModificacion">
+            <result type="redirectAction">indexTransaccion</result>
+            <result name="input">/Transaccion/modificarTransaccion.jsp</result>
+        </action>
+
+        <action name="eliminarTransaccion" class="acciones.TransaccionAction" method="eliminar">
+            <result name="success" type="redirectAction">indexTransaccion</result>
+            <result name="error">/Pago/indexTransaccion.jsp</result>
+        </action>
+        
+        <action name="altaTransaccion" class="acciones.TransaccionAction">
+            <result>/Transaccion/formAltaTransaccion.jsp</result>
+        </action>
+
+        <action name="guardarTransaccion" class="acciones.TransaccionAction" method="guardarAlta">
+            <result type="redirectAction">indexTransaccion</result>
+            <result name="input">/Transaccion/formAltaTransaccion.jsp</result>
+        </action>
+
+       
+    </package>
 
 
     

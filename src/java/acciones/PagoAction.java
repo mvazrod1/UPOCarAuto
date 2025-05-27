@@ -81,13 +81,67 @@ public class PagoAction extends ActionSupport {
         }
 
         try {
-            dao.bajaPago(idPago);    
+            dao.bajaPago(idPago);
             return SUCCESS;
         } catch (Exception e) {
             // registra el error y devuelve a la vista con mensaje
             e.printStackTrace();
             addActionError("No se pudo eliminar el pago: " + e.getMessage());
             return ERROR;
+        }
+    }
+
+    @Override
+    public void validate() {
+        String actionName = com.opensymphony.xwork2.ActionContext.getContext().getName();
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+        sdf.setLenient(false);
+
+        if ("guardarPago".equals(actionName) || "modificarPago".equals(actionName)) {
+
+            // Validar idReserva
+            if (idReserva == null) {
+                addFieldError("idReserva", "Debes seleccionar una reserva.");
+            } else if (reservaDAO.consultarReserva(idReserva) == null) {
+                addFieldError("idReserva", "La reserva seleccionada no existe.");
+            }
+
+            // Validar fecha de pago
+            if (fechaPago == null) {
+                addFieldError("fechaPago", "La fecha de pago es obligatoria.");
+            } else {
+                try {
+                    Date hoy = sdf.parse(sdf.format(new Date()));
+                    Date fecha = sdf.parse(sdf.format(fechaPago));
+
+                    if (fecha.after(hoy)) {
+                        addFieldError("fechaPago", "La fecha no puede ser futura.");
+                    }
+                } catch (Exception e) {
+                    addFieldError("fechaPago", "Formato de fecha inválido. Usa yyyy-MM-dd.");
+                }
+            }
+
+            // Validar precio total
+            if (precioTotal == null) {
+                addFieldError("precioTotal", "El precio total es obligatorio.");
+            } else if (precioTotal.compareTo(BigDecimal.ZERO) <= 0) {
+                addFieldError("precioTotal", "El precio debe ser mayor que cero.");
+            }
+
+            // Validar método de pago
+            if (metodoPago == null || metodoPago.trim().isEmpty()) {
+                addFieldError("metodoPago", "El método de pago es obligatorio.");
+            } else if (!metodoPago.matches("(?i)^(Efectivo|Tarjeta|Bizum|Transferencia)$")) {
+                addFieldError("metodoPago", "Método de pago no válido.");
+            }
+
+            // Validar estado del pago
+            if (estadoPago == null || estadoPago.trim().isEmpty()) {
+                addFieldError("estadoPago", "El estado del pago es obligatorio.");
+            } else if (!estadoPago.matches("(?i)^(Pendiente|Completado|Fallido|Cancelado)$")) {
+                addFieldError("estadoPago", "Estado del pago no válido.");
+            }
         }
     }
 
