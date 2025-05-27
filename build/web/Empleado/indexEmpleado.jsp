@@ -93,5 +93,9 @@
         <s:form namespace="/Empleado" action="altaEmpleado" method="get">
             <s:submit value="Nuevo Empleado"/>
         </s:form>
+
+        <s:url var="principalUrl" value="/principal.jsp"/>
+        <input type="button" value="Volver a la página principal"
+               onclick="location.href = '${principalUrl}'"/>
     </body>
 </html>
