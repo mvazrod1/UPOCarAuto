@@ -3,6 +3,7 @@ package acciones;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import modelo.Concesionario;
@@ -96,7 +97,13 @@ public class EmpleadoAction extends ActionSupport {
             return ERROR;
         }
     }
+    public String buscar() throws Exception {
+        empleado = dao.consultarEmpleado(dni);
+        listaEmpleados = new ArrayList<>();
+        listaEmpleados.add(empleado);
 
+        return SUCCESS;
+    }
     // ----- MÉTODOS PARA EDICIÓN -----
     public String mostrarModificarEmpleadoForm() {
         try {

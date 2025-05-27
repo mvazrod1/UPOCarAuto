@@ -168,6 +168,13 @@
         <action name="consultarEmpleado" class="acciones.EmpleadoAction" method="consultarEmpleado">
             <result>detallesEmpleado.jsp</result>
         </action>
+        
+        <action name="buscar" class="acciones.EmpleadoAction" method="buscar">
+            <!-- vuelves a la misma vista -->
+            <result name="success">indexEmpleado.jsp</result>
+            <result name="input">indexEmpleado.jsp</result>
+            <result name="error">indexEmpleado.jsp</result>
+        </action>
 
         <!-- Mostrar formulario de alta -->
         <action name="altaEmpleado" class="acciones.EmpleadoAction" method="mostrarAltaEmpleadoForm">
