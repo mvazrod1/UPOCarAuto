@@ -251,6 +251,41 @@
         </action>
 
     </package>
+    
+    <package name="pagos" namespace="/Pago" extends="struts-default">
+
+        <action name="indexPago" class="acciones.PagoAction" method="execute">
+            <result>/Pago/indexPago.jsp</result>
+        </action>
+
+        <action name="consultarPago" class="acciones.PagoAction" method="consultarPago">
+            <result>/Pago/detallesPago.jsp</result>
+        </action>
+
+        <action name="altaPago" class="acciones.PagoAction" method="input">
+            <result>/Pago/formAltaPago.jsp</result>
+        </action>
+
+        <action name="crearPago" class="acciones.PagoAction" method="crearPago">
+            <result name="success" type="redirectAction">indexPago</result>
+            <result name="input">/Pago/formAltaPago.jsp</result>
+        </action>
+
+        <action name="editarPago" class="acciones.PagoAction" method="consultarPago">
+            <result>/Pago/modificarPago.jsp</result>
+        </action>
+
+        <action name="guardarModfPago" class="acciones.PagoAction" method="modificarPago">
+            <result name="success" type="redirectAction">indexPago</result>
+            <result name="input">/Pago/modificarPago.jsp</result>
+        </action>
+
+        <action name="eliminarPago" class="acciones.PagoAction" method="eliminarPago">
+            <result name="success" type="redirectAction">indexPago</result>
+        </action>
+
+    </package>
+
 
     
     
