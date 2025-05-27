@@ -259,6 +259,72 @@
 
     </package>
 
-    
+    <package name="concesionarios" namespace="/Concesionario" extends="struts-default">
+
+        <action name="indexConcesionario"
+                class="acciones.ConcesionarioAction"
+                method="execute">
+            <result name="success">indexConcesionario.jsp</result>
+        </action>
+
+        <action name="altaConcesionario"
+                class="acciones.ConcesionarioAction"
+                method="mostrarAltaConcesionarioForm">
+            <result name="success">formAltaConcesionario.jsp</result>
+        </action>
+
+        <action name="registrarConcesionario"
+                class="acciones.ConcesionarioAction"
+                method="registrarConcesionario">
+            <result name="success" type="redirect">indexConcesionario</result>
+            <result name="input">formAltaConcesionario.jsp</result>
+        </action>
+
+        <action name="consultarConcesionario"
+                class="acciones.ConcesionarioAction"
+                method="consultarConcesionario">
+            <result name="success">detallesConcesionario.jsp</result>
+            <result name="error"  type="redirect">indexConcesionario</result>
+        </action>
+        
+        <action name="buscar" class="acciones.ConcesionarioAction" method="buscar">
+            <!-- vuelves a la misma vista -->
+            <result name="success">indexConcesionario.jsp</result>
+            <result name="input">indexConcesionario.jsp</result>
+            <result name="error">indexConcesionario.jsp</result>
+        </action>
+
+        <!-- mostrar formulario -->
+        <action name="editarConcesionario"
+                class="acciones.ConcesionarioAction"
+                method="mostrarModificarConcesionarioForm">
+            <result name="success">modificarConcesionario.jsp</result>
+            <result name="error"   type="redirectAction">indexConcesionario</result>
+        </action>
+
+        <!-- guardar cambios -->
+        <action name="modificarConcesionario"
+                class="acciones.ConcesionarioAction"
+                method="modificarConcesionario">
+            <result name="success" type="redirectAction">indexConcesionario</result>
+            <result name="input">modificarConcesionario.jsp</result>
+        </action>
+
+        <action name="guardarModfConcesionario"
+                class="acciones.ConcesionarioAction"
+                method="modificarConcesionario">
+            <result name="success" type="redirect">indexConcesionario</result>
+            <result name="input">modificarConcesionario.jsp</result>
+        </action>
+
+        <action name="eliminarConcesionario"
+                class="acciones.ConcesionarioAction"
+                method="eliminarConcesionario">
+            <result name="success" type="redirect">indexConcesionario</result>
+            <result name="error"   type="redirect">indexConcesionario</result>
+        </action>
+
+    </package>
+
     
 </struts>
