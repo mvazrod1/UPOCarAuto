@@ -17,7 +17,7 @@
     <body>
         <jsp:include page="HEADER.jsp" />
 
-        <div class="container-fluid pt-3 pb-3" style="min-height: 70vh">
+        <div class="container-fluid pt-3 pb-3" style="min-height: 70vh" style="flex: 1;">
             <div class="row mt-2 text-center">
                 <h1>¡BIENVENIDO!</h1>
                 <div class="container-fluid">

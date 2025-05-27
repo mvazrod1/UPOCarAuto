@@ -4,13 +4,9 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 26-may-2025, 15:24:11
+    Created on : 27-may-2025, 18:21:20
     Author     : marin
 */
-
-/* Colores base */
-/* general.css */
-
 /* Colores base */
 :root {
     --color-rojo: #c0392b;
@@ -67,5 +63,3 @@ footer {
     background-color: #a93226;
     color: var(--color-blanco);
 }
-
-
