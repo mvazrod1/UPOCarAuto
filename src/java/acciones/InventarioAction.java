@@ -67,7 +67,7 @@ public class InventarioAction extends ActionSupport {
         Date fecha = new SimpleDateFormat("yyyy-MM-dd")
                 .parse(ultimaActualizacionStr.trim());
         Concesionario c = cDAO.consultarConcesionario(idConcesionario);
-        Empleado e = eDAO.buscarPorDni(dniEmpleado.trim());
+        Empleado e = eDAO.consultarEmpleado(dniEmpleado.trim());
         // construimos Inventario con el constructor completo
         Inventario inv = new Inventario(c, e, 0, fecha);
 
