@@ -193,7 +193,7 @@
         </action>
 
         <!-- Guardar cambios de empleado -->
-        <action name="guardarModfEmpleado" class="acciones.EmpleadoAction" method="modificarEmpleado">
+        <action name="modificarEmpleado" class="acciones.EmpleadoAction" method="modificarEmpleado">
             <result name="success" type="redirectAction">indexEmpleado</result>
             <result name="input">modificarEmpleado.jsp</result>
         </action>

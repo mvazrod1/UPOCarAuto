@@ -15,68 +15,60 @@
         <jsp:include page="../HEADER.jsp"/>
 
         <div class="container mt-5">
-
             <h2 class="text-center mb-4" style="color: var(--color-rojo);">Modificar Empleado</h2>
 
-            <!-- URL para volver a la lista -->
             <s:url var="urlIndex" namespace="/Empleado" action="indexEmpleado"/>
 
-            <s:form namespace="/Empleado" action="guardarModfEmpleado" method="post"
+            <s:form namespace="/Empleado" action="modificarEmpleado" method="post"
                     cssClass="p-4 border rounded bg-light shadow-sm">
 
                 <!-- DNI (solo lectura) -->
                 <div class="mb-3">
                     <label for="dni" class="form-label">DNI:</label>
                     <s:textfield name="dni" id="dni" theme="simple" readonly="true"
-                                 value="%{empleado.dni}" cssClass="form-control-plaintext"/>
+                                 cssClass="form-control-plaintext"/>
                     <s:fielderror fieldName="dni" cssClass="text-danger small"/>
                 </div>
 
                 <!-- Nombre -->
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre:</label>
-                    <s:textfield name="nombre" id="nombre" theme="simple"
-                                 value="%{empleado.nombre}" cssClass="form-control"/>
+                    <s:textfield name="nombre" id="nombre" theme="simple" cssClass="form-control"/>
                     <s:fielderror fieldName="nombre" cssClass="text-danger small"/>
                 </div>
 
                 <!-- Apellidos -->
                 <div class="mb-3">
                     <label for="apellidos" class="form-label">Apellidos:</label>
-                    <s:textfield name="apellidos" id="apellidos" theme="simple"
-                                 value="%{empleado.apellidos}" cssClass="form-control"/>
+                    <s:textfield name="apellidos" id="apellidos" theme="simple" cssClass="form-control"/>
                     <s:fielderror fieldName="apellidos" cssClass="text-danger small"/>
                 </div>
 
                 <!-- Email -->
                 <div class="mb-3">
                     <label for="email" class="form-label">Email:</label>
-                    <s:textfield name="email" id="email" theme="simple"
-                                 value="%{empleado.email}" cssClass="form-control"/>
+                    <s:textfield name="email" id="email" theme="simple" cssClass="form-control"/>
                     <s:fielderror fieldName="email" cssClass="text-danger small"/>
                 </div>
 
                 <!-- Teléfono -->
                 <div class="mb-3">
                     <label for="telefono" class="form-label">Teléfono:</label>
-                    <s:textfield name="telefono" id="telefono" theme="simple"
-                                 value="%{empleado.telefono}" cssClass="form-control"/>
+                    <s:textfield name="telefono" id="telefono" theme="simple" cssClass="form-control"/>
                     <s:fielderror fieldName="telefono" cssClass="text-danger small"/>
                 </div>
 
                 <!-- Dirección -->
                 <div class="mb-3">
                     <label for="direccion" class="form-label">Dirección:</label>
-                    <s:textfield name="direccion" id="direccion" theme="simple"
-                                 value="%{empleado.direccion}" cssClass="form-control"/>
+                    <s:textfield name="direccion" id="direccion" theme="simple" cssClass="form-control"/>
                     <s:fielderror fieldName="direccion" cssClass="text-danger small"/>
                 </div>
 
                 <!-- Puesto -->
                 <div class="mb-3">
                     <label for="puesto" class="form-label">Puesto:</label>
-                    <s:textfield name="puesto" id="puesto" theme="simple"
-                                 value="%{empleado.puesto}" cssClass="form-control"/>
+                    <s:textfield name="puesto" id="puesto" theme="simple" cssClass="form-control"/>
                     <s:fielderror fieldName="puesto" cssClass="text-danger small"/>
                 </div>
 
@@ -84,7 +76,7 @@
                 <div class="mb-3">
                     <label for="contrasenya" class="form-label">Contraseña:</label>
                     <s:password name="contrasenya" id="contrasenya" theme="simple"
-                                value="%{empleado.contrasenya}" cssClass="form-control"/>
+                                cssClass="form-control" repopulate="true"/>
                     <s:fielderror fieldName="contrasenya" cssClass="text-danger small"/>
                 </div>
 
@@ -95,7 +87,6 @@
                               list="listaConcesionarios"
                               listKey="idConcesionario" listValue="nombre"
                               headerKey="" headerValue="-- Seleccione --"
-                              value="%{empleado.concesionario.idConcesionario}"
                               theme="simple" cssClass="form-select"/>
                     <s:fielderror fieldName="idConcesionario" cssClass="text-danger small"/>
                 </div>
