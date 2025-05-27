@@ -186,6 +186,7 @@ public class EmpleadoAction extends ActionSupport {
 
     @Override
     public void validate() {
+        listaConcesionarios = concesionarioDAO.listar();
         String actionName = com.opensymphony.xwork2.ActionContext.getContext().getName();
 
         // Sólo validamos en registrarEmpleado y modificarEmpleado
