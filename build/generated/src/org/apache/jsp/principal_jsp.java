@@ -62,33 +62,39 @@ public final class principal_jsp extends org.apache.jasper.runtime.HttpJspBase
 
       out.write("\r\n");
       out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
-      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
+      out.write("        <meta charset=\"UTF-8\">\r\n");
       out.write("        <title>Página principal</title>\r\n");
+      out.write("\r\n");
       out.write("        <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\r\n");
       out.write("        <link rel=\"stylesheet\" href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/CSS/general.css\">\r\n");
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
+      out.write("\r\n");
       out.write("        ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "HEADER.jsp", out, false);
       out.write("\r\n");
+      out.write("\r\n");
       out.write("        <div class=\"container mt-5 text-center\">\r\n");
-      out.write("            <h1 class=\"mb-3\" style=\"color: var(--color-rojo);\">Bienvenido ");
+      out.write("            <h1 class=\"mb-3\" style=\"color: var(--color-rojo);\">\r\n");
+      out.write("                Bienvenido ");
       if (_jspx_meth_s_property_0(_jspx_page_context))
         return;
-      out.write(". Puesto de ");
+      out.write(".<br/>\r\n");
+      out.write("                Puesto de ");
       if (_jspx_meth_s_property_1(_jspx_page_context))
         return;
-      out.write("</h1>\r\n");
+      out.write("\r\n");
+      out.write("            </h1>\r\n");
+      out.write("\r\n");
       out.write("            <h2 class=\"mb-4\">¿Qué acción deseas realizar?</h2>\r\n");
       out.write("\r\n");
       out.write("            <div class=\"d-flex flex-column align-items-center gap-3\" style=\"max-width: 300px; margin: auto;\">\r\n");
+      out.write("\r\n");
       out.write("                ");
       if (_jspx_meth_s_form_0(_jspx_page_context))
         return;
@@ -108,22 +114,34 @@ public final class principal_jsp extends org.apache.jasper.runtime.HttpJspBase
       if (_jspx_meth_s_form_3(_jspx_page_context))
         return;
       out.write("\r\n");
-      out.write("            </div>\r\n");
       out.write("\r\n");
-      out.write("            <div class=\"d-flex justify-content-center mt-4\">\r\n");
+      out.write("                <!-- NUEVO botón: Gestión de concesionarios -->\r\n");
       out.write("                ");
       if (_jspx_meth_s_form_4(_jspx_page_context))
         return;
       out.write("\r\n");
+      out.write("\r\n");
+      out.write("                ");
+      if (_jspx_meth_s_form_5(_jspx_page_context))
+        return;
+      out.write("\r\n");
+      out.write("            </div>\r\n");
+      out.write("\r\n");
+      out.write("            <div class=\"d-flex justify-content-center mt-4\">\r\n");
+      out.write("                ");
+      if (_jspx_meth_s_form_6(_jspx_page_context))
+        return;
+      out.write("\r\n");
       out.write("            </div>\r\n");
       out.write("        </div>\r\n");
+      out.write("\r\n");
       out.write("        ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "FOOTER.jsp", out, false);
+      out.write("\r\n");
       out.write("\r\n");
       out.write("        <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"></script>\r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
-      out.write("\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;
@@ -183,7 +201,7 @@ public final class principal_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_th_s_form_0.setParent(null);
     _jspx_th_s_form_0.setAction("/Cliente/indexCliente");
     _jspx_th_s_form_0.setMethod("post");
-    _jspx_th_s_form_0.setDynamicAttribute(null, "style", new String("width: 100%;"));
+    _jspx_th_s_form_0.setDynamicAttribute(null, "style", new String("width:100%;"));
     int _jspx_eval_s_form_0 = _jspx_th_s_form_0.doStartTag();
     if (_jspx_eval_s_form_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       if (_jspx_eval_s_form_0 != javax.servlet.jsp.tagext.Tag.EVAL_BODY_INCLUDE) {
@@ -192,7 +210,7 @@ public final class principal_jsp extends org.apache.jasper.runtime.HttpJspBase
         _jspx_th_s_form_0.doInitBody();
       }
       do {
-        out.write(" \r\n");
+        out.write("\r\n");
         out.write("                    ");
         if (_jspx_meth_s_submit_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_s_form_0, _jspx_page_context))
           return true;
@@ -242,7 +260,7 @@ public final class principal_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_th_s_form_1.setParent(null);
     _jspx_th_s_form_1.setAction("/Vehiculo/indexVehiculo");
     _jspx_th_s_form_1.setMethod("post");
-    _jspx_th_s_form_1.setDynamicAttribute(null, "style", new String("width: 100%;"));
+    _jspx_th_s_form_1.setDynamicAttribute(null, "style", new String("width:100%;"));
     int _jspx_eval_s_form_1 = _jspx_th_s_form_1.doStartTag();
     if (_jspx_eval_s_form_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       if (_jspx_eval_s_form_1 != javax.servlet.jsp.tagext.Tag.EVAL_BODY_INCLUDE) {
@@ -251,7 +269,7 @@ public final class principal_jsp extends org.apache.jasper.runtime.HttpJspBase
         _jspx_th_s_form_1.doInitBody();
       }
       do {
-        out.write(" \r\n");
+        out.write("\r\n");
         out.write("                    ");
         if (_jspx_meth_s_submit_1((javax.servlet.jsp.tagext.JspTag) _jspx_th_s_form_1, _jspx_page_context))
           return true;
@@ -301,7 +319,7 @@ public final class principal_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_th_s_form_2.setParent(null);
     _jspx_th_s_form_2.setAction("/Empleado/indexEmpleado");
     _jspx_th_s_form_2.setMethod("post");
-    _jspx_th_s_form_2.setDynamicAttribute(null, "style", new String("width: 100%;"));
+    _jspx_th_s_form_2.setDynamicAttribute(null, "style", new String("width:100%;"));
     int _jspx_eval_s_form_2 = _jspx_th_s_form_2.doStartTag();
     if (_jspx_eval_s_form_2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       if (_jspx_eval_s_form_2 != javax.servlet.jsp.tagext.Tag.EVAL_BODY_INCLUDE) {
@@ -310,7 +328,7 @@ public final class principal_jsp extends org.apache.jasper.runtime.HttpJspBase
         _jspx_th_s_form_2.doInitBody();
       }
       do {
-        out.write(" \r\n");
+        out.write("\r\n");
         out.write("                    ");
         if (_jspx_meth_s_submit_2((javax.servlet.jsp.tagext.JspTag) _jspx_th_s_form_2, _jspx_page_context))
           return true;
@@ -360,7 +378,7 @@ public final class principal_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_th_s_form_3.setParent(null);
     _jspx_th_s_form_3.setAction("/Reserva/indexReserva");
     _jspx_th_s_form_3.setMethod("post");
-    _jspx_th_s_form_3.setDynamicAttribute(null, "style", new String("width: 100%;"));
+    _jspx_th_s_form_3.setDynamicAttribute(null, "style", new String("width:100%;"));
     int _jspx_eval_s_form_3 = _jspx_th_s_form_3.doStartTag();
     if (_jspx_eval_s_form_3 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       if (_jspx_eval_s_form_3 != javax.servlet.jsp.tagext.Tag.EVAL_BODY_INCLUDE) {
@@ -369,7 +387,7 @@ public final class principal_jsp extends org.apache.jasper.runtime.HttpJspBase
         _jspx_th_s_form_3.doInitBody();
       }
       do {
-        out.write(" \r\n");
+        out.write("\r\n");
         out.write("                    ");
         if (_jspx_meth_s_submit_3((javax.servlet.jsp.tagext.JspTag) _jspx_th_s_form_3, _jspx_page_context))
           return true;
@@ -414,10 +432,12 @@ public final class principal_jsp extends org.apache.jasper.runtime.HttpJspBase
     PageContext pageContext = _jspx_page_context;
     JspWriter out = _jspx_page_context.getOut();
     //  s:form
-    org.apache.struts2.views.jsp.ui.FormTag _jspx_th_s_form_4 = (org.apache.struts2.views.jsp.ui.FormTag) _jspx_tagPool_s_form_action.get(org.apache.struts2.views.jsp.ui.FormTag.class);
+    org.apache.struts2.views.jsp.ui.FormTag _jspx_th_s_form_4 = (org.apache.struts2.views.jsp.ui.FormTag) _jspx_tagPool_s_form_style_method_action.get(org.apache.struts2.views.jsp.ui.FormTag.class);
     _jspx_th_s_form_4.setPageContext(_jspx_page_context);
     _jspx_th_s_form_4.setParent(null);
-    _jspx_th_s_form_4.setAction("volverInicio");
+    _jspx_th_s_form_4.setAction("/Concesionario/indexConcesionario");
+    _jspx_th_s_form_4.setMethod("post");
+    _jspx_th_s_form_4.setDynamicAttribute(null, "style", new String("width:100%;"));
     int _jspx_eval_s_form_4 = _jspx_th_s_form_4.doStartTag();
     if (_jspx_eval_s_form_4 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       if (_jspx_eval_s_form_4 != javax.servlet.jsp.tagext.Tag.EVAL_BODY_INCLUDE) {
@@ -440,10 +460,10 @@ public final class principal_jsp extends org.apache.jasper.runtime.HttpJspBase
         out = _jspx_page_context.popBody();
     }
     if (_jspx_th_s_form_4.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _jspx_tagPool_s_form_action.reuse(_jspx_th_s_form_4);
+      _jspx_tagPool_s_form_style_method_action.reuse(_jspx_th_s_form_4);
       return true;
     }
-    _jspx_tagPool_s_form_action.reuse(_jspx_th_s_form_4);
+    _jspx_tagPool_s_form_style_method_action.reuse(_jspx_th_s_form_4);
     return false;
   }
 
@@ -455,14 +475,130 @@ public final class principal_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.struts2.views.jsp.ui.SubmitTag _jspx_th_s_submit_4 = (org.apache.struts2.views.jsp.ui.SubmitTag) _jspx_tagPool_s_submit_value_cssClass_nobody.get(org.apache.struts2.views.jsp.ui.SubmitTag.class);
     _jspx_th_s_submit_4.setPageContext(_jspx_page_context);
     _jspx_th_s_submit_4.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_s_form_4);
-    _jspx_th_s_submit_4.setValue("Volver al inicio");
-    _jspx_th_s_submit_4.setCssClass("btn btn-outline-secondary");
+    _jspx_th_s_submit_4.setValue("Gestión de concesionarios");
+    _jspx_th_s_submit_4.setCssClass("btn-rojo w-100");
     int _jspx_eval_s_submit_4 = _jspx_th_s_submit_4.doStartTag();
     if (_jspx_th_s_submit_4.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
       _jspx_tagPool_s_submit_value_cssClass_nobody.reuse(_jspx_th_s_submit_4);
       return true;
     }
     _jspx_tagPool_s_submit_value_cssClass_nobody.reuse(_jspx_th_s_submit_4);
+    return false;
+  }
+
+  private boolean _jspx_meth_s_form_5(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  s:form
+    org.apache.struts2.views.jsp.ui.FormTag _jspx_th_s_form_5 = (org.apache.struts2.views.jsp.ui.FormTag) _jspx_tagPool_s_form_style_method_action.get(org.apache.struts2.views.jsp.ui.FormTag.class);
+    _jspx_th_s_form_5.setPageContext(_jspx_page_context);
+    _jspx_th_s_form_5.setParent(null);
+    _jspx_th_s_form_5.setAction("/Inventario/indexInventario");
+    _jspx_th_s_form_5.setMethod("post");
+    _jspx_th_s_form_5.setDynamicAttribute(null, "style", new String("width:100%;"));
+    int _jspx_eval_s_form_5 = _jspx_th_s_form_5.doStartTag();
+    if (_jspx_eval_s_form_5 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      if (_jspx_eval_s_form_5 != javax.servlet.jsp.tagext.Tag.EVAL_BODY_INCLUDE) {
+        out = _jspx_page_context.pushBody();
+        _jspx_th_s_form_5.setBodyContent((javax.servlet.jsp.tagext.BodyContent) out);
+        _jspx_th_s_form_5.doInitBody();
+      }
+      do {
+        out.write("\r\n");
+        out.write("                    ");
+        if (_jspx_meth_s_submit_5((javax.servlet.jsp.tagext.JspTag) _jspx_th_s_form_5, _jspx_page_context))
+          return true;
+        out.write("\r\n");
+        out.write("                ");
+        int evalDoAfterBody = _jspx_th_s_form_5.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+      if (_jspx_eval_s_form_5 != javax.servlet.jsp.tagext.Tag.EVAL_BODY_INCLUDE)
+        out = _jspx_page_context.popBody();
+    }
+    if (_jspx_th_s_form_5.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_s_form_style_method_action.reuse(_jspx_th_s_form_5);
+      return true;
+    }
+    _jspx_tagPool_s_form_style_method_action.reuse(_jspx_th_s_form_5);
+    return false;
+  }
+
+  private boolean _jspx_meth_s_submit_5(javax.servlet.jsp.tagext.JspTag _jspx_th_s_form_5, PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  s:submit
+    org.apache.struts2.views.jsp.ui.SubmitTag _jspx_th_s_submit_5 = (org.apache.struts2.views.jsp.ui.SubmitTag) _jspx_tagPool_s_submit_value_cssClass_nobody.get(org.apache.struts2.views.jsp.ui.SubmitTag.class);
+    _jspx_th_s_submit_5.setPageContext(_jspx_page_context);
+    _jspx_th_s_submit_5.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_s_form_5);
+    _jspx_th_s_submit_5.setValue("Gestión de inventarios");
+    _jspx_th_s_submit_5.setCssClass("btn-rojo w-100");
+    int _jspx_eval_s_submit_5 = _jspx_th_s_submit_5.doStartTag();
+    if (_jspx_th_s_submit_5.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_s_submit_value_cssClass_nobody.reuse(_jspx_th_s_submit_5);
+      return true;
+    }
+    _jspx_tagPool_s_submit_value_cssClass_nobody.reuse(_jspx_th_s_submit_5);
+    return false;
+  }
+
+  private boolean _jspx_meth_s_form_6(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  s:form
+    org.apache.struts2.views.jsp.ui.FormTag _jspx_th_s_form_6 = (org.apache.struts2.views.jsp.ui.FormTag) _jspx_tagPool_s_form_action.get(org.apache.struts2.views.jsp.ui.FormTag.class);
+    _jspx_th_s_form_6.setPageContext(_jspx_page_context);
+    _jspx_th_s_form_6.setParent(null);
+    _jspx_th_s_form_6.setAction("volverInicio");
+    int _jspx_eval_s_form_6 = _jspx_th_s_form_6.doStartTag();
+    if (_jspx_eval_s_form_6 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+      if (_jspx_eval_s_form_6 != javax.servlet.jsp.tagext.Tag.EVAL_BODY_INCLUDE) {
+        out = _jspx_page_context.pushBody();
+        _jspx_th_s_form_6.setBodyContent((javax.servlet.jsp.tagext.BodyContent) out);
+        _jspx_th_s_form_6.doInitBody();
+      }
+      do {
+        out.write("\r\n");
+        out.write("                    ");
+        if (_jspx_meth_s_submit_6((javax.servlet.jsp.tagext.JspTag) _jspx_th_s_form_6, _jspx_page_context))
+          return true;
+        out.write("\r\n");
+        out.write("                ");
+        int evalDoAfterBody = _jspx_th_s_form_6.doAfterBody();
+        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+          break;
+      } while (true);
+      if (_jspx_eval_s_form_6 != javax.servlet.jsp.tagext.Tag.EVAL_BODY_INCLUDE)
+        out = _jspx_page_context.popBody();
+    }
+    if (_jspx_th_s_form_6.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_s_form_action.reuse(_jspx_th_s_form_6);
+      return true;
+    }
+    _jspx_tagPool_s_form_action.reuse(_jspx_th_s_form_6);
+    return false;
+  }
+
+  private boolean _jspx_meth_s_submit_6(javax.servlet.jsp.tagext.JspTag _jspx_th_s_form_6, PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  s:submit
+    org.apache.struts2.views.jsp.ui.SubmitTag _jspx_th_s_submit_6 = (org.apache.struts2.views.jsp.ui.SubmitTag) _jspx_tagPool_s_submit_value_cssClass_nobody.get(org.apache.struts2.views.jsp.ui.SubmitTag.class);
+    _jspx_th_s_submit_6.setPageContext(_jspx_page_context);
+    _jspx_th_s_submit_6.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_s_form_6);
+    _jspx_th_s_submit_6.setValue("Volver al inicio");
+    _jspx_th_s_submit_6.setCssClass("btn btn-outline-secondary");
+    int _jspx_eval_s_submit_6 = _jspx_th_s_submit_6.doStartTag();
+    if (_jspx_th_s_submit_6.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_s_submit_value_cssClass_nobody.reuse(_jspx_th_s_submit_6);
+      return true;
+    }
+    _jspx_tagPool_s_submit_value_cssClass_nobody.reuse(_jspx_th_s_submit_6);
     return false;
   }
 }
