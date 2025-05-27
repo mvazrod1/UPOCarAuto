@@ -262,14 +262,17 @@
             <result>/Pago/detallesPago.jsp</result>
         </action>
 
-        <action name="altaPago" class="acciones.PagoAction" method="input">
+        <action name="altaPago" class="acciones.PagoAction">
             <result>/Pago/formAltaPago.jsp</result>
         </action>
 
-        <action name="crearPago" class="acciones.PagoAction" method="crearPago">
+        <action name="guardarPago"
+                class="acciones.PagoAction"
+                method="guardarAlta">
             <result name="success" type="redirectAction">indexPago</result>
             <result name="input">/Pago/formAltaPago.jsp</result>
         </action>
+
 
         <action name="editarPago" class="acciones.PagoAction" method="consultarPago">
             <result>/Pago/modificarPago.jsp</result>
@@ -282,6 +285,7 @@
 
         <action name="eliminarPago" class="acciones.PagoAction" method="eliminarPago">
             <result name="success" type="redirectAction">indexPago</result>
+            <result name="error">/Pago/indexPago.jsp</result>
         </action>
 
     </package>

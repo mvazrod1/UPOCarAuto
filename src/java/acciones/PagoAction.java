@@ -53,7 +53,43 @@ public class PagoAction extends ActionSupport {
         return SUCCESS;
     }
 
-    // Getters y Setters necesarios
+    public String guardarAlta() {
+
+        Reserva res = reservaDAO.consultarReserva(idReserva);
+        if (res == null) {
+            addActionError("La reserva " + idReserva + " no existe.");
+            return INPUT;
+        }
+
+        pago = new Pago(res, fechaPago, precioTotal, metodoPago, estadoPago);
+
+        try {
+            dao.crearPago(pago);
+            return SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            addActionError("Error al guardar: " + e.getMessage());
+            return INPUT;
+        }
+    }
+
+    public String eliminarPago() {
+
+        if (idPago == null) {
+            addActionError("No se indicó el ID del pago a eliminar.");
+            return ERROR;
+        }
+
+        try {
+            dao.bajaPago(idPago);    
+            return SUCCESS;
+        } catch (Exception e) {
+            // registra el error y devuelve a la vista con mensaje
+            e.printStackTrace();
+            addActionError("No se pudo eliminar el pago: " + e.getMessage());
+            return ERROR;
+        }
+    }
 
     public List<Pago> getLista() {
         return lista;

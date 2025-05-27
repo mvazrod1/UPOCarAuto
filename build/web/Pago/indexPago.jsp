@@ -11,6 +11,7 @@
     </script>
 </head>
 <body>
+    <s:actionerror/>
 
     <h2>Listado de Pagos</h2>
 

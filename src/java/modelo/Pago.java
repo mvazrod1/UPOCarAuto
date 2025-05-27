@@ -40,6 +40,16 @@ public class Pago  implements java.io.Serializable {
        this.estadoPago = estadoPago;
        this.transaccions = transaccions;
     }
+
+    public Pago(Integer idPago, Reserva reserva, Date fechaPago, BigDecimal precioTotal, String metodoPago, String estadoPago) {
+        this.idPago=idPago;
+        this.reserva=reserva;
+        this.fechaPago=fechaPago;
+        this.precioTotal=precioTotal;
+        this.metodoPago=metodoPago;
+        this.estadoPago=estadoPago;
+    }
+    
    
     public Integer getIdPago() {
         return this.idPago;

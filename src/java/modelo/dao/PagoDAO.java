@@ -27,7 +27,7 @@ public class PagoDAO {
         return pago;
     }
 
-    public void altaPago(Pago p) {
+    public void crearPago(Pago p) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
         session.save(p);
