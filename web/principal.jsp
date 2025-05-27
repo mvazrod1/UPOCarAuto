@@ -37,8 +37,8 @@
                     <s:submit value="Gestión de reservas" cssClass="btn-rojo w-100"/>
                 </s:form>
                 <s:form action="/Inventario/indexInventario" method="post"> 
-            <s:submit value="Gestión de inventarios" />
-        </s:form>
+                    <s:submit value="Gestión de inventarios" />
+                </s:form>
             </div>
 
             <div class="d-flex justify-content-center mt-4">
