@@ -12,34 +12,35 @@
     </head>
     <body>
 
-    <s:actionerror />
-    <s:fielderror />
+        <s:actionerror />
+        <s:fielderror />
 
-    <h2>Alta de Transacción</h2>
+        <h2>Alta de Transacción</h2>
 
-    <s:form action="guardarTransaccion" method="post">
+        <s:form action="guardarTransaccion" method="post">
 
-        <s:textfield name="fechaTransaccion"
-                     label="Fecha de Transacción (dd/MM/yyyy)" />
+            <s:textfield name="fechaTransaccion"
+                         label="Fecha de Transacción (dd/MM/yyyy)" />
 
-        <s:textfield name="precio"
-                     label="Precio (€)" />
+            <s:textfield name="precio"
+                         label="Precio (€)" />
 
-        <s:select name="metodoPago"
-                  label="Método de Pago"
-                  list="{'Efectivo','Tarjeta','Bizum','Transferencia'}" />
+            <s:select name="metodoPago"
+                      label="Método de Pago"
+                      list="{'Tarjeta','Bizum','Transferencia'}" />
+            
+            <s:select name="estado"
+                      label="Estado"
+                      list="{'Pendiente','Completada','Cancelada'}" />
 
-        <s:select name="estado"
-                  label="Estado"
-                  list="{'Pendiente','Completado','Fallido'}" />
 
-        <br/><br/>
-        <s:submit value="Guardar" />
+            <br/><br/>
+            <s:submit value="Guardar" />
 
-    </s:form>
+        </s:form>
 
-    <br>
-    <a href="<s:url action='indexTransaccion'/>">Volver al Listado</a>
+        <br>
+        <a href="<s:url action='indexTransaccion'/>">Volver al Listado</a>
 
-</body>
+    </body>
 </html>

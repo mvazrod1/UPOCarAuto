@@ -128,16 +128,17 @@ public class TransaccionAction extends ActionSupport {
             // Validar método de pago
             if (metodoPago == null || metodoPago.trim().isEmpty()) {
                 addFieldError("metodoPago", "El método de pago es obligatorio.");
-            } else if (!metodoPago.matches("(?i)^(Efectivo|Tarjeta|Bizum|Transferencia)$")) {
+            } else if (!metodoPago.matches("(?i)^(Tarjeta|Bizum|Transferencia)$")) {
                 addFieldError("metodoPago", "Método de pago no válido.");
             }
 
             // Validar estado
             if (estado == null || estado.trim().isEmpty()) {
                 addFieldError("estado", "El estado es obligatorio.");
-            } else if (!estado.matches("(?i)^(Pendiente|Completado|Fallido|Cancelado)$")) {
+            } else if (!estado.matches("(?i)^(Pendiente|Completada|Cancelada)$")) {
                 addFieldError("estado", "Estado no válido.");
             }
+
         }
     }
 

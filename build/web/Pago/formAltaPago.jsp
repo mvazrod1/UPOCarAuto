@@ -25,11 +25,11 @@
 
             <s:select name="metodoPago"
                       label="Método de Pago"
-                      list="{'Efectivo','Tarjeta','Bizum'}" />
+                      list="{'Transferencia','Tarjeta','Bizum'}" />
 
             <s:select name="estadoPago"
                       label="Estado del Pago"
-                      list="{'Pendiente','Pagado','Cancelado'}" />
+                      list="{'Pendiente','Completado','Cancelado'}" />
 
             <br/><br/>
             <s:submit value="Guardar" />
