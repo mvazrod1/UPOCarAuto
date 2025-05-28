@@ -16,26 +16,14 @@
 
         <div class="container mt-5">
 
-            <h2 class="text-center mb-4" style="color: var(--color-rojo);">Empleados Registrados</h2>
+            <h2 class="mb-4">Empleados Registrados</h2>
 
             <!-- ===== BUSCADOR ===== -->
-            <s:form namespace="/Empleado" action="buscar" method="post" cssClass="row g-3 mb-4">
-                <div class="col-auto">
-                    <s:textfield name="dni" placeholder="Buscar por DNI" required="true"
-                                 cssClass="form-control"/>
-                </div>
-                <div class="col-auto">
-                    <s:submit value="Buscar" cssClass="btn-rojo"/>
-                </div>
-
-                <!-- botón Ver todos, sólo tras buscar -->
-                <s:if test="dni != null && !dni.trim().isEmpty()">
-                    <div class="col-auto">
-                        <s:url var="todosUrl" namespace="/Empleado" action="indexEmpleado"/>
-                        <input type="button" value="Ver todos" class="btn btn-outline-secondary"
-                               onclick="location.href = '${todosUrl}'"/>
-                    </div>
-                </s:if>
+            <s:form namespace="/Empleado" action="buscar" method="post" theme="simple" cssClass="d-flex gap-2 mb-3">
+                <s:textfield name="dni" placeholder="Buscar por DNI" required="true"
+                             cssClass="form-control w-25"/>
+                <s:submit value="Buscar" cssClass="btn-rojo"/>
+                <a href="<s:url action='indexEmpleado'/>" class="btn btn-outline-secondary">Mostrar todos</a>
             </s:form>
             <!-- ==================== -->
 
@@ -46,52 +34,57 @@
             <s:form id="empleadoForm" namespace="/Empleado" method="post">
                 <input type="hidden" id="dniSeleccionado" name="dni"/>
 
-                <div class="table-responsive">
-                    <table class="table table-striped align-middle">
-                        <thead class="table-light">
+
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">Seleccionar</th>
+                            <th scope="col">DNI</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellidos</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Teléfono</th>
+                            <th scope="col">Dirección</th>
+                            <th scope="col">Puesto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <s:iterator value="listaEmpleados" var="e">
                             <tr>
-                                <th></th>
-                                <th>DNI</th>
-                                <th>Nombre</th>
-                                <th>Apellidos</th>
-                                <th>Email</th>
-                                <th>Teléfono</th>
-                                <th>Dirección</th>
-                                <th>Puesto</th>
+                                <td>
+                                    <input type="radio" name="empleadoRadio"
+                                           value="<s:property value='#e.dni'/>"
+                                           onclick="onEmpleadoSeleccionado(this.value)"/>
+                                </td>
+                                <td><s:property value="#e.dni"/></td>
+                                <td><s:property value="#e.nombre"/></td>
+                                <td><s:property value="#e.apellidos"/></td>
+                                <td><s:property value="#e.email"/></td>
+                                <td><s:property value="#e.telefono"/></td>
+                                <td><s:property value="#e.direccion"/></td>
+                                <td><s:property value="#e.puesto"/></td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <s:iterator value="listaEmpleados" var="e">
-                                <tr>
-                                    <td>
-                                        <input type="radio" name="empleadoRadio"
-                                               value="<s:property value='#e.dni'/>"
-                                               onclick="onEmpleadoSeleccionado(this.value)"/>
-                                    </td>
-                                    <td><s:property value="#e.dni"/></td>
-                                    <td><s:property value="#e.nombre"/></td>
-                                    <td><s:property value="#e.apellidos"/></td>
-                                    <td><s:property value="#e.email"/></td>
-                                    <td><s:property value="#e.telefono"/></td>
-                                    <td><s:property value="#e.direccion"/></td>
-                                    <td><s:property value="#e.puesto"/></td>
-                                </tr>
-                            </s:iterator>
-                        </tbody>
-                    </table>
-                </div>
+                        </s:iterator>
+                        <s:if test="listaEmpleados == null || listaEmpleados.isEmpty()">
+                            <tr>
+                                <td colspan="5" align="center">-- Sin resultados --</td>
+                            </tr>
+                        </s:if>
+                    </tbody>
+                </table>
+
 
                 <!-- ===== BOTONES DE ACCIÓN ===== -->
-                <div class="d-flex justify-content-center gap-2 my-3">
-                    <input type="button" id="btnConsultar" value="Consultar"
+                <div class="d-flex justify-content-center gap-3 mt-4">
+                    <input type="button" id="btnConsultar" value="Consultar Empleado"
                            class="btn-rojo" disabled
                            onclick="enviarAccion('<s:url value="consultarEmpleado.action"/>')"/>
 
-                    <input type="button" id="btnActualizar" value="Actualizar"
+                    <input type="button" id="btnActualizar" value="Modificar Empleado"
                            class="btn-rojo" disabled
                            onclick="enviarAccion('<s:url value="editarEmpleado.action"/>')"/>
 
-                    <input type="button" id="btnEliminar" value="Eliminar"
+                    <input type="button" id="btnEliminar" value="Eliminar Empleado"
                            class="btn btn-danger" disabled
                            onclick="enviarAccion('<s:url value="eliminarEmpleado.action"/>')"/>
                 </div>
@@ -99,11 +92,11 @@
             <!-- ============================ -->
 
             <!-- ===== BOTONES SECUNDARIOS ===== -->
-            <div class="d-flex justify-content-between mt-4">
-                <s:form namespace="/Empleado" action="altaEmpleado" method="get" cssClass="m-0">
-                    <s:submit value="Nuevo Empleado" cssClass="btn-rojo"/>
+            <div class="text-center mt-5">
+                <s:form namespace="/Empleado" action="altaEmpleado" method="get" theme="simple">
+                    <s:submit value="Alta Empleado" cssClass="btn-rojo me-2"/>
                 </s:form>
-
+                <br>
                 <s:url var="principalUrl" value="/principal.jsp"/>
                 <input type="button" value="Volver a la página principal"
                        class="btn btn-outline-secondary"

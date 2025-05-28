@@ -10,33 +10,45 @@
 <html>
     <head>
         <title>Detalles de Inventario</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/general.css">
     </head>
     <body>
-
+        <jsp:include page="../HEADER.jsp" />
         <s:actionerror/><br/>
+        <div class="container my-5">
+            <h2 class="text-danger mb-4">Detalles del Inventario</h2>
+            <div class="mb-4">
+                <div class="mb-2">
+                    <label class="text-danger">Inventario (ID):</label>
+                    <s:property value="inventario.idInventario"/>
+                </div>
+                <div class="mb-2">
+                    <label class="text-danger">Concesionario (ID):</label>
+                    <s:property value="inventario.concesionario.idConcesionario"/>
+                </div>
+                <div class="mb-2">
+                    <label class="text-danger">DNI Empleado:</label>
+                    <s:property value="inventario.empleado.dni"/>
+                </div>
+                <div class="mb-2">
+                    <label class="text-danger">Total Vehículos:</label>
+                    <s:property value="inventario.totalVehiculos"/>
+                </div>
+                <div class="mb-2">
+                    <label class="text-danger">Última Actualización:</label>
+                    <s:property value="inventario.ultimaActualizacion"/>
+                </div>
+            </div>
 
-        <s:if test="inventario != null">
-            <table border="1" cellpadding="5">
-                <tr>
-                    <th>ID Inventario</th>
-                    <th>ID Concesionario</th>
-                    <th>DNI Empleado</th>
-                    <th>Total Vehículos</th>
-                    <th>Última Actualización</th>
-                </tr>
-                <tr>
-                    <td><s:property value="inventario.idInventario"/></td>
-                    <td><s:property value="inventario.concesionario.idConcesionario"/></td>
-                    <td><s:property value="inventario.empleado.dni"/></td>
-                    <td><s:property value="inventario.totalVehiculos"/></td>
-                    <td><s:property value="inventario.ultimaActualizacion"/></td>
-                </tr>
-            </table>
-        </s:if>
-
-        <br/>
-        <!-- Botón para volver al listado de inventarios -->
-        <a href="<s:url action='indexInventario' namespace='/Inventario'/>">Volver</a>
+            <div class="mt-4">
+                <s:form action="/Inventario/indexInventario" method="get">
+                    <s:submit value="Volver a la lista" cssClass="btn-rojo px-4"/>
+                </s:form>
+            </div>
+        </div>
+        <jsp:include page="../FOOTER.jsp" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     </body>
 </html>

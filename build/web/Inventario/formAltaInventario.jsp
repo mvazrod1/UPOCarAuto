@@ -8,35 +8,49 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Nuevo Inventario</title>
-  </head>
-  <body>
+    <head>
+        <title>Nuevo Inventario</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/general.css">
+    </head>
+    <body>
+        <jsp:include page="../HEADER.jsp" />
+        <div class="container mt-5">
+            <h2 class="text-center mb-4" style="color: var(--color-rojo);">Registro de nuevo inventario</h2>
 
-    <!-- Errores globales de la acción -->
-    <s:actionerror/>
+            <s:actionerror cssClass="alert alert-danger"/>
 
-    <h2>Alta de Inventario</h2>
-    
-    <s:form action="guardarInventario" method="post">
-      
-      <!-- Selección de concesionario por su ID -->
-      <s:textfield name="idConcesionario"
-                   label="ID Concesionario"/>
+            <s:form action="guardarInventario" method="post" cssClass="p-4 border rounded bg-light shadow-sm">
 
-      <!-- DNI del empleado responsable -->
-      <s:textfield name="dniEmpleado"
-                   label="DNI Empleado"/>
+                <div class="mb-3">
+                    <label class="form-label">ID Concesionario:</label>
+                    <s:textfield name="idConcesionario" theme="simple" cssClass="form-control"/>
+                </div>
 
-      <!-- Fecha de última actualización -->
-      <s:textfield name="ultimaActualizacionStr"
-                   label="Fecha Actualización"
-                   placeholder="YYYY-MM-DD"/>
+                <div class="mb-3">
+                    <label class="form-label">DNI Empleado:</label>
+                    <s:textfield name="dniEmpleado" theme="simple" cssClass="form-control"/>
+                </div>
 
-      <br/><br/>
-      <s:submit value="Guardar"/>
-    </s:form>
-    <a href="<s:url action='indexInventario'/>">Volver</a>
+                <div class="mb-3">
+                    <label class="form-label">Fecha Actualización:</label>
+                    <s:textfield name="ultimaActualizacionStr" placeholder="YYYY-MM-DD" theme="simple" cssClass="form-control"/>
+                </div>
 
-  </body>
+                <div class="d-flex justify-content-center mt-4">
+                    <s:submit value="Registrar Inventario" cssClass="btn-rojo"/>
+                    <s:reset value="Limpiar" cssClass="btn btn-secondary"/>
+                </div>
+            </s:form>
+
+            <div class="d-flex justify-content-center mt-4">
+                <s:form action="indexInventario" method="post">
+                    <s:submit value="Volver a la lista" cssClass="btn btn-outline-secondary"/>
+                </s:form>
+            </div>
+        </div>
+        <jsp:include page="../FOOTER.jsp" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
 </html>
+
