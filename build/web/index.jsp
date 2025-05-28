@@ -15,6 +15,11 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/general.css">
     </head>
     <body style="display: flex; flex-direction: column; min-height: 100vh; margin: 0;">
+        <s:if test="%{#session.empleado != null}">
+            <script type="text/javascript">
+                window.location.href = '${pageContext.request.contextPath}/principal.jsp';
+            </script>
+        </s:if>
         <jsp:include page="HEADER.jsp" />
 
         <div style="flex: 1;">
