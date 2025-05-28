@@ -92,7 +92,9 @@
                     </table>
                 </div>
             </s:if>
-
+            <s:else>
+                <p class="text-muted">Este vehículo no tiene reservas asociadas.</p>
+            </s:else>
             <div class="mt-4">
                 <s:form action="/Vehiculo/indexVehiculo" method="get">
                     <s:submit value="Volver a la lista" cssClass="btn-rojo px-4"/>
