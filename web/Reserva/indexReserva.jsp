@@ -90,12 +90,12 @@
                     <input type="button" id="btnConsultar" value="Consultar Reserva"
                            onclick="enviarAccion('<s:url value="/Reserva/consultarReserva.action"/>')"
                            class="btn-rojo" disabled />
-                    <input type="button" id="btnActualizar" value="Actualizar Reserva"
+                    <input type="button" id="btnActualizar" value="Modificar Reserva"
                            onclick="enviarAccion('<s:url value="/Reserva/editarReserva.action"/>')"
                            class="btn-rojo" disabled />
                     <input type="button" id="btnEliminar" value="Eliminar Reserva"
                            onclick="enviarAccion('<s:url value="/Reserva/eliminarReserva.action"/>', true)"
-                           class="btn-rojo" disabled />
+                           class="btn btn-danger" disabled />
                 </div>
             </s:form>
 
@@ -106,7 +106,7 @@
                 </s:form>
                 <br>
                 <s:form action="/principal.jsp" method="post" theme="simple">
-                    <s:submit value="Volver a la página principal" cssClass="btn-rojo me-2"/>
+                    <s:submit value="Volver a la página principal" cssClass="btn btn-outline-secondary"/>
                 </s:form>
             </div>
         </div>

@@ -2,125 +2,108 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Modificar Empleado</title>
-</head>
-<body>
-    <h1>Modificar Empleado</h1>
+    <head>
+        <meta charset="UTF-8">
+        <title>Modificar Empleado</title>
 
-    <!-- Generar URL para volver al listado -->
-    <s:url var="urlIndex" namespace="/Empleado" action="indexEmpleado"/>
+        <!-- Bootstrap + hoja de estilos global -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/general.css">
+    </head>
+    <body>
 
-    <s:form namespace="/Empleado"
-            action="guardarModfEmpleado"
-            method="post">
-        <!-- DNI (no modificable) -->
-        <div>
-            <label for="dni">DNI:</label>
-            <s:textfield name="dni"
-                         id="dni"
-                         value="%{empleado.dni}"
-                         readonly="true"
-                         theme="simple"/>
-            <s:fielderror fieldName="dni"/>
+        <jsp:include page="../HEADER.jsp"/>
+
+        <div class="container mt-5">
+            <h2 class="text-center mb-4" style="color: var(--color-rojo);">Modificar Empleado</h2>
+
+            <s:url var="urlIndex" namespace="/Empleado" action="indexEmpleado"/>
+
+            <s:form namespace="/Empleado" action="modificarEmpleado" method="post"
+                    cssClass="p-4 border rounded bg-light shadow-sm">
+
+                <!-- DNI (solo lectura) -->
+                <div class="mb-3">
+                    <label for="dni" class="form-label">DNI:</label>
+                    <s:textfield name="dni" id="dni" theme="simple" readonly="true"
+                                 cssClass="form-control-plaintext"/>
+                    <s:fielderror fieldName="dni" cssClass="text-danger small"/>
+                </div>
+
+                <!-- Nombre -->
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre:</label>
+                    <s:textfield name="nombre" id="nombre" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="nombre" cssClass="text-danger small"/>
+                </div>
+
+                <!-- Apellidos -->
+                <div class="mb-3">
+                    <label for="apellidos" class="form-label">Apellidos:</label>
+                    <s:textfield name="apellidos" id="apellidos" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="apellidos" cssClass="text-danger small"/>
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <s:textfield name="email" id="email" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="email" cssClass="text-danger small"/>
+                </div>
+
+                <!-- Teléfono -->
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">Teléfono:</label>
+                    <s:textfield name="telefono" id="telefono" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="telefono" cssClass="text-danger small"/>
+                </div>
+
+                <!-- Dirección -->
+                <div class="mb-3">
+                    <label for="direccion" class="form-label">Dirección:</label>
+                    <s:textfield name="direccion" id="direccion" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="direccion" cssClass="text-danger small"/>
+                </div>
+
+                <!-- Puesto -->
+                <div class="mb-3">
+                    <label for="puesto" class="form-label">Puesto:</label>
+                    <s:textfield name="puesto" id="puesto" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="puesto" cssClass="text-danger small"/>
+                </div>
+
+                <!-- Contraseña -->
+                <div class="mb-3">
+                    <label for="contrasenya" class="form-label">Contraseña:</label>
+                    <s:password name="contrasenya" id="contrasenya" theme="simple"
+                                cssClass="form-control" repopulate="true"/>
+                    <s:fielderror fieldName="contrasenya" cssClass="text-danger small"/>
+                </div>
+
+                <!-- Concesionario -->
+                <div class="mb-3">
+                    <label for="idConcesionario" class="form-label">Concesionario:</label>
+                    <s:select name="idConcesionario" id="idConcesionario"
+                              list="listaConcesionarios"
+                              listKey="idConcesionario" listValue="nombre"
+                              headerKey="" headerValue="-- Seleccione --"
+                              theme="simple" cssClass="form-select"/>
+                    <s:fielderror fieldName="idConcesionario" cssClass="text-danger small"/>
+                </div>
+
+                <!-- Botones -->
+                <div class="d-flex justify-content-center gap-2 mt-4">
+                    <s:submit value="Guardar Cambios" cssClass="btn-rojo"/>
+                    <input type="button" value="Cancelar" class="btn btn-outline-secondary"
+                           onclick="location.href = '${urlIndex}'"/>
+                </div>
+
+                <s:actionerror cssClass="alert alert-danger mt-3"/>
+            </s:form>
         </div>
 
-        <!-- Nombre -->
-        <div>
-            <label for="nombre">Nombre:</label>
-            <s:textfield name="nombre"
-                         id="nombre"
-                         value="%{empleado.nombre}"
-                         theme="simple"/>
-            <s:fielderror fieldName="nombre"/>
-        </div>
+        <jsp:include page="../FOOTER.jsp"/>
 
-        <!-- Apellidos -->
-        <div>
-            <label for="apellidos">Apellidos:</label>
-            <s:textfield name="apellidos"
-                         id="apellidos"
-                         value="%{empleado.apellidos}"
-                         theme="simple"/>
-            <s:fielderror fieldName="apellidos"/>
-        </div>
-
-        <!-- Email -->
-        <div>
-            <label for="email">Email:</label>
-            <s:textfield name="email"
-                         id="email"
-                         value="%{empleado.email}"
-                         theme="simple"/>
-            <s:fielderror fieldName="email"/>
-        </div>
-
-        <!-- Teléfono -->
-        <div>
-            <label for="telefono">Teléfono:</label>
-            <s:textfield name="telefono"
-                         id="telefono"
-                         value="%{empleado.telefono}"
-                         theme="simple"/>
-            <s:fielderror fieldName="telefono"/>
-        </div>
-
-        <!-- Dirección -->
-        <div>
-            <label for="direccion">Dirección:</label>
-            <s:textfield name="direccion"
-                         id="direccion"
-                         value="%{empleado.direccion}"
-                         theme="simple"/>
-            <s:fielderror fieldName="direccion"/>
-        </div>
-
-        <!-- Puesto -->
-        <div>
-            <label for="puesto">Puesto:</label>
-            <s:textfield name="puesto"
-                         id="puesto"
-                         value="%{empleado.puesto}"
-                         theme="simple"/>
-            <s:fielderror fieldName="puesto"/>
-        </div>
-
-        <!-- Contraseña -->
-        <div>
-            <label for="contrasenya">Contraseña:</label>
-            <s:password name="contrasenya"
-                        id="contrasenya"
-                        value="%{empleado.contrasenya}"
-                        theme="simple"/>
-            <s:fielderror fieldName="contrasenya"/>
-        </div>
-
-        <!-- Concesionario -->
-        <div>
-            <label for="idConcesionario">Concesionario:</label>
-            <s:select name="idConcesionario"
-                      id="idConcesionario"
-                      list="listaConcesionarios"
-                      listKey="idConcesionario"
-                      listValue="nombre"
-                      headerKey=""
-                      headerValue="-- Seleccione --"
-                      value="%{empleado.concesionario.idConcesionario}"
-                      theme="simple"/>
-            <s:fielderror fieldName="idConcesionario"/>
-        </div>
-
-        <!-- Botones -->
-        <div style="margin-top:10px;">
-            <s:submit value="Guardar Cambios"/>
-            <input type="button"
-                   value="Cancelar"
-                   onclick="window.location.href='<s:property value="%{urlIndex}\">'"/>
-        </div>
-
-        <!-- Mostrar errores globales -->
-        <s:actionerror/>
-    </s:form>
-</body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
 </html>

@@ -61,7 +61,7 @@ public class ClienteAction extends ActionSupport {
         listaClientes = new ArrayList<>();
 
         if (cliente == null) {
-            addActionMessage("El clienre con dni " + dni + " no existe.");
+            addActionMessage("El cliente con dni " + dni + " no existe.");
             return INPUT;
         }
 

@@ -79,6 +79,11 @@
                                 <td><s:property value="#c.dni" /></td>
                             </tr>
                         </s:iterator>
+                        <s:if test="listaClientes == null || listaClientes.isEmpty()">
+                            <tr>
+                                <td colspan="5" align="center">-- Sin resultados --</td>
+                            </tr>
+                        </s:if>
                     </tbody>
                 </table>
 
@@ -87,11 +92,11 @@
                     <input type="button" id="btnConsultar" value="Consultar Cliente"
                            class="btn-rojo" onclick="enviarAccion('<s:url value="/Cliente/consultarCliente.action"/>')" disabled />
 
-                    <input type="button" id="btnActualizar" value="Actualizar Cliente"
+                    <input type="button" id="btnActualizar" value="Modificar Cliente"
                            class="btn-rojo" onclick="enviarAccion('<s:url value="/Cliente/editarCliente.action"/>')" disabled />
 
                     <input type="button" id="btnEliminar" value="Eliminar Cliente"
-                           class="btn-rojo" onclick="enviarAccion('<s:url value="/Cliente/eliminarCliente.action"/>', true)" disabled />
+                           class="btn btn-danger" onclick="enviarAccion('<s:url value="/Cliente/eliminarCliente.action"/>', true)" disabled />
 
                 </div>
             </s:form>

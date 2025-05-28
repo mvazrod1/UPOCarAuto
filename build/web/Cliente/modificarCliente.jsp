@@ -18,52 +18,52 @@
         <jsp:include page="../HEADER.jsp" />
 
         <div class="container my-5">
-            <h2 class="mb-4">Modificar Cliente</h2>
+            <h2 class="text-center mb-4" style="color: var(--color-rojo);">Modificar Cliente</h2>
 
-            <s:form action="/Cliente/guardarModfCliente" method="post" cssClass="row g-3">
-                <div class="col-md-4">
+            <s:form action="/Cliente/guardarModfCliente" method="post" cssClass="p-4 border rounded bg-light shadow-sm">
+                <div class="mb-3">
                     <label for="dni" class="form-label">DNI:</label>
                     <s:textfield name="dni" id="dni" value="%{cliente.dni}" theme="simple" cssClass="form-control" readonly="true"/>
                     <s:fielderror fieldName="dni" cssClass="text-danger small"/>
                 </div>
 
-                <div class="col-md-4">
+                <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre:</label>
                     <s:textfield name="nombre" id="nombre" value="%{cliente.nombre}" theme="simple" cssClass="form-control"/>
-                    <s:fielderror fieldName="nombre" cssClass="text-danger"/>
+                    <s:fielderror fieldName="nombre" cssClass="text-danger small"/>
                 </div>
 
-                <div class="col-md-4">
+                <div class="mb-3">
                     <label for="apellidos" class="form-label">Apellidos:</label>
                     <s:textfield name="apellidos" id="apellidos" value="%{cliente.apellidos}" theme="simple" cssClass="form-control"/>
-                    <s:fielderror fieldName="apellidos" cssClass="text-danger"/>
+                    <s:fielderror fieldName="apellidos" cssClass="text-danger small"/>
                 </div>
 
-                <div class="col-md-4">
+                <div class="mb-3">
                     <label for="email" class="form-label">Email:</label>
                     <s:textfield name="email" id="email" value="%{cliente.email}" theme="simple" cssClass="form-control"/>
-                    <s:fielderror fieldName="email" cssClass="text-danger"/>
+                    <s:fielderror fieldName="email" cssClass="text-danger small"/>
                 </div>
 
-                <div class="col-md-4">
+                <div cclass="mb-3">
                     <label for="telefono" class="form-label">Teléfono:</label>
                     <s:textfield name="telefono" id="telefono" value="%{cliente.telefono}" theme="simple" cssClass="form-control"/>
-                    <s:fielderror fieldName="telefono" cssClass="text-danger"/>
+                    <s:fielderror fieldName="telefono" cssClass="text-danger small"/>
                 </div>
 
-                <div class="col-md-4">
+                <div class="mb-3">
                     <label for="direccion" class="form-label">Dirección:</label>
                     <s:textfield name="direccion" id="direccion" value="%{cliente.direccion}" theme="simple" cssClass="form-control"/>
-                    <s:fielderror fieldName="direccion" cssClass="text-danger"/>
+                    <s:fielderror fieldName="direccion" cssClass="text-danger small"/>
                 </div>
 
-                <div class="d-flex justify-content-center gap-3 mt-4">
+                <div class="d-flex justify-content-center gap-2 mt-4">
                     <s:submit value="Guardar Cambios" cssClass="btn-rojo"/>
-                    <input type="button" value="Cancelar" class="btn btn-secondary"
+                    <input type="button" value="Cancelar" class="btn btn-outline-secondary"
                            onclick="window.location.href = '<s:url action="indexCliente"/>'"/>
                 </div>
 
-                <s:actionerror cssClass="text-danger"/>
+                <s:actionerror cssClass="alert alert-danger mt-3"/>
             </s:form>
         </div>
 
