@@ -44,6 +44,14 @@
                 <s:form action="/Concesionario/indexConcesionario" method="post" style="width: 100%;">
                     <s:submit value="Gestión de concesionarios" cssClass="btn btn-rojo"/>
                 </s:form>
+
+                <s:form action="/Pago/indexPago" method="post" style="width: 100%;"> 
+                    <s:submit value="Gestión de pagos" cssClass="btn-rojo"/>
+                </s:form>
+
+                <s:form action="/Transaccion/indexTransaccion" method="post" style="width: 100%;"> 
+                    <s:submit value="Gestión de transacciones" cssClass="btn-rojo"/>
+                </s:form>
             </div>
 
             <div class="d-flex justify-content-center mt-4">

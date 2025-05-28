@@ -258,6 +258,80 @@
         </action>
 
     </package>
+    
+    <package name="pagos" namespace="/Pago" extends="struts-default">
+
+        <action name="indexPago" class="acciones.PagoAction" method="execute">
+            <result>/Pago/indexPago.jsp</result>
+        </action>
+
+        <action name="consultarPago" class="acciones.PagoAction" method="consultarPago">
+            <result>/Pago/detallesPago.jsp</result>
+        </action>
+
+        <action name="altaPago" class="acciones.PagoAction">
+            <result>/Pago/formAltaPago.jsp</result>
+        </action>
+
+        <action name="guardarPago"
+                class="acciones.PagoAction"
+                method="guardarAlta">
+            <result name="success" type="redirectAction">indexPago</result>
+            <result name="input">/Pago/formAltaPago.jsp</result>
+        </action>
+
+
+        <action name="editarPago" class="acciones.PagoAction" method="consultarPago">
+            <result>/Pago/modificarPago.jsp</result>
+        </action>
+
+        <action name="guardarModfPago" class="acciones.PagoAction" method="modificarPago">
+            <result name="success" type="redirectAction">indexPago</result>
+            <result name="input">/Pago/modificarPago.jsp</result>
+        </action>
+
+        <action name="eliminarPago" class="acciones.PagoAction" method="eliminarPago">
+            <result name="success" type="redirectAction">indexPago</result>
+            <result name="error">/Pago/indexPago.jsp</result>
+        </action>
+
+    </package>
+    <package name="transacciones" namespace="/Transaccion" extends="struts-default">
+
+        <action name="indexTransaccion" class="acciones.TransaccionAction" method="execute">
+            <result>/Transaccion/indexTransaccion.jsp</result>
+        </action>
+        
+        <action name="consultarTransaccion" class="acciones.TransaccionAction" method="consultarTransaccion">
+            <result>/Transaccion/detallesTransaccion.jsp</result>
+        </action>
+        
+        <action name="editarTransaccion" class="acciones.TransaccionAction" method="modificar">
+            <result>/Transaccion/modificarTransaccion.jsp</result>
+        </action>
+
+        <action name="guardarModfTransaccion" class="acciones.TransaccionAction" method="guardarModificacion">
+            <result type="redirectAction">indexTransaccion</result>
+            <result name="input">/Transaccion/modificarTransaccion.jsp</result>
+        </action>
+
+        <action name="eliminarTransaccion" class="acciones.TransaccionAction" method="eliminar">
+            <result name="success" type="redirectAction">indexTransaccion</result>
+            <result name="error">/Pago/indexTransaccion.jsp</result>
+        </action>
+        
+        <action name="altaTransaccion" class="acciones.TransaccionAction">
+            <result>/Transaccion/formAltaTransaccion.jsp</result>
+        </action>
+
+        <action name="guardarTransaccion" class="acciones.TransaccionAction" method="guardarAlta">
+            <result type="redirectAction">indexTransaccion</result>
+            <result name="input">/Transaccion/formAltaTransaccion.jsp</result>
+        </action>
+
+       
+    </package>
+
 
     <package name="concesionarios" namespace="/Concesionario" extends="struts-default">
 
