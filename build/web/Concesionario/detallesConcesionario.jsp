@@ -5,7 +5,6 @@
     <head>
         <meta charset="UTF-8">
         <title>Detalles del Concesionario</title>
-
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/general.css">
     </head>
@@ -13,32 +12,41 @@
 
         <jsp:include page="../HEADER.jsp"/>
 
-        <div class="container mt-5">
+        <div class="container my-5">
+            <h2 class="text-danger mb-4">Detalles del Concesionario</h2>
 
-            <h2 class="text-center mb-4" style="color: var(--color-rojo);">Detalles del Concesionario</h2>
-
-            <div class="table-responsive">
-                <table class="table table-bordered align-middle">
-                    <tbody>
-                        <tr><th scope="row">ID</th>        <td><s:property value="concesionario.idConcesionario"/></td></tr>
-                        <tr><th scope="row">Nombre</th>    <td><s:property value="concesionario.nombre"/></td></tr>
-                        <tr><th scope="row">Dirección</th> <td><s:property value="concesionario.direccion"/></td></tr>
-                        <tr><th scope="row">Teléfono</th>  <td><s:property value="concesionario.telefono"/></td></tr>
-                        <tr><th scope="row">Correo</th>    <td><s:property value="concesionario.correo"/></td></tr>
-                    </tbody>
-                </table>
+            <div class="mb-4">
+                <div class="mb-2">
+                    <label class="text-danger">ID:</label>
+                    <span><s:property value="concesionario.idConcesionario"/></span>
+                </div>
+                <div class="mb-2">
+                    <label class="text-danger">Nombre:</label>
+                    <span><s:property value="concesionario.nombre"/></span>
+                </div>
+                <div class="mb-2">
+                    <label class="text-danger">Dirección:</label>
+                    <span><s:property value="concesionario.direccion"/></span>
+                </div>
+                <div class="mb-2">
+                    <label class="text-danger">Teléfono:</label>
+                    <span><s:property value="concesionario.telefono"/></span>
+                </div>
+                <div class="mb-2">
+                    <label class="text-danger">Correo:</label>
+                    <span><s:property value="concesionario.correo"/></span>
+                </div>
             </div>
 
-            <div class="d-flex justify-content-center mt-4">
-                <s:form namespace="/Concesionario" action="indexConcesionario" method="get" cssClass="m-0">
-                    <s:submit value="Volver a la lista" cssClass="btn btn-outline-secondary"/>
+            <div class="mt-4">
+                <s:form namespace="/Concesionario" action="indexConcesionario" method="get">
+                    <s:submit value="Volver a la lista" cssClass="btn-rojo px-4"/>
                 </s:form>
             </div>
-
         </div>
 
         <jsp:include page="../FOOTER.jsp"/>
-
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
+

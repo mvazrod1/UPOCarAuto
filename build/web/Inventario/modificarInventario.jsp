@@ -8,56 +8,58 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Modificar Inventario</title>
-  </head>
-  <body>
+    <head>
+        <title>Modificar Inventario</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/general.css">
+    </head>
+    <body>
+        <jsp:include page="../HEADER.jsp" />
+        <div class="container mt-5">
+            <h2 class="text-center mb-4" style="color: var(--color-rojo);">Modificar Inventario</h2>
 
-    <!-- Mensajes de error / validación -->
-    <s:actionerror/>
+            <s:form action="actualizarInventario" method="post" cssClass="p-4 border rounded bg-light shadow-sm">
 
-    <h2>Modificar Inventario</h2>
+                <div class="mb-3">
+                    <label class="form-label">ID Inventario:</label>
+                    <s:textfield name="idInventario" value="%{inventario.idInventario}" readonly="true" theme="simple" cssClass="form-control"/>
+                </div>
 
-    <!-- El Action que guarda los cambios está configurado en struts.xml
-         como  actualizarInventario  (método guardarModificacion)          -->
-    <s:form action="actualizarInventario" method="post">
+                <div class="mb-3">
+                    <label class="form-label">ID Concesionario:</label>
+                    <s:textfield name="idConcesionario" value="%{inventario.concesionario.idConcesionario}" readonly="true" theme="simple" cssClass="form-control"/>
+                </div>
 
-      <!-- Clave primaria: solo lectura -->
-      <s:textfield name="idInventario"
-                   label="ID Inventario"
-                   value="%{inventario.idInventario}"
-                   readonly="true"/>
+                <div class="mb-3">
+                    <label class="form-label">DNI Empleado:</label>
+                    <s:textfield name="dniEmpleado" value="%{inventario.empleado.dni}" theme="simple" cssClass="form-control"/>
+                </div>
 
-      <!-- Concesionario al que pertenece -->
-      <s:textfield name="idConcesionario"
-                   label="ID Concesionario"
-                   value="%{inventario.concesionario.idConcesionario}"
-                   readonly="true"/>
+                <div class="mb-3">
+                    <label class="form-label">Total de Vehículos:</label>
+                    <s:textfield name="totalVehiculos" value="%{inventario.totalVehiculos}" readonly="true" type="number" theme="simple" cssClass="form-control"/>
+                </div>
 
-      <!-- Empleado responsable  -->
-      <s:textfield name="dniEmpleado"
-                   label="DNI Empleado"
-                   value="%{inventario.empleado.dni}"/>
+                <div class="mb-3">
+                    <label class="form-label">Fecha Actualización:</label>
+                    <s:textfield name="ultimaActualizacionStr"
+                                 value="%{#inventario.ultimaActualizacion?@java.text.SimpleDateFormat@new('yyyy-MM-dd').format(inventario.ultimaActualizacion)}"
+                                 placeholder="YYYY-MM-DD"
+                                 theme="simple"
+                                 cssClass="form-control"/>
+                </div>
 
-      <!-- Número total de vehículos  -->
-      <s:textfield name="totalVehiculos"
-                   label="Total de Vehículos"
-                   type="number"
-                   value="%{inventario.totalVehiculos}"
-                   readonly="true"/>
+                <div class="d-flex justify-content-center gap-2 mt-4">
+                    <s:submit value="Guardar Cambios" cssClass="btn-rojo"/>
+                    <input type="button" value="Cancelar" class="btn btn-outline-secondary"
+                           onclick="window.location.href = '<s:url action="indexInventario"/>'"/>
+                </div>
 
-      <!-- Última actualización (se pasa / recibe como String YYYY-MM-DD) -->
-      <s:textfield name="ultimaActualizacionStr"
-                   label="Fecha Actualización"
-                   value="%{#inventario.ultimaActualizacion?@java.text.SimpleDateFormat@new('yyyy-MM-dd').format(inventario.ultimaActualizacion)}"
-                   placeholder="YYYY-MM-DD"/>
-
-      <br/><br/>
-      <s:submit value="Guardar cambios"/>
-
-    </s:form>
-
-    <a href="<s:url action='indexInventario'/>">Volver</a>
-
-  </body>
+                <s:actionerror cssClass="alert alert-danger mt-3"/>
+            </s:form>
+        </div>
+        <jsp:include page="../FOOTER.jsp" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
 </html>
+

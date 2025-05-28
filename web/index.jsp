@@ -14,10 +14,10 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/general.css">
     </head>
-    <body>
+    <body style="display: flex; flex-direction: column; min-height: 100vh; margin: 0;">
         <jsp:include page="HEADER.jsp" />
 
-        <div class="container-fluid pt-3 pb-3" style="min-height: 70vh" style="flex: 1;">
+        <div style="flex: 1;">
             <div class="row mt-2 text-center">
                 <h1>¡BIENVENIDO!</h1>
                 <div class="container-fluid">

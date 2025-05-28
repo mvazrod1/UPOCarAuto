@@ -7,7 +7,7 @@
         <title>Página principal</title>
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="../CSS/general.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/general.css">
     </head>
     <body>
 
@@ -15,8 +15,7 @@
 
         <div class="container mt-5 text-center">
             <h1 class="mb-3" style="color: var(--color-rojo);">
-                Bienvenido <s:property value="#session.empleado.nombre"/>.<br/>
-                Puesto de <s:property value="#session.empleado.puesto"/>
+                Bienvenido <s:property value="#session.empleado.nombre"/>---Puesto de <s:property value="#session.empleado.puesto"/>
             </h1>
 
             <h2 class="mb-4">¿Qué acción deseas realizar?</h2>
@@ -42,8 +41,8 @@
                     <s:submit value="Gestión de inventarios" cssClass="btn btn-rojo"/>
                 </s:form>
 
-                <s:form action="/Concesionario/indexConcesionario" method="post" style="width:100%;">
-                    <s:submit value="Gestión de concesionarios" cssClass="btn-rojo w-100"/>
+                <s:form action="/Concesionario/indexConcesionario" method="post" style="width: 100%;">
+                    <s:submit value="Gestión de concesionarios" cssClass="btn btn-rojo"/>
                 </s:form>
             </div>
 
