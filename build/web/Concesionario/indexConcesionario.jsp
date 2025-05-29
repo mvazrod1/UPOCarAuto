@@ -86,10 +86,10 @@
                            class="btn-rojo" disabled
                            onclick="enviarAccion('<s:url value="editarConcesionario.action"/>')"/>
 
-                           <input type="button" id="btnEliminar" value="Eliminar"
-                                  class="btn btn-danger" disabled
-                                  onclick="enviarAccion('<s:url value="eliminarConcesionario.action"/>')"/>
-                    </div>
+                    <input type="button" id="btnEliminar" value="Eliminar"
+                           class="btn btn-danger" disabled
+                           onclick="confirmarEliminacion('<s:url value="eliminarConcesionario.action"/>')"/>
+                </div>
             </s:form>
             <!-- ============================ -->
 
@@ -123,6 +123,11 @@
                                var form = document.getElementById("concesionarioForm");
                                form.action = url;
                                form.submit();
+                           }
+                           function confirmarEliminacion(url) {
+                               if (confirm("¿Estás seguro de que quieres eliminar este cliente?")) {
+                                   enviarAccion(url);
+                               }
                            }
         </script>
     </body>

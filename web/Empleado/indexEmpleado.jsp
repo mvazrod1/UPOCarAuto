@@ -93,7 +93,7 @@
 
                     <input type="button" id="btnEliminar" value="Eliminar"
                            class="btn btn-danger" disabled
-                           onclick="enviarAccion('<s:url value="eliminarEmpleado.action"/>')"/>
+                           onclick="confirmarEliminacion('<s:url value="eliminarEmpleado.action"/>')"/>
                 </div>
             </s:form>
             <!-- ============================ -->
@@ -129,6 +129,11 @@
                                var form = document.getElementById("empleadoForm");
                                form.action = url;
                                form.submit();
+                           }
+                           function confirmarEliminacion(url) {
+                               if (confirm("¿Estás seguro de que quieres eliminar este cliente?")) {
+                                   enviarAccion(url);
+                               }
                            }
         </script>
     </body>

@@ -75,9 +75,15 @@
                 <!-- Contraseña -->
                 <div class="mb-3">
                     <label for="contrasenya" class="form-label">Contraseña:</label>
-                    <s:password name="contrasenya" id="contrasenya" theme="simple"
-                                cssClass="form-control" repopulate="true"/>
+                    <s:textfield name="contrasenya" id="contrasenya" theme="simple"
+                                cssClass="form-control" type="password"/>
                     <s:fielderror fieldName="contrasenya" cssClass="text-danger small"/>
+
+                    <!-- Mostrar contraseña -->
+                    <div class="form-check mt-2">
+                        <input class="form-check-input" type="checkbox" id="mostrarContrasenya" onclick="toggleContrasenya()">
+                        <label class="form-check-label" for="mostrarContrasenya">Mostrar contraseña</label>
+                    </div>
                 </div>
 
                 <!-- Concesionario -->
@@ -105,5 +111,12 @@
         <jsp:include page="../FOOTER.jsp"/>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script type="text/javascript">
+                               function toggleContrasenya() {
+                                   var input = document.getElementById("contrasenya");
+                                   input.type = (input.type === "password") ? "text" : "password";
+                               }
+        </script>
     </body>
 </html>
