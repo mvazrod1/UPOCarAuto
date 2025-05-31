@@ -97,13 +97,22 @@ public class EmpleadoAction extends ActionSupport {
             return ERROR;
         }
     }
+    
+     // ----- MÉTODO PARA BUSCAR -----
     public String buscar() throws Exception {
         empleado = dao.consultarEmpleado(dni);
+
+        if (empleado == null) {
+            addActionError("No se encontró ningún empleado con el DNI ingresado.");
+            listaEmpleados = dao.listarEmpleados();
+            return SUCCESS;
+        }
+
         listaEmpleados = new ArrayList<>();
         listaEmpleados.add(empleado);
-
         return SUCCESS;
     }
+    
     // ----- MÉTODOS PARA EDICIÓN -----
     public String mostrarModificarEmpleadoForm() {
         try {
