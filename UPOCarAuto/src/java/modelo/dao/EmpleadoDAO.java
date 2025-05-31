@@ -86,4 +86,20 @@ public class EmpleadoDAO {
         tx.commit();
         return e;
     }
+
+    public Empleado obtenerEmpleadoPorInventario(int idInventario) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Empleado empleado = null;
+        try {
+            String hql = "SELECT i.empleado FROM Inventario i WHERE i.idInventario = :idInv";
+            Query query = session.createQuery(hql);
+            query.setParameter("idInv", idInventario);
+            empleado = (Empleado) query.uniqueResult();
+        } catch (Exception e) {
+            System.err.println("Error al obtener empleado por inventario: " + e.getMessage());
+        } finally {
+            session.close();
+        }
+        return empleado;
+    }
 }

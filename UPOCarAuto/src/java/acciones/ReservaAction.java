@@ -103,7 +103,7 @@ public class ReservaAction extends ActionSupport {
 
     public String registrarReserva() {
         try {
-
+            // 1. Crear la reserva
             reserva = new Reserva();
             reserva.setCliente(clienteDAO.consultarCliente(dni_cliente));
             reserva.setVehiculo(vehiculoDAO.buscarPorMatricula(matricula));
@@ -118,11 +118,45 @@ public class ReservaAction extends ActionSupport {
                 reserva.setFechaRecogida(null);
             }
 
+            // 2. Guardar en la base de datos
             dao.altaReserva(reserva);
 
+            // 3. Actualizar disponibilidad del vehículo
             Vehiculo vehiculo = reserva.getVehiculo();
             vehiculo.setDisponibilidad(false);
             vehiculoDAO.actualizar(vehiculo);
+
+            // 4. Notificar vía Web Service usando el empleado logueado
+            try {
+                Cliente cliente = reserva.getCliente();
+                String nombreCliente = cliente.getNombre();
+                String correoCliente = cliente.getEmail();
+
+                modelo.Empleado empleado = (modelo.Empleado) ActionContext.getContext().getSession().get("empleado");
+
+                if (empleado != null) {
+                    String nombreEmpleado = empleado.getNombre();
+                    String correoEmpleado = empleado.getEmail();
+
+                    servicios.NotificacionReservaService_Service servicio = new servicios.NotificacionReservaService_Service();
+                    servicios.NotificacionReservaService port = servicio.getNotificacionReservaServicePort();
+
+                    String respuesta = port.notificarReserva(
+                            nombreCliente,
+                            correoCliente,
+                            nombreEmpleado,
+                            correoEmpleado,
+                            "Reserva confirmada para vehículo con matrícula: " + vehiculo.getMatricula()
+                    );
+
+                    System.out.println("Web Service respondió: " + respuesta);
+                } else {
+                    System.out.println("No hay empleado logueado en la sesión.");
+                }
+
+            } catch (Exception e) {
+                System.err.println("Error al llamar al Web Service: " + e.getMessage());
+            }
 
         } catch (Exception e) {
             addActionError("Formato de fecha incorrecto.");
@@ -130,6 +164,7 @@ public class ReservaAction extends ActionSupport {
             listaMatriculas = vehiculoDAO.listarVehiculosDisponibles();
             return INPUT;
         }
+
         return SUCCESS;
     }
 
