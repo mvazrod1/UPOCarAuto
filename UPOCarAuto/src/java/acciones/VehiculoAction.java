@@ -114,17 +114,6 @@ public class VehiculoAction extends ActionSupport {
     public void validate() {
         ActionInvocation ai = ActionContext.getContext().getActionInvocation();
         String metodo = ai.getProxy().getMethod();
-        if ("buscar".equals(metodo)) {
-            if (matricula == null || matricula.trim().isEmpty()) {
-                addFieldError("matricula", "Debe introducir una matrícula");
-            }
-        }
-
-        if ("consultar".equals(metodo)) {
-            if (matricula == null || matricula.trim().isEmpty()) {
-                addFieldError("matricula", "Debes seleccionar un vehículo");
-            }
-        }
 
         if ("guardarAlta".equals(metodo) || "guardarModificacion".equals(metodo)) {
 
@@ -132,6 +121,10 @@ public class VehiculoAction extends ActionSupport {
                 addFieldError("matricula", "Matrícula es obligatoria");
             }
 
+            if (idInventario == null ) {
+                addFieldError("idInventario", "El id del inventario es obligatorio");
+            }
+            
             if (marca == null || marca.trim().isEmpty()) {
                 addFieldError("marca", "Marca es obligatoria");
             }
@@ -144,13 +137,13 @@ public class VehiculoAction extends ActionSupport {
             } else if (anio < 1900) {
                 addFieldError("anio", "Año debe ser ≥ 1900");
             }
-            // precio
+
             if (precio == null) {
                 addFieldError("precio", "Precio es obligatorio");
             } else if (precio.compareTo(BigDecimal.ZERO) <= 0) {
                 addFieldError("precio", "Precio debe ser positivo");
             }
-            // estado
+
             if (estado == null || estado.trim().isEmpty()) {
                 addFieldError("estado", "Debes seleccionar un estado");
             }
