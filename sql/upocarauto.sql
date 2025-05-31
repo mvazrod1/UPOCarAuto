@@ -318,7 +318,7 @@ INSERT INTO vehiculo
 -- Filtros para la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  ADD CONSTRAINT `empleado_ibfk_1` FOREIGN KEY (`id_concesionario`) REFERENCES `concesionario` (`id_concesionario`);
+  ADD CONSTRAINT `empleado_ibfk_1` FOREIGN KEY (`id_concesionario`) REFERENCES `concesionario` (`id_concesionario`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `inventario`
@@ -331,7 +331,7 @@ ALTER TABLE `inventario`
 -- Filtros para la tabla `pago`
 --
 ALTER TABLE `pago`
-  ADD CONSTRAINT `pago_ibfk_1` FOREIGN KEY (`id_reserva`) REFERENCES `reserva` (`id_reserva`);
+  ADD CONSTRAINT `pago_ibfk_1` FOREIGN KEY (`id_reserva`) REFERENCES `reserva` (`id_reserva`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `pago_transaccion`
@@ -343,20 +343,16 @@ ALTER TABLE `pago_transaccion`
 --
 -- Filtros para la tabla `reserva`
 --
+
 ALTER TABLE `reserva`
-  ADD CONSTRAINT `reserva_ibfk_1` FOREIGN KEY (`dni_cliente`) REFERENCES `cliente` (`dni`),
-  ADD CONSTRAINT `reserva_ibfk_2` FOREIGN KEY (`matricula`) REFERENCES `vehiculo` (`matricula`);
+  ADD CONSTRAINT `reserva_ibfk_1` FOREIGN KEY (`dni_cliente`) REFERENCES `cliente` (`dni`) ON DELETE CASCADE,
+  ADD CONSTRAINT `reserva_ibfk_2` FOREIGN KEY (`matricula`) REFERENCES `vehiculo` (`matricula`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `vehiculo`
 --
 ALTER TABLE `vehiculo`
-  DROP FOREIGN KEY IF EXISTS `vehiculo_ibfk_1`; -- Añadido para asegurar que se puede añadir la nueva.
-ALTER TABLE `vehiculo`
-  ADD CONSTRAINT `vehiculo_ibfk_1` 
-  FOREIGN KEY (`id_inventario`) 
-  REFERENCES `inventario` (`id_inventario`)
-  ON DELETE SET NULL; -- MODIFICADO: Añadido ON DELETE SET NULL
+  ADD CONSTRAINT `vehiculo_ibfk_1`  FOREIGN KEY (`id_inventario`) REFERENCES `inventario` (`id_inventario`) ON DELETE CASCADE;
 
 COMMIT;
 
