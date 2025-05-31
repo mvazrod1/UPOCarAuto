@@ -3,9 +3,6 @@ package servicios;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-import modelo.Cliente;
-import modelo.Empleado;
-import util.EmailSender;
 
 @WebService(serviceName = "NotificacionReservaService")
 public class NotificacionReservaService {
@@ -19,28 +16,26 @@ public class NotificacionReservaService {
         @WebParam(name = "detalle") String detalle
     ) {
         try {
-            // Usa directamente las clases de tu modelo
-            Cliente cliente = new Cliente();
-            cliente.setNombre(nombreCliente);
-            cliente.setEmail(correoCliente);
+            // Simulación de notificación ficticia
 
-            Empleado empleado = new Empleado();
-            empleado.setNombre(nombreEmpleado);
-            empleado.setEmail(correoEmpleado);
+            System.out.println("[SIMULACIÓN] Enviando notificación al EMPLEADO:");
+            System.out.println("Para: " + correoEmpleado);
+            System.out.println("Asunto: Nueva reserva");
+            System.out.println("Mensaje: Hola " + nombreEmpleado + ", nueva reserva de " + nombreCliente);
+            System.out.println("Detalle: " + detalle);
+            System.out.println("--------------------------------------------------");
 
-            // Correo al empleado
-            String mensajeEmp = "Hola " + empleado.getNombre() + ", nueva reserva de " + cliente.getNombre()
-                              + "\nDetalle: " + detalle;
-            EmailSender.enviarCorreo(empleado.getEmail(), "Nueva reserva", mensajeEmp);
+            System.out.println("[SIMULACIÓN] Enviando notificación al CLIENTE:");
+            System.out.println("Para: " + correoCliente);
+            System.out.println("Asunto: Confirmación de reserva");
+            System.out.println("Mensaje: Hola " + nombreCliente + ", tu reserva fue confirmada.");
+            System.out.println("Detalle: " + detalle);
+            System.out.println("==================================================");
 
-            // Correo al cliente
-            String mensajeCli = "Hola " + cliente.getNombre() + ", tu reserva ha sido confirmada.\nDetalle: " + detalle;
-            EmailSender.enviarCorreo(cliente.getEmail(), "Confirmación de reserva", mensajeCli);
-
-            return "Notificaciones enviadas.";
+            return "Notificaciones simuladas correctamente.";
 
         } catch (Exception e) {
-            return "Error al enviar notificaciones: " + e.getMessage();
+            return "Error en simulación de notificaciones: " + e.getMessage();
         }
     }
 }
