@@ -18,26 +18,32 @@
                 <div class="mb-3">
                     <label for="dni" class="form-label">Matrícula:</label>
                     <s:textfield name="matricula" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="matricula" cssClass="text-danger"/>
                 </div>
                 <div class="mb-3">
                     <label for="dni" class="form-label">Inventario (ID):</label>
                     <s:textfield name="idInventario" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="idInventario" cssClass="text-danger"/>
                 </div>
                 <div class="mb-3">
                     <label for="dni" class="form-label">Marca:</label>
                     <s:textfield name="marca" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="marca" cssClass="text-danger"/>
                 </div>
                 <div class="mb-3">
                     <label for="dni" class="form-label">Modelo:</label>
                     <s:textfield name="modelo" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="modelo" cssClass="text-danger"/>
                 </div>
                 <div class="mb-3">
                     <label for="dni" class="form-label">Año:</label>
                     <s:textfield name="anio" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="anio" cssClass="text-danger"/>
                 </div>
                 <div class="mb-3">
                     <label for="dni" class="form-label">Precio:</label>
                     <s:textfield name="precio" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="precio" cssClass="text-danger"/>
                 </div>
                 <div class="mb-3">
                     <label for="dni" class="form-label">Estado:</label>

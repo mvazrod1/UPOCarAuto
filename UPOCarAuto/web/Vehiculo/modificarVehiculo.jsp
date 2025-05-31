@@ -27,6 +27,7 @@
                 <div class="mb-3">
                     <label for="dni" class="form-label">Inventario (ID):</label>
                     <s:textfield name="idInventario" value="%{vehiculo.inventario.idInventario}" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="idInventario" cssClass="text-danger"/>
                 </div>
                 <div class="mb-3">
                     <label for="dni" class="form-label">Marca:</label>
