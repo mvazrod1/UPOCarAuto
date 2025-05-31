@@ -112,7 +112,10 @@ public class Vehiculo  implements java.io.Serializable {
         this.reservas = reservas;
     }
 
-
+    @Override
+    public String toString() {
+        return "Vehiculo{" + "matricula=" + matricula + ", inventario=" + inventario + ", marca=" + marca + ", modelo=" + modelo + ", anio=" + anio + ", precio=" + precio + ", estado=" + estado + ", disponibilidad=" + disponibilidad + ", reservas=" + reservas + '}';
+    }
 
 
 }

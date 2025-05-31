@@ -57,6 +57,7 @@ public class VehiculoDAO {
         Transaction tx = session.beginTransaction();
         session.update(v);
         tx.commit();
+        System.out.println("Vehiculo actualizado correctamente");
     }
 
     public void eliminarPorMatricula(String matricula) {
