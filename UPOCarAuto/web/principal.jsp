@@ -7,6 +7,13 @@
         <title>Página principal</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/general.css">
+        <style>
+            .btn-uniform {
+                min-width: 280px;
+                max-width: 100%;
+                white-space: nowrap;
+            }
+        </style>
     </head>
     <body>
 
@@ -19,55 +26,39 @@
 
             <h2 class="mb-4">¿Qué acción deseas realizar?</h2>
 
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 justify-content-center">
+            <div class="d-flex flex-column align-items-center gap-3">
 
-                <div class="col">
-                    <s:form action="/Cliente/indexCliente" method="post">
-                        <s:submit value="Gestión de clientes" cssClass="btn btn-rojo w-100"/>
-                    </s:form>
-                </div>
+                <s:form action="/Cliente/indexCliente" method="post">
+                    <s:submit value="Gestión de clientes" cssClass="btn btn-rojo btn-uniform"/>
+                </s:form>
 
-                <div class="col">
-                    <s:form action="/Vehiculo/indexVehiculo" method="post">
-                        <s:submit value="Gestión de vehículos" cssClass="btn btn-rojo w-100"/>
-                    </s:form>
-                </div>
+                <s:form action="/Vehiculo/indexVehiculo" method="post">
+                    <s:submit value="Gestión de vehículos" cssClass="btn btn-rojo btn-uniform"/>
+                </s:form>
 
-                <div class="col">
-                    <s:form action="/Empleado/indexEmpleado" method="post">
-                        <s:submit value="Gestión de empleados" cssClass="btn btn-rojo w-100"/>
-                    </s:form>
-                </div>
+                <s:form action="/Empleado/indexEmpleado" method="post">
+                    <s:submit value="Gestión de empleados" cssClass="btn btn-rojo btn-uniform"/>
+                </s:form>
 
-                <div class="col">
-                    <s:form action="/Reserva/indexReserva" method="post">
-                        <s:submit value="Gestión de reservas" cssClass="btn btn-rojo w-100"/>
-                    </s:form>
-                </div>
+                <s:form action="/Reserva/indexReserva" method="post">
+                    <s:submit value="Gestión de reservas" cssClass="btn btn-rojo btn-uniform"/>
+                </s:form>
 
-                <div class="col">
-                    <s:form action="/Inventario/indexInventario" method="post">
-                        <s:submit value="Gestión de inventarios" cssClass="btn btn-rojo w-100"/>
-                    </s:form>
-                </div>
+                <s:form action="/Inventario/indexInventario" method="post">
+                    <s:submit value="Gestión de inventarios" cssClass="btn btn-rojo btn-uniform"/>
+                </s:form>
 
-                <div class="col">
-                    <s:form action="/Concesionario/indexConcesionario" method="post">
-                        <s:submit value="Gestión de concesionarios" cssClass="btn btn-rojo w-100"/>
-                    </s:form>
-                </div>
+                <s:form action="/Concesionario/indexConcesionario" method="post">
+                    <s:submit value="Gestión de concesionarios" cssClass="btn btn-rojo btn-uniform"/>
+                </s:form>
 
-                <div class="col">
-                    <s:form action="/Pago/indexPago" method="post">
-                        <s:submit value="Gestión de pagos" cssClass="btn btn-rojo w-100"/>
-                    </s:form>
-                </div>
+                <s:form action="/Pago/indexPago" method="post">
+                    <s:submit value="Gestión de pagos" cssClass="btn btn-rojo btn-uniform"/>
+                </s:form>
 
-                <div class="col">
-                    <s:form action="/Transaccion/indexTransaccion" method="post">
-                        <s:submit value="Gestión de transacciones" cssClass="btn btn-rojo w-100"/>
-                    </s:form>
-                </div>
+                <s:form action="/Transaccion/indexTransaccion" method="post">
+                    <s:submit value="Gestión de transacciones" cssClass="btn btn-rojo btn-uniform"/>
+                </s:form>
             </div>
 
             <div class="d-flex justify-content-center mt-4">
