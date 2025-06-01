@@ -14,7 +14,7 @@
 
         <main class="flex-grow-1">
             <div class="container mt-5">
-                <h2 class="text-center mb-4">Modificar Pago</h2>
+                <h2 class="text-center mb-4" style="color: #c0392b">Modificar Pago</h2>
 
                 <div class="w-50 mx-auto">
                     <s:actionerror cssClass="alert alert-danger" />

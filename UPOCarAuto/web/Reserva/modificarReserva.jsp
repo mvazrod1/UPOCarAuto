@@ -18,7 +18,7 @@
         <jsp:include page="../HEADER.jsp" />
         <main class="flex-grow-1">
             <div class="container my-5">
-                <h2 class="text-center mb-4" style="color: var(--color-rojo);">Modificar Reserva</h2>
+                <h2 class="text-center mb-4" style="color: #c0392b;">Modificar Reserva</h2>
 
                 <s:form action="/Reserva/guardarModfReserva" method="post" cssClass="p-4 border rounded bg-light shadow-sm">
                     <div cclass="mb-3">

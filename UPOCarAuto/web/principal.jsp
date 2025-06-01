@@ -20,7 +20,7 @@
         <jsp:include page="HEADER.jsp"/>
         <main class="flex-grow-1">
             <div class="container mt-5 text-center">
-                <h1 class="mb-3" style="color: var(--color-rojo);">
+                <h1 class="mb-3" style="color: #c0392b;">
                     Bienvenido <s:property value="#session.empleado.nombre"/> --- Puesto de <s:property value="#session.empleado.puesto"/>
                 </h1>
 

@@ -17,7 +17,7 @@
         <jsp:include page="HEADER.jsp" />
         <main class="flex-grow-1">
             <div class="container mt-5">
-                <h2 class="text-center mb-4" style="color: var(--color-rojo);">Registro de nuevo empleado</h2>
+                <h2 class="text-center mb-4" style="color: #c0392b;">Registro de nuevo empleado</h2>
 
                 <s:form action="registrar" method="post" cssClass="p-4 border rounded bg-light shadow-sm" style="max-width: 600px; margin: auto;">
                     <div class="mb-3">
