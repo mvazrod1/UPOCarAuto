@@ -42,5 +42,21 @@
         <delete dir="${build.generated.sources.dir}/jax-ws/servicios"/>
         <delete dir="${build.generated.dir}/jax-wsCache/NotificacionReservaService"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-NotificacionReservaService"/>
+    <target name="wsimport-client-InformeService" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/InformeService"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/InformeService" destdir="${build.generated.dir}/jax-wsCache/InformeService" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/InformeService/wsdl/localhost_8080/UPOCarAuto_InformeWS/InformeService.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/UPOCarAuto_InformeWS/InformeService?wsdl" xnocompile="true" xendorsed="true" package="servicios2">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/InformeService/wsdl/localhost_8080/UPOCarAuto_InformeWS/InformeService.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/InformeService"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/InformeService">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-InformeService" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servicios2"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/InformeService"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-NotificacionReservaService, wsimport-client-InformeService"/>
 </project>
