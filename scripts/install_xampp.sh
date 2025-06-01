@@ -21,3 +21,11 @@ chmod 755 xampp-linux-*-installer.run
 # Ejecutar el instalador de XAMPP
 ./xampp-linux-x64-8.2.12-0-installer.run
 
+
+# Copiar xampp.service a /etc/systemd/system
+cp xampp.service /etc/systemd/system
+# Habilitar el servicio de XAMPP para que se inicie al arrancar el sistema
+sudo systemctl enable xampp
+# Iniciar el servicio de XAMPP
+sudo systemctl start xampp
+

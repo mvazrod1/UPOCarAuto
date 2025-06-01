@@ -5,14 +5,15 @@
 # Uso: ./deploy.sh <ruta_archivo_war_WS> <ruta_archivo_war>
 
 # Comprobar si se proporciona el numero correcto de argumentos
-if [ "$#" -ne 2 ]; then
-    echo "Uso: $0 <ruta_archivo_war_WS> <ruta_archivo_war>"
+if [ "$#" -ne 3 ]; then
+    echo "Uso: $0 <ruta_archivo_war_WS1> <ruta_archivo_war_WS2> <ruta_archivo_war>"
     exit 1
 fi
 # Asignar argumentos a variables
 # Se usan comillas para mayor robustez, aunque tu original no las tenia. Mantengamos las comillas.
-WS_WAR_FILE="$1"
-WAR_FILE="$2"
+WS_WAR_FILE1="$1"
+WS_WAR_FILE2="$2"
+WAR_FILE="$3"
 # Comprobar si el servidor GlassFish ya esta instalado
 if [ ! -d "/opt/glassfish4" ]; then
     echo "Servidor GlassFish no encontrado. Por favor, instale primero GlassFish 4.1.1."
@@ -32,9 +33,19 @@ else
 fi
 
 # Desplegar (o forzar redepliegue/actualizacion) la aplicacion WS
-echo "Desplegando aplicacion WS (forzando actualizacion si existe)..."
+echo "Desplegando aplicacion WS $1 (forzando actualizacion si existe)..."
 # *** MODIFICACION CLAVE: Añadir '--force' para permitir sobrescribir si ya existe ***
-/opt/glassfish4/bin/asadmin deploy --force "$WS_WAR_FILE"
+/opt/glassfish4/bin/asadmin deploy --force "$WS_WAR_FILE1"
+# Comprobar si el despliegue fue exitoso
+if [ $? -ne 0 ]; then
+    echo "Falló el despliegue (forzado) de la aplicacion WS."
+    exit 1
+fi
+
+# Desplegar (o forzar redepliegue/actualizacion) la aplicacion WS
+echo "Desplegando aplicacion WS $2 (forzando actualizacion si existe)..."
+# *** MODIFICACION CLAVE: Añadir '--force' para permitir sobrescribir si ya existe ***
+/opt/glassfish4/bin/asadmin deploy --force "$WS_WAR_FILE2"
 # Comprobar si el despliegue fue exitoso
 if [ $? -ne 0 ]; then
     echo "Falló el despliegue (forzado) de la aplicacion WS."
