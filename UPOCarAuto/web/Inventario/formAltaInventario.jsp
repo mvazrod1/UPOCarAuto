@@ -25,16 +25,19 @@
                 <div class="mb-3">
                     <label class="form-label">ID Concesionario:</label>
                     <s:textfield name="idConcesionario" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="idConcesionario" cssClass="text-danger"/>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">DNI Empleado:</label>
                     <s:textfield name="dniEmpleado" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="dniEmpleado" cssClass="text-danger"/>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Fecha Actualización:</label>
                     <s:textfield name="ultimaActualizacionStr" placeholder="YYYY-MM-DD" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="ultimaActualizacionStr" cssClass="text-danger"/>
                 </div>
 
                 <div class="d-flex justify-content-center mt-4">

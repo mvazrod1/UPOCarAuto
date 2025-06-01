@@ -28,11 +28,13 @@
                 <div class="mb-3">
                     <label class="form-label">ID Concesionario:</label>
                     <s:textfield name="idConcesionario" value="%{inventario.concesionario.idConcesionario}" readonly="true" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="idConcesionario" cssClass="text-danger"/>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">DNI Empleado:</label>
                     <s:textfield name="dniEmpleado" value="%{inventario.empleado.dni}" theme="simple" cssClass="form-control"/>
+                    <s:fielderror fieldName="dniEmpleado" cssClass="text-danger"/>
                 </div>
 
                 <div class="mb-3">
@@ -47,6 +49,7 @@
                                  placeholder="YYYY-MM-DD"
                                  theme="simple"
                                  cssClass="form-control"/>
+                    <s:fielderror fieldName="ultimaActualizacionStr" cssClass="text-danger"/>
                 </div>
 
                 <div class="d-flex justify-content-center gap-2 mt-4">
