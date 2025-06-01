@@ -121,9 +121,19 @@ public class VehiculoAction extends ActionSupport {
                 addFieldError("matricula", "Matrícula es obligatoria");
             }
 
-            if (idInventario == null ) {
-                addFieldError("idInventario", "El id del inventario es obligatorio");
-            }
+            if (idInventario == null || idInventario <= 0) { // Asumimos que los IDs de inventario son positivos
+                    addFieldError("idInventario", getText("error.inventario.requerido", "Debe indicar un ID de inventario válido."));
+                } else {
+                    // Verificar si el inventario existe en la BD
+                    InventarioDAO iDAO = new InventarioDAO();
+                    
+                    Inventario invExistente = iDAO.buscarPorId(idInventario); // Usa tu método DAO real
+                    if (invExistente == null) {
+                        addFieldError("idInventario", getText("error.inventario.noExiste", 
+                                             "El inventario con ID {0} no existe.", 
+                                             new String[]{idInventario.toString()}));
+                    }
+                }
             
             if (marca == null || marca.trim().isEmpty()) {
                 addFieldError("marca", "Marca es obligatoria");
