@@ -15,6 +15,7 @@ import modelo.Vehiculo;
 import modelo.dao.VehiculoDAO;
 import java.math.BigDecimal;
 import modelo.Inventario;
+import modelo.dao.InventarioDAO;
 
 /**
  *
@@ -33,11 +34,7 @@ public class VehiculoAction extends ActionSupport {
     private BigDecimal precio;
     private String estado;
     private boolean disponibilidad;
-    private static final Pattern MATRICULA
-            = Pattern.compile("^[0-9]{4}[A-HJ-NP-TV-Z]{3}$");
-    ActionInvocation ai
-            = ActionContext.getContext().getActionInvocation();
-    String metodo = ai.getProxy().getMethod();
+    
 
     public VehiculoAction() {
     }
@@ -70,38 +67,40 @@ public class VehiculoAction extends ActionSupport {
         vehiculo = new Vehiculo(matricula.trim().toUpperCase(), inv, marca.trim(), modelo.trim(), anio, precio, estado, disponibilidad);
         dao.crear(vehiculo);
 
-        return SUCCESS; 
+        return SUCCESS;
     }
 
     public String modificar() {
         vehiculo = dao.buscarPorMatricula(matricula);
-        idInventario   = vehiculo.getInventario().getIdInventario();
-        marca          = vehiculo.getMarca();
-        modelo         = vehiculo.getModelo();
-        anio           = vehiculo.getAnio();
-        precio         = vehiculo.getPrecio();
-        estado         = vehiculo.getEstado();
+        idInventario = vehiculo.getInventario().getIdInventario();
+        marca = vehiculo.getMarca();
+        modelo = vehiculo.getModelo();
+        anio = vehiculo.getAnio();
+        precio = vehiculo.getPrecio();
+        estado = vehiculo.getEstado();
         disponibilidad = vehiculo.isDisponibilidad();
         return SUCCESS;
     }
-    
+
+
     public String guardarModificacion() {
         Inventario inv = new Inventario();
         inv.setIdInventario(idInventario);
         Vehiculo v = new Vehiculo(
-            matricula.trim().toUpperCase(), 
-            inv,
-            marca.trim(), 
-            modelo.trim(), 
-            anio, 
-            precio, 
-            estado, 
-            disponibilidad
+                matricula.trim().toUpperCase(),
+                inv,
+                marca.trim(),
+                modelo.trim(),
+                anio,
+                precio,
+                estado,
+                disponibilidad
         );
         dao.actualizar(v);
-        return SUCCESS;  
+        return SUCCESS;
     }
-    
+
+
     public String eliminar() {
         if (matricula == null || matricula.trim().isEmpty()) {
             addActionError("Debes seleccionar un vehículo para eliminar");
@@ -113,30 +112,17 @@ public class VehiculoAction extends ActionSupport {
 
     @Override
     public void validate() {
-        if ("buscar".equals(metodo)) {
-            if (matricula == null || matricula.trim().isEmpty()) {
-                addFieldError("matricula", "Debe introducir una matrícula");
-            } else if (!MATRICULA.matcher(matricula.trim().toUpperCase()).matches()) {
-                addFieldError("matricula", "Formato de matrícula no válido (####ABC)");
-            }
-        }
-
-        if ("consultar".equals(metodo)) {
-            if (matricula == null || matricula.trim().isEmpty()) {
-                addFieldError("matricula", "Debes seleccionar un vehículo");
-            }
-        }
+        ActionInvocation ai = ActionContext.getContext().getActionInvocation();
+        String metodo = ai.getProxy().getMethod();
 
         if ("guardarAlta".equals(metodo) || "guardarModificacion".equals(metodo)) {
-            // matrícula
+
             if (matricula == null || matricula.trim().isEmpty()) {
                 addFieldError("matricula", "Matrícula es obligatoria");
-            } else if (!MATRICULA.matcher(matricula.trim().toUpperCase()).matches()) {
-                addFieldError("matricula", "Formato inválido (####ABC)");
             }
-            
-            if (idInventario == null) {
-                addFieldError("idInventario", "Debes indicar el inventario");
+
+            if (idInventario == null ) {
+                addFieldError("idInventario", "El id del inventario es obligatorio");
             }
             
             if (marca == null || marca.trim().isEmpty()) {
@@ -145,19 +131,19 @@ public class VehiculoAction extends ActionSupport {
             if (modelo == null || modelo.trim().isEmpty()) {
                 addFieldError("modelo", "Modelo es obligatorio");
             }
-            
+
             if (anio == null) {
                 addFieldError("anio", "Año es obligatorio");
             } else if (anio < 1900) {
                 addFieldError("anio", "Año debe ser ≥ 1900");
             }
-            // precio
+
             if (precio == null) {
                 addFieldError("precio", "Precio es obligatorio");
             } else if (precio.compareTo(BigDecimal.ZERO) <= 0) {
                 addFieldError("precio", "Precio debe ser positivo");
             }
-            // estado
+
             if (estado == null || estado.trim().isEmpty()) {
                 addFieldError("estado", "Debes seleccionar un estado");
             }
@@ -204,12 +190,13 @@ public class VehiculoAction extends ActionSupport {
         this.disponibilidad = disponibilidad;
     }
 
-    public void setMetodo(String metodo) {
-        this.metodo = metodo;
-    }
 
     public Vehiculo getVehiculo() {
         return vehiculo;
-    }
+    }    
+    
+
+    
+    
 
 }
