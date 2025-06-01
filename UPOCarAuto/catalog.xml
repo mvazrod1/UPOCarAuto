@@ -2,4 +2,6 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="http://localhost:8080/UPOCarAuto_NotificacionWS/NotificacionReservaService?wsdl" uri="src/conf/xml-resources/web-service-references/NotificacionReservaService/wsdl/localhost_8080/UPOCarAuto_NotificacionWS/NotificacionReservaService.wsdl"/>
     <system systemId="http://localhost:8080/UPOCarAuto_NotificacionWS/NotificacionReservaService?xsd=1" uri="src/conf/xml-resources/web-service-references/NotificacionReservaService/wsdl/localhost_8080/UPOCarAuto_NotificacionWS/NotificacionReservaService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/UPOCarAuto_InformeWS/InformeService?wsdl" uri="src/conf/xml-resources/web-service-references/InformeService/wsdl/localhost_8080/UPOCarAuto_InformeWS/InformeService.wsdl"/>
+    <system systemId="http://localhost:8080/UPOCarAuto_InformeWS/InformeService?xsd=1" uri="src/conf/xml-resources/web-service-references/InformeService/wsdl/localhost_8080/UPOCarAuto_InformeWS/InformeService.xsd_1.xsd"/>
 </catalog>

@@ -2,12 +2,15 @@ package acciones;
 
 import com.opensymphony.xwork2.ActionSupport;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import modelo.Pago;
 import modelo.Reserva;
 import modelo.dao.PagoDAO;
 import modelo.dao.ReservaDAO;
+import servicios2.Informe;
+import servicios2.InformeService;
 
 public class PagoAction extends ActionSupport {
 
@@ -65,7 +68,32 @@ public class PagoAction extends ActionSupport {
 
         try {
             dao.crearPago(pago);
+
+            // ===== Llamar al Web Service para generar informe PDF =====
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+                InformeService servicio = new InformeService();  // cliente generado
+                Informe port = servicio.getInformePort();
+
+                String respuesta = port.generarInformePago(
+                        pago.getIdPago(),
+                        pago.getReserva().getIdReserva(),
+                        sdf.format(pago.getFechaPago()),
+                        pago.getPrecioTotal().toPlainString(),
+                        pago.getMetodoPago(),
+                        pago.getEstadoPago()
+                );
+
+                System.out.println("Informe generado: " + respuesta);
+
+            } catch (Exception e) {
+                System.err.println("Error al llamar al Web Service de informe: " + e.getMessage());
+            }
+            // ============================================================
+
             return SUCCESS;
+
         } catch (Exception e) {
             e.printStackTrace();
             addActionError("Error al guardar: " + e.getMessage());
@@ -94,7 +122,7 @@ public class PagoAction extends ActionSupport {
     @Override
     public void validate() {
         String actionName = com.opensymphony.xwork2.ActionContext.getContext().getName();
-        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setLenient(false);
 
         if ("guardarPago".equals(actionName) || "modificarPago".equals(actionName)) {
@@ -145,6 +173,7 @@ public class PagoAction extends ActionSupport {
         }
     }
 
+    // Getters y setters
     public List<Pago> getLista() {
         return lista;
     }
