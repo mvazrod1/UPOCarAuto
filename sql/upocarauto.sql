@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `upocarauto`
 --
+
+DROP DATABASE IF EXISTS `upocarauto`;
 CREATE DATABASE IF NOT EXISTS `upocarauto` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
 USE `upocarauto`;
 
