@@ -1,11 +1,12 @@
 [Unit]
-Description=XAMPP Control Panel
-After=network.target
+Description=XAMPP
+After = syslog.target network.target
 
 [Service]
-ExecStart=/opt/lampp/lampp start
-ExecStop=/opt/lampp/lampp stop
+ExecStart=/opt/lampp/bin/mysql.server start
+ExecStop=/opt/lampp/bin/mysql.server stop
 Type=forking
 
 [Install]
 WantedBy=multi-user.target
+
