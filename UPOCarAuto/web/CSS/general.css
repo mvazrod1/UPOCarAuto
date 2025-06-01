@@ -8,15 +8,7 @@ and open the template in the editor.
     Author     : marin
 */
 
-/* Colores base */
-html {
-    /* Variables fallback para compatibilidad */
-    --color_rojo: #c0392b;
-    --color-negro: #1c1c1c;
-    --color-blanco: #ffffff;
-    --color-gris-claro: #f2f2f2;
-    --color-gris: #949494;
-}
+
 
 /* Estilos globales */
 body {
