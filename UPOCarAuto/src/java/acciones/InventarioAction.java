@@ -100,27 +100,102 @@ public class InventarioAction extends ActionSupport {
         return SUCCESS;
     }
 
+//    public String guardarModificacion() throws Exception {
+//
+//        Concesionario c = new Concesionario();
+//        c.setIdConcesionario(idConcesionario);
+//        Empleado e = new Empleado();
+//        e.setDni(dniEmpleado);
+//
+//        java.util.Date fecha
+//                = new java.text.SimpleDateFormat("yyyy-MM-dd")
+//                        .parse(ultimaActualizacionStr.trim());
+//
+//        Inventario inv = new Inventario(c, e, totalVehiculos, fecha);
+//        inv.setIdInventario(idInventario);
+//
+//        dao.actualizar(inv);
+//
+//        return SUCCESS;
+//    }
+//    public String guardarModificacion() throws Exception {
+//
+//        Inventario inventarioParaActualizar = dao.buscarPorId(this.idInventario);
+//
+//        ConcesionarioDAO concesionarioDAO = new ConcesionarioDAO(); // O inyectarlo
+//        Concesionario concesionarioAsociado = concesionarioDAO.consultarConcesionario(this.idConcesionario);
+//        if (concesionarioAsociado == null) {
+//            addFieldError("idConcesionario", "El concesionario con ID " + this.idConcesionario + " no existe.");
+//            return INPUT;
+//        }
+//
+//        EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+//        Empleado empleadoAsociado = empleadoDAO.consultarEmpleado(this.dniEmpleado.trim());
+//        if (empleadoAsociado == null) {
+//            addFieldError("dniEmpleado", "El empleado con DNI " + this.dniEmpleado + " no existe.");
+//            return INPUT;
+//        }
+//
+//        Date fechaActualizacion;
+//        fechaActualizacion = new SimpleDateFormat("yyyy-MM-dd").parse(this.ultimaActualizacionStr.trim());
+//
+//        inventarioParaActualizar.setConcesionario(concesionarioAsociado);
+//        inventarioParaActualizar.setEmpleado(empleadoAsociado);
+//        inventarioParaActualizar.setTotalVehiculos(this.totalVehiculos); // Java hará unboxing de Integer a int
+//        inventarioParaActualizar.setUltimaActualizacion(fechaActualizacion);
+//
+//        try {
+//            dao.actualizar(inventarioParaActualizar); // Pasas la entidad gestionada y modificada
+//            addActionMessage("Inventario modificado exitosamente.");
+//        } catch (Exception e) {
+//            addActionError("Error al guardar las modificaciones del inventario: " + e.getMessage());
+//            // e.printStackTrace(); // Para depuración
+//            return INPUT;
+//        }
+//
+//        return SUCCESS;
+//    }
     public String guardarModificacion() throws Exception {
+        Inventario inventarioParaActualizar = dao.buscarPorId(this.idInventario);
+        if (inventarioParaActualizar == null) {
+            addActionError("El inventario (ID: " + this.idInventario + ") no fue encontrado.");
+            return INPUT;
+        }
 
-        /* 1) Reconstruimos las asociaciones a partir de los ids/dni recibidos   */
-        Concesionario c = new Concesionario();
-        c.setIdConcesionario(idConcesionario);
-        Empleado e = new Empleado();
-        e.setDni(dniEmpleado);
+        ConcesionarioDAO concesionarioDAO = new ConcesionarioDAO();
+        Concesionario concesionarioAsociado = concesionarioDAO.consultarConcesionario(this.idConcesionario);
+        if (concesionarioAsociado == null) {
+            addFieldError("idConcesionario", "El concesionario con ID " + this.idConcesionario + " no existe.");
+            return INPUT;
+        }
 
-        /* 2) Parseamos la fecha que llega como texto */
-        java.util.Date fecha
-                = new java.text.SimpleDateFormat("yyyy-MM-dd")
-                        .parse(ultimaActualizacionStr.trim());
+        EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+        Empleado empleadoAsociado = empleadoDAO.consultarEmpleado(this.dniEmpleado.trim());
+        if (empleadoAsociado == null) {
+            addFieldError("dniEmpleado", "El empleado con DNI " + this.dniEmpleado + " no existe.");
+            return INPUT;
+        }
 
-        /* 3) Creamos un POJO “detached” con la clave + nuevos valores          */
-        Inventario inv = new Inventario(c, e, totalVehiculos, fecha);
-        inv.setIdInventario(idInventario);      // ¡clave primaria!
+        Date fechaActualizacion;
+        try {
+            fechaActualizacion = new SimpleDateFormat("yyyy-MM-dd").parse(this.ultimaActualizacionStr.trim());
+        } catch (ParseException pe) {
+            addFieldError("ultimaActualizacionStr", "Formato de fecha incorrecto. Use YYYY-MM-DD.");
+            return INPUT;
+        }
 
-        /* 4) Delegamos en el DAO la actualización                             */
-        dao.actualizar(inv);
+        inventarioParaActualizar.setConcesionario(concesionarioAsociado);
+        inventarioParaActualizar.setEmpleado(empleadoAsociado);
+        inventarioParaActualizar.setUltimaActualizacion(fechaActualizacion);
 
-        return SUCCESS;          // struts.xml → redirectAction indexInventario
+        try {
+            dao.actualizar(inventarioParaActualizar);
+            addActionMessage("Inventario modificado exitosamente.");
+        } catch (Exception e) {
+            addActionError("Error al guardar las modificaciones del inventario: " + e.getMessage());
+            return INPUT;
+        }
+        return SUCCESS;
     }
 
     @Override
@@ -130,23 +205,10 @@ public class InventarioAction extends ActionSupport {
                 .getProxy()
                 .getMethod();
 
-        // Buscar
-        if ("buscar".equals(metodo)) {
-            if (idInventario == null) {
-                addFieldError("idInventario", "Debe introducir el ID de inventario");
-            }
-        }
-
-        // Consultar
-        if ("consultar".equals(metodo)) {
-            if (idInventario == null) {
-                addFieldError("idInventario", "Debes seleccionar un inventario");
-            }
-        }
-
         if ("guardarAlta".equals(metodo)) {
             ConcesionarioDAO cDAO = new ConcesionarioDAO();
             Concesionario cons = cDAO.consultarConcesionario(idConcesionario);
+
             if (cons == null) {
                 addFieldError("idConcesionario",
                         "El concesionario indicado no existe");
@@ -166,16 +228,27 @@ public class InventarioAction extends ActionSupport {
                 addFieldError("ultimaActualizacionStr",
                         "La fecha debe tener formato YYYY-MM-DD");
             }
+
+            if (dniEmpleado == null) {
+                addFieldError("dniEmpleado",
+                        "El campo dni del empleado es obligatorio");
+            }
+
         }
         if ("guardarModificacion".equals(metodo)) {
-            if (ultimaActualizacionStr == null || ultimaActualizacionStr.trim().isEmpty()) {
-                addFieldError("ultimaActualizacionStr",
-                        "Debes indicar la fecha de última actualización");
-            } else if (!DATE_ISO_PATTERN.matcher(
-                    ultimaActualizacionStr.trim()).matches()) {
-                addFieldError("ultimaActualizacionStr",
-                        "La fecha debe tener formato YYYY-MM-DD");
+
+            if (dniEmpleado == null || "".equals(dniEmpleado)) {
+                addFieldError("dniEmpleado",
+                        "El campo dni del empleado es obligatorio");
             }
+
+            Date fechaActualizacion;
+            try {
+                fechaActualizacion = new SimpleDateFormat("yyyy-MM-dd").parse(this.ultimaActualizacionStr.trim());
+            } catch (ParseException pe) {
+                addFieldError("ultimaActualizacionStr", "Formato de fecha incorrecto. Use YYYY-MM-DD.");
+            }
+
         }
     }
 
