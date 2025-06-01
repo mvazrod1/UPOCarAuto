@@ -77,10 +77,15 @@
                     </form>
                 </div>
 
-                <div class="text-center">
+                <div class="text-center mt-5">
                     <form action="altaPago.action" method="get">
                         <input type="submit" value="Nuevo Pago" class="btn-rojo" />
                     </form>
+                    <br>
+                    <s:url var="principalUrl" value="/principal.jsp"/>
+                    <input type="button" value="Volver a la página principal"
+                           class="btn btn-outline-secondary"
+                           onclick="location.href = '${principalUrl}'"/>
                 </div>
             </div>
         </main>
