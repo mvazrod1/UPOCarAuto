@@ -1,33 +1,41 @@
-<%-- 
-    Document   : detallesTransaccion
-    Created on : 27-may-2025, 20:39:27
-    Author     : teodo
---%>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
     <head>
         <title>Detalles de la Transacción</title>
+        <meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/general.css">
     </head>
-    <body>
+    <body class="bg-light d-flex flex-column min-vh-100">
 
-        <h2>Detalles de la Transacción</h2>
+        <jsp:include page="../HEADER.jsp"/>
 
-        <table border="1">
-            <tr><th>ID Transacción:</th> <td><s:property value="transaccion.idTransaccion"/></td></tr>
-            <tr><th>Fecha:</th>          <td><s:date name="transaccion.fechaTransaccion" format="yyyy-MM-dd"/></td></tr>
-            <tr><th>Precio (€):</th>     <td><s:property value="transaccion.precio"/></td></tr>
-            <tr><th>Método de Pago:</th> <td><s:property value="transaccion.metodoPago"/></td></tr>
-            <tr><th>Estado:</th>         <td><s:property value="transaccion.estado"/></td></tr>
-        </table>
+        <main class="flex-grow-1">
+            <div class="container mt-5">
 
-        <br/><br/>
+                <h2 class="text-center text-primary mb-4">Detalles de la Transacción</h2>
 
-        <form action="indexTransaccion.action" method="get">
-            <input type="submit" value="Volver al Listado de Transacciones"/>
-        </form>
+                <table class="table table-hover align-middle w-75 mx-auto text-center">
+                    <tr><th>ID Transacción</th> <td><s:property value="transaccion.idTransaccion"/></td></tr>
+                    <tr><th>Fecha</th>          <td><s:date name="transaccion.fechaTransaccion" format="yyyy-MM-dd"/></td></tr>
+                    <tr><th>Precio (€)</th>     <td><s:property value="transaccion.precio"/></td></tr>
+                    <tr><th>Método de Pago</th> <td><s:property value="transaccion.metodoPago"/></td></tr>
+                    <tr><th>Estado</th>         <td><s:property value="transaccion.estado"/></td></tr>
+                </table>
 
+                <div class="text-center mt-4">
+                    <form action="indexTransaccion.action" method="get">
+                        <input type="submit" value="Volver al Listado de Transacciones" class="btn btn-outline-secondary" />
+                    </form>
+                </div>
+
+            </div>
+        </main>
+
+        <jsp:include page="../FOOTER.jsp"/>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

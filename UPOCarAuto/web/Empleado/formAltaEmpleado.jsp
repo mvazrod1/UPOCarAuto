@@ -19,75 +19,75 @@
     <body>
 
         <jsp:include page="../HEADER.jsp"/>
+        <main class="flex-grow-1">
+            <div class="container mt-5">
+                <h2 class="text-center mb-4" style="color: var(--color-rojo);">
+                    Registro de nuevo empleado
+                </h2>
 
-        <div class="container mt-5">
-            <h2 class="text-center mb-4" style="color: var(--color-rojo);">
-                Registro de nuevo empleado
-            </h2>
+                <!-- ===== FORMULARIO ALTA EMPLEADO ===== -->
+                <s:form namespace="/Empleado" action="registrarEmpleado" method="post"
+                        cssClass="p-4 border rounded bg-light shadow-sm">
 
-            <!-- ===== FORMULARIO ALTA EMPLEADO ===== -->
-            <s:form namespace="/Empleado" action="registrarEmpleado" method="post"
-                    cssClass="p-4 border rounded bg-light shadow-sm">
+                    <!-- DNI -->
+                    <div class="mb-3">
+                        <label for="dni" class="form-label">DNI:</label>
+                        <s:textfield name="dni" id="dni" theme="simple" cssClass="form-control"/>
+                        <s:fielderror fieldName="dni" cssClass="text-danger small"/>
+                    </div>
 
-                <!-- DNI -->
-                <div class="mb-3">
-                    <label for="dni" class="form-label">DNI:</label>
-                    <s:textfield name="dni" id="dni" theme="simple" cssClass="form-control"/>
-                    <s:fielderror fieldName="dni" cssClass="text-danger small"/>
-                </div>
+                    <!-- Nombre -->
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre:</label>
+                        <s:textfield name="nombre" id="nombre" theme="simple" cssClass="form-control"/>
+                        <s:fielderror fieldName="nombre" cssClass="text-danger small"/>
+                    </div>
 
-                <!-- Nombre -->
-                <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre:</label>
-                    <s:textfield name="nombre" id="nombre" theme="simple" cssClass="form-control"/>
-                    <s:fielderror fieldName="nombre" cssClass="text-danger small"/>
-                </div>
+                    <!-- Apellidos -->
+                    <div class="mb-3">
+                        <label for="apellidos" class="form-label">Apellidos:</label>
+                        <s:textfield name="apellidos" id="apellidos" theme="simple" cssClass="form-control"/>
+                        <s:fielderror fieldName="apellidos" cssClass="text-danger small"/>
+                    </div>
 
-                <!-- Apellidos -->
-                <div class="mb-3">
-                    <label for="apellidos" class="form-label">Apellidos:</label>
-                    <s:textfield name="apellidos" id="apellidos" theme="simple" cssClass="form-control"/>
-                    <s:fielderror fieldName="apellidos" cssClass="text-danger small"/>
-                </div>
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <s:textfield name="email" id="email" theme="simple" cssClass="form-control"/>
+                        <s:fielderror fieldName="email" cssClass="text-danger small"/>
+                    </div>
 
-                <!-- Email -->
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email:</label>
-                    <s:textfield name="email" id="email" theme="simple" cssClass="form-control"/>
-                    <s:fielderror fieldName="email" cssClass="text-danger small"/>
-                </div>
+                    <!-- Teléfono -->
+                    <div class="mb-3">
+                        <label for="telefono" class="form-label">Teléfono:</label>
+                        <s:textfield name="telefono" id="telefono" theme="simple" cssClass="form-control"/>
+                        <s:fielderror fieldName="telefono" cssClass="text-danger small"/>
+                    </div>
 
-                <!-- Teléfono -->
-                <div class="mb-3">
-                    <label for="telefono" class="form-label">Teléfono:</label>
-                    <s:textfield name="telefono" id="telefono" theme="simple" cssClass="form-control"/>
-                    <s:fielderror fieldName="telefono" cssClass="text-danger small"/>
-                </div>
+                    <!-- Dirección -->
+                    <div class="mb-3">
+                        <label for="direccion" class="form-label">Dirección:</label>
+                        <s:textfield name="direccion" id="direccion" theme="simple" cssClass="form-control"/>
+                        <s:fielderror fieldName="direccion" cssClass="text-danger small"/>
+                    </div>
 
-                <!-- Dirección -->
-                <div class="mb-3">
-                    <label for="direccion" class="form-label">Dirección:</label>
-                    <s:textfield name="direccion" id="direccion" theme="simple" cssClass="form-control"/>
-                    <s:fielderror fieldName="direccion" cssClass="text-danger small"/>
-                </div>
+                    <!-- Puesto -->
+                    <div class="mb-3">
+                        <label for="puesto" class="form-label">Puesto:</label>
+                        <s:textfield name="puesto" id="puesto" theme="simple" cssClass="form-control"/>
+                        <s:fielderror fieldName="puesto" cssClass="text-danger small"/>
+                    </div>
 
-                <!-- Puesto -->
-                <div class="mb-3">
-                    <label for="puesto" class="form-label">Puesto:</label>
-                    <s:textfield name="puesto" id="puesto" theme="simple" cssClass="form-control"/>
-                    <s:fielderror fieldName="puesto" cssClass="text-danger small"/>
-                </div>
-
-                <!-- Concesionario -->
-                <div class="mb-3">
-                    <label for="idConcesionario" class="form-label">Concesionario:</label>
-                    <s:select name="idConcesionario" id="idConcesionario"
-                              list="listaConcesionarios"
-                              listKey="idConcesionario" listValue="nombre"
-                              headerKey="" headerValue="-- Seleccione --"
-                              theme="simple"
-                              cssClass="form-select"/>
-                              <s:fielderror fieldName="idConcesionario" cssClass="text-danger small"/>
+                    <!-- Concesionario -->
+                    <div class="mb-3">
+                        <label for="idConcesionario" class="form-label">Concesionario:</label>
+                        <s:select name="idConcesionario" id="idConcesionario"
+                                  list="listaConcesionarios"
+                                  listKey="idConcesionario" listValue="nombre"
+                                  headerKey="" headerValue="-- Seleccione --"
+                                  theme="simple"
+                                  cssClass="form-select"/>
+                        <s:fielderror fieldName="idConcesionario" cssClass="text-danger small"/>
                     </div>
 
                     <!-- Contraseña -->
@@ -102,16 +102,16 @@
                         <s:submit value="Registrar Empleado" cssClass="btn-rojo"/>
                         <s:reset  value="Limpiar" cssClass="btn btn-secondary ms-2"/>
                     </div>
-            </s:form>
-
-            <!-- ===== BOTÓN VOLVER ===== -->
-            <div class="d-flex justify-content-center mt-4">
-                <s:form namespace="/Empleado" action="indexEmpleado" method="get">
-                    <s:submit value="Volver a la lista" cssClass="btn btn-outline-secondary"/>
                 </s:form>
-            </div>
-        </div>
 
+                <!-- ===== BOTÓN VOLVER ===== -->
+                <div class="d-flex justify-content-center mt-4">
+                    <s:form namespace="/Empleado" action="indexEmpleado" method="get">
+                        <s:submit value="Volver a la lista" cssClass="btn btn-outline-secondary"/>
+                    </s:form>
+                </div>
+            </div>
+        </main>
         <jsp:include page="../FOOTER.jsp"/>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

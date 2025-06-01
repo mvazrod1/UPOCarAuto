@@ -1,48 +1,63 @@
-<%-- 
-    Document   : modificarTransaccion
-    Created on : 27-may-2025, 19:52:38
-    Author     : teodo
---%>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<!DOCTYPE html>
 <html>
     <head>
         <title>Modificar Transacción</title>
+        <meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/general.css">
     </head>
-    <body>
+    <body class="bg-light d-flex flex-column min-vh-100">
 
-    <s:actionerror />
-    <s:fielderror />
+        <jsp:include page="../HEADER.jsp"/>
 
-    <h2>Modificar Transacción</h2>
+        <main class="flex-grow-1">
+            <div class="container mt-5">
+                <h2 class="text-center mb-4">Modificar Transacción</h2>
 
-    <s:form action="guardarModfTransaccion" method="post">
+                <div class="w-50 mx-auto">
+                    <s:actionerror cssClass="alert alert-danger"/>
+                    <s:fielderror cssClass="alert alert-warning"/>
 
-        <s:hidden name="idTransaccion" />
+                    <s:form action="guardarModfTransaccion" method="post" cssClass="d-grid gap-3">
 
-        <s:textfield name="fechaTransaccion"
-                     label="Fecha de Transacción (dd/MM/yyyy)" />
+                        <s:hidden name="idTransaccion"/>
 
-        <s:textfield name="precio"
-                     label="Precio (€)" />
+                        <s:textfield name="fechaTransaccion"
+                                     label="Fecha de Transacción (dd/MM/yyyy)"
+                                     cssClass="form-control"
+                                     labelCssClass="form-label"/>
 
-        <s:select name="metodoPago"
-                  label="Método de Pago"
-                  list="{'Efectivo','Tarjeta','Bizum','Transferencia'}" />
+                        <s:textfield name="precio"
+                                     label="Precio (€)"
+                                     cssClass="form-control"
+                                     labelCssClass="form-label"/>
 
-        <s:select name="estado"
-                  label="Estado"
-                  list="{'Pendiente','Completado','Fallido'}" />
+                        <s:select name="metodoPago"
+                                  label="Método de Pago"
+                                  list="{'Efectivo','Tarjeta','Bizum','Transferencia'}"
+                                  cssClass="form-select"
+                                  labelCssClass="form-label"/>
 
-        <br/><br/>
-        <s:submit value="Guardar Cambios" />
+                        <s:select name="estado"
+                                  label="Estado"
+                                  list="{'Pendiente','Completado','Fallido'}"
+                                  cssClass="form-select"
+                                  labelCssClass="form-label"/>
 
-    </s:form>
+                        <s:submit value="Guardar Cambios" cssClass="btn-rojo mt-3"/>
+                    </s:form>
 
-    <br>
-    <a href="<s:url action='indexTransaccion'/>">Volver al Listado</a>
+                    <div class="text-center mt-3">
+                        <a href="<s:url action='indexTransaccion'/>" class="btn btn-outline-secondary">Volver al Listado</a>
+                    </div>
+                </div>
+            </div>
+        </main>
 
-</body>
+        <jsp:include page="../FOOTER.jsp"/>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
 </html>
-
