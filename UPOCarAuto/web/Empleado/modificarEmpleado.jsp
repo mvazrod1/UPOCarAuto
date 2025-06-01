@@ -15,7 +15,7 @@
         <jsp:include page="../HEADER.jsp"/>
         <main class="flex-grow-1">
             <div class="container mt-5">
-                <h2 class="text-center mb-4" style="color: var(--color-rojo);">Modificar Empleado</h2>
+                <h2 class="text-center mb-4" style="color: #c0392b;">Modificar Empleado</h2>
 
                 <s:url var="urlIndex" namespace="/Empleado" action="indexEmpleado"/>
 

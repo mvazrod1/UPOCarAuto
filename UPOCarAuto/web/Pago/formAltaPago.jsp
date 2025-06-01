@@ -14,7 +14,7 @@
 
         <main class="flex-grow-1">
             <div class="container mt-5">
-                <h2 class="text-center text-primary mb-4">Alta de Pago</h2>
+                <h2 class="text-center text-primary mb-4" style="color: #c0392b">Alta de Pago</h2>
 
                 <s:actionerror cssClass="alert alert-danger"/>
 
