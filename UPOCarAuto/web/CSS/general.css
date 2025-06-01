@@ -1,4 +1,4 @@
-/*
+/* 
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
@@ -7,9 +7,11 @@ and open the template in the editor.
     Created on : 27-may-2025, 18:21:20
     Author     : marin
 */
+
 /* Colores base */
-:root {
-    --color-rojo: #c0392b;
+html {
+    /* Variables fallback para compatibilidad */
+    --color_rojo: #c0392b;
     --color-negro: #1c1c1c;
     --color-blanco: #ffffff;
     --color-gris-claro: #f2f2f2;
@@ -19,20 +21,20 @@ and open the template in the editor.
 /* Estilos globales */
 body {
     font-family: 'Segoe UI', sans-serif;
-    background-color: var(--color-blanco);
-    color: var(--color-negro);
+    background-color: #ffffff; /* fallback de var(--color-blanco) */
+    color: #1c1c1c;            /* fallback de var(--color-negro) */
     margin: 0;
     padding: 0;
 }
 
 h1, h2, h3, h4, h5 {
-    color: var(--color-rojo);
+    color: #c0392b; /* fallback de var(--color-rojo) */
 }
 
 /* Header y footer */
 header, footer {
-    background-color: var(--color-gris-claro);
-    color: var(--color-negro);
+    background-color: #f2f2f2; /* fallback de var(--color-gris-claro) */
+    color: #1c1c1c;            /* fallback de var(--color-negro) */
     padding: 15px 0;
     border-bottom: 1px solid #ddd;
 }
@@ -48,18 +50,22 @@ footer {
     height: 600px;
 }
 
-.btn-rojo, input.btn-rojo {
-    background-color:var(--color-gris);
-    color: var(--color-blanco);
+/* Botón personalizado */
+.btn-rojo,
+input.btn-rojo {
+    background-color: #949494; /* fallback de var(--color-gris) */
+    color: #ffffff;            /* fallback de var(--color-blanco) */
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
     display: inline-block;
     transition: background-color 0.3s ease;
+    border: none;
 }
 
-.btn-rojo:hover, input.btn-rojo:hover{
+.btn-rojo:hover,
+input.btn-rojo:hover {
     background-color: #a93226;
-    color: var(--color-blanco);
+    color: #ffffff;
 }
