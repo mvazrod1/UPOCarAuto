@@ -1,86 +1,106 @@
-<%-- 
-    Document   : indexTransaccion
-    Created on : 27-may-2025, 19:51:57
-    Author     : teodo
---%>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
         <title>Listado de Transacciones</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/general.css">
         <script>
-            /* coloca en el hidden el id seleccionado en el <select> */
             function setSelectedId(inputId) {
                 const id = document.getElementById("idTransaccion").value;
                 document.getElementById(inputId).value = id;
             }
         </script>
     </head>
-    <body>
+    <body class="bg-light d-flex flex-column min-vh-100">
 
-        <s:actionerror/>
+        <jsp:include page="../HEADER.jsp"/>
 
-        <h2>Listado de Transacciones</h2>
+        <main class="flex-grow-1">
+            <div class="container mt-5">
+                <h2 class="mb-4">Transacciones Registradas</h2>
 
-        <table border="1">
-            <tr>
-                <th>ID</th>
-                <th>Fecha</th>
-                <th>Precio</th>
-                <th>Método de Pago</th>
-                <th>Estado</th>
-            </tr>
+                <s:actionerror cssClass="alert alert-danger"/>
 
-            <s:iterator value="lista" var="t">
-                <tr>
-                    <td><s:property value="#t.idTransaccion"/></td>
-                    <td><s:date name="#t.fechaTransaccion" format="yyyy-MM-dd"/></td>
-                    <td><s:property value="#t.precio"/></td>
-                    <td><s:property value="#t.metodoPago"/></td>
-                    <td><s:property value="#t.estado"/></td>
-                </tr>
-            </s:iterator>
-        </table>
+                <s:form id="transaccionForm" method="post">
+                    <input type="hidden" id="idSeleccionado" name="idTransaccion"/>
 
-        <br/>
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>Fecha</th>
+                                <th>Precio</th>
+                                <th>Método de Pago</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <s:iterator value="lista" var="t">
+                                <tr>
+                                    <td><s:property value="#t.idTransaccion"/></td>
+                                    <td><s:date name="#t.fechaTransaccion" format="yyyy-MM-dd"/></td>
+                                    <td><s:property value="#t.precio"/></td>
+                                    <td><s:property value="#t.metodoPago"/></td>
+                                    <td><s:property value="#t.estado"/></td>
+                                </tr>
+                            </s:iterator>
+                            <s:if test="lista == null || lista.isEmpty()">
+                                <tr>
+                                    <td colspan="5" class="text-center">-- Sin resultados --</td>
+                                </tr>
+                            </s:if>
+                        </tbody>
+                    </table>
 
-       
-        <label for="idTransaccion">Selecciona una transacción:</label>
-        <select id="idTransaccion" name="idTransaccion">
-            <s:iterator value="lista" var="t">
-                <option value="<s:property value='#t.idTransaccion'/>">
-                    Tx #<s:property value="#t.idTransaccion"/> – <s:property value="#t.metodoPago"/>
-                </option>
-            </s:iterator>
-        </select>
+                    <div class="text-center mb-4">
+                        <label for="idTransaccion" class="form-label">Selecciona una transacción:</label>
+                        <select id="idTransaccion" name="idTransaccion" class="form-select w-50 mx-auto">
+                            <s:iterator value="lista" var="t">
+                                <option value="<s:property value='#t.idTransaccion'/>">
+                                    Tx #<s:property value="#t.idTransaccion"/> – <s:property value="#t.metodoPago"/>
+                                </option>
+                            </s:iterator>
+                        </select>
+                    </div>
 
-        <br/><br/>
+                    <div class="d-flex justify-content-center gap-3 mt-4">
+                        <input type="button" value="Consultar Transacción"
+                               class="btn-rojo" onclick="setSelectedId('consultId'); enviarAccion('consultarTransaccion.action')"/>
 
-        
-        <form action="consultarTransaccion.action" method="get" style="display:inline;">
-            <input type="hidden" name="idTransaccion" id="consultId"/>
-            <input type="submit" value="Consultar" onclick="setSelectedId('consultId')"/>
-        </form>
+                        <input type="button" value="Modificar Transacción"
+                               class="btn-rojo" onclick="setSelectedId('editId'); enviarAccion('editarTransaccion.action')"/>
 
-        <form action="editarTransaccion.action" method="post" style="display:inline;">
-            <input type="hidden" name="idTransaccion" id="editId"/>
-            <input type="submit" value="Modificar" onclick="setSelectedId('editId')"/>
-        </form>
+                        <input type="button" value="Eliminar Transacción"
+                               class="btn btn-danger"
+                               onclick="if(confirm('¿Estás seguro de eliminar esta transacción?')) { setSelectedId('delId'); enviarAccion('eliminarTransaccion.action'); }"/>
+                    </div>
+                </s:form>
 
-        <form action="eliminarTransaccion.action" method="post" style="display:inline;"
-              onsubmit="return confirm('¿Estás seguro de eliminar esta transacción?');">
-            <input type="hidden" name="idTransaccion" id="delId"/>
-            <input type="submit" value="Eliminar" onclick="setSelectedId('delId')"/>
-        </form>
+                <div class="text-center mt-5">
+                    <s:form action="altaTransaccion" method="get" theme="simple">
+                        <s:submit value="Nueva Transacción" cssClass="btn-rojo me-2"/>
+                    </s:form>
+                    <br>
+                    <s:url var="principalUrl" value="/principal.jsp"/>
+                    <input type="button" value="Volver a la página principal"
+                           class="btn btn-outline-secondary mt-2"
+                           onclick="location.href = '${principalUrl}'"/>
+                </div>
+            </div>
+        </main>
 
-        <br/><br/>
+        <jsp:include page="../FOOTER.jsp"/>
 
-       
-        <form action="altaTransaccion.action" method="get">
-            <input type="submit" value="Nueva Transacción"/>
-        </form>
-
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            function enviarAccion(url) {
+                const form = document.getElementById("transaccionForm");
+                form.action = url;
+                form.submit();
+            }
+        </script>
     </body>
 </html>

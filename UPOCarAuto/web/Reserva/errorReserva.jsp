@@ -16,23 +16,23 @@
     </head>
     <body>
         <jsp:include page="../HEADER.jsp" />
-
-        <div class="container my-5">
-            <div class="alert alert-danger">
-                <h1 class="text-danger">Error al eliminar la reserva</h1>
-            </div>
-
-            <s:if test="hasActionErrors()">
-                <div class="alert alert-warning">
-                    <s:actionerror />
+        <main class="flex-grow-1">
+            <div class="container my-5">
+                <div class="alert alert-danger">
+                    <h1 class="text-danger">Error al eliminar la reserva</h1>
                 </div>
-            </s:if>
 
-            <s:form action="indexReserva" namespace="/Reserva" method="post">
-                <s:submit value="Volver a la lista" cssClass="btn-rojo mt-3"/>
-            </s:form>
-        </div>
+                <s:if test="hasActionErrors()">
+                    <div class="alert alert-warning">
+                        <s:actionerror />
+                    </div>
+                </s:if>
 
+                <s:form action="indexReserva" namespace="/Reserva" method="post">
+                    <s:submit value="Volver a la lista" cssClass="btn-rojo mt-3"/>
+                </s:form>
+            </div>
+        </main>
         <jsp:include page="../FOOTER.jsp" />
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>

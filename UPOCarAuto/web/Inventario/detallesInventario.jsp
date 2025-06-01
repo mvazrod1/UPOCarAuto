@@ -15,38 +15,40 @@
     </head>
     <body>
         <jsp:include page="../HEADER.jsp" />
-        <s:actionerror/><br/>
-        <div class="container my-5">
-            <h2 class="text-danger mb-4">Detalles del Inventario</h2>
-            <div class="mb-4">
-                <div class="mb-2">
-                    <label class="text-danger">Inventario (ID):</label>
-                    <s:property value="inventario.idInventario"/>
+        <main class="flex-grow-1">
+            <s:actionerror/><br/>
+            <div class="container my-5">
+                <h2 class="text-danger mb-4">Detalles del Inventario</h2>
+                <div class="mb-4">
+                    <div class="mb-2">
+                        <label class="text-danger">Inventario (ID):</label>
+                        <s:property value="inventario.idInventario"/>
+                    </div>
+                    <div class="mb-2">
+                        <label class="text-danger">Concesionario (ID):</label>
+                        <s:property value="inventario.concesionario.idConcesionario"/>
+                    </div>
+                    <div class="mb-2">
+                        <label class="text-danger">DNI Empleado:</label>
+                        <s:property value="inventario.empleado.dni"/>
+                    </div>
+                    <div class="mb-2">
+                        <label class="text-danger">Total Vehículos:</label>
+                        <s:property value="inventario.totalVehiculos"/>
+                    </div>
+                    <div class="mb-2">
+                        <label class="text-danger">Última Actualización:</label>
+                        <s:property value="inventario.ultimaActualizacion"/>
+                    </div>
                 </div>
-                <div class="mb-2">
-                    <label class="text-danger">Concesionario (ID):</label>
-                    <s:property value="inventario.concesionario.idConcesionario"/>
-                </div>
-                <div class="mb-2">
-                    <label class="text-danger">DNI Empleado:</label>
-                    <s:property value="inventario.empleado.dni"/>
-                </div>
-                <div class="mb-2">
-                    <label class="text-danger">Total Vehículos:</label>
-                    <s:property value="inventario.totalVehiculos"/>
-                </div>
-                <div class="mb-2">
-                    <label class="text-danger">Última Actualización:</label>
-                    <s:property value="inventario.ultimaActualizacion"/>
-                </div>
-            </div>
 
-            <div class="mt-4">
-                <s:form action="/Inventario/indexInventario" method="get">
-                    <s:submit value="Volver a la lista" cssClass="btn-rojo px-4"/>
-                </s:form>
+                <div class="mt-4">
+                    <s:form action="/Inventario/indexInventario" method="get">
+                        <s:submit value="Volver a la lista" cssClass="btn-rojo px-4"/>
+                    </s:form>
+                </div>
             </div>
-        </div>
+        </main>
         <jsp:include page="../FOOTER.jsp" />
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
