@@ -247,7 +247,6 @@ else
     echo "Es posible que necesite añadir manualmente GLASSFISH_HOME y \$GLASSFISH_HOME/bin a su PATH."
 fi
 
-
 # --- Instalar y Habilitar Servicio Systemd ---
 # Comprobar si el archivo de servicio fuente existe antes de intentar usarlo
 if [ ! -f "$SOURCE_SERVICE_FILE" ]; then

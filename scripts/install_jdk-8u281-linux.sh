@@ -47,92 +47,112 @@ echo "--- Iniciando Proceso de Instalación ---"
 # 3. Comprobar si el JDK ya está instalado en la ruta esperada
 if [ -d "$JDK_FULL_PATH" ]; then
     echo "El JDK $JDK_VERSION_DIR ya parece estar instalado en $JDK_FULL_PATH."
+    # Aunque ya esté instalado, podríamos querer reconfigurar las alternativas por si acaso.
+    # Si prefieres salir, descomenta la siguiente línea:
+    # exit 0
 
-    exit 0 # Salir si ya está instalado
+    # Si no salimos, continuaremos para asegurar que las alternativas estén configuradas.
+    echo "Verificando/configurando las alternativas del sistema para este JDK existente..."
 fi
 
-# 4. Comprobar si el archivo tar.gz existe en el directorio actual
-if [ ! -f "./$JDK_TARBALL" ]; then
-    echo "Error: El archivo $JDK_TARBALL no se encontró en el directorio actual ($(pwd))."
-    echo "Por favor, asegúrese de que el archivo está en el mismo directorio que el script '$0'."
-    exit 1
-fi
+# 4. Comprobar si el archivo tar.gz existe solo si el JDK NO estaba ya instalado y decidimos no salir
+if [ ! -d "$JDK_FULL_PATH" ]; then # Solo hacemos esta verificación si NO encontramos el JDK
+    if [ ! -f "./$JDK_TARBALL" ]; then
+        echo "Error: El archivo $JDK_TARBALL no se encontró en el directorio actual ($(pwd))."
+        echo "Por favor, asegúrese de que el archivo está en el mismo directorio que el script '$0'."
+        exit 1
+    fi
 
-# --- Proceso de Instalación ---
+    # --- Proceso de Instalación (solo si el JDK no estaba) ---
 
-echo "Archivo $JDK_TARBALL encontrado."
-echo "Creando directorio de instalación si no existe: $INSTALL_DIR"
-mkdir -p "$INSTALL_DIR" # Crea el directorio y padres si no existen
-if [ $? -ne 0 ]; then
-    echo "Error: No se pudo crear el directorio $INSTALL_DIR. Verifique permisos."
-    exit 1
-fi
+    echo "Archivo $JDK_TARBALL encontrado."
+    echo "Creando directorio de instalación si no existe: $INSTALL_DIR"
+    mkdir -p "$INSTALL_DIR" # Crea el directorio y padres si no existen
+    if [ $? -ne 0 ]; then
+        echo "Error: No se pudo crear el directorio $INSTALL_DIR. Verifique permisos."
+        exit 1
+    fi
 
-echo "Extrayendo $JDK_TARBALL en $INSTALL_DIR..."
-# Extraer con permisos estándar para system dir (root:root)
-# --no-same-owner y --no-same-permissions son buenas prácticas al extraer como root
-if tar -xzf "./$JDK_TARBALL" -C "$INSTALL_DIR" --no-same-owner --no-same-permissions; then
-    echo "$JDK_TARBALL extraído correctamente."
+    echo "Extrayendo $JDK_TARBALL en $INSTALL_DIR..."
+    if tar -xzf "./$JDK_TARBALL" -C "$INSTALL_DIR" --no-same-owner --no-same-permissions; then
+        echo "$JDK_TARBALL extraído correctamente."
+    else
+        echo "Error: Falló la extracción de $JDK_TARBALL."
+        echo "Verifique que el archivo no esté corrupto y tenga permisos de lectura."
+        exit 1
+    fi
 else
-    echo "Error: Falló la extracción de $JDK_TARBALL."
-    echo "Verifique que el archivo no esté corrupto y tenga permisos de lectura."
-    exit 1
+    # Mensaje si el JDK ya estaba y continuamos
+    echo "Saltando extracción, JDK ya presente."
 fi
 
-# NOTA: No cambiamos la propiedad de los archivos del JDK a $SUDO_USER.
-# Los archivos instalados en /usr/lib/jvm deben ser propiedad de root para mantener la consistencia del 
 
 # --- Configurar Variables de Entorno para el Usuario Original ---
+# Esto siempre se ejecuta, incluso si el JDK ya estaba instalado.
 
 echo "Configurando variables de entorno en el archivo $USER_BASHRC para el usuario $ORIGINAL_USER..."
 
-# Usamos 'grep' para verificar si las líneas ya existen para evitar duplicados
-# 2>/dev/null redirige errores de grep (si .bashrc no existe) a /dev/null
 if grep -q "export JAVA_HOME=${JDK_FULL_PATH}" "$USER_BASHRC" 2>/dev/null && \
    grep -q "export PATH=\$PATH:\$JAVA_HOME/bin" "$USER_BASHRC" 2>/dev/null; then
     echo "Las variables de entorno para este JDK ya existen en $USER_BASHRC."
 else
-    # Añadir las variables de entorno al .bashrc del usuario original
-    # Añadimos comentarios para identificar las líneas añadidas por el script
-    echo "" >> "$USER_BASHRC" # Añadir una línea en blanco para separación
+    echo "" >> "$USER_BASHRC"
     echo "# >>> Configuración para Oracle JDK ${JDK_VERSION_DIR} añadida por script <<<" >> "$USER_BASHRC"
     echo "export JAVA_HOME=${JDK_FULL_PATH}" >> "$USER_BASHRC"
     echo "export PATH=\$PATH:\$JAVA_HOME/bin" >> "$USER_BASHRC"
     echo "# <<< Fin Configuración Oracle JDK ${JDK_VERSION_DIR} <<<" >> "$USER_BASHRC"
-    echo "" >> "$USER_BASHRC" # Añadir otra línea en blanco
+    echo "" >> "$USER_BASHRC"
 
     echo "Variables de entorno añadidas a $USER_BASHRC."
 fi
 
-# --- Configurar Alternativas del Sistema (Opcional pero Recomendado) ---
-# Registrar este JDK con el sistema de alternativas.
-# Esto permite al usuario root (o via sudo) cambiar la version global de java
-# usando update-alternatives --config java/javac.
-# No usaremos --set aquí para no cambiar la version global por defecto automaticamente,
-# respetando las preferencias del sistema o de otras instalaciones de java.
+# --- Configurar Alternativas del Sistema AUTOMATICAMENTE ---
+# Registramos el JDK y LO ESTABLECEMOS como la versión predeterminada del sistema.
 
-echo "Registrando JDK con update-alternatives del sistema..."
+echo "Registrando y estableciendo este JDK como la versión predeterminada del sistema usando update-alternatives..."
+
 # Prioridad 1: Puedes ajustar la prioridad si tienes otros JDKs
+# Primero, registrar la alternativa (si ya existe, update-alternatives lo maneja)
 update-alternatives --install /usr/bin/java java "${JDK_FULL_PATH}/bin/java" 1
-update-alternatives --install /usr/bin/javac javac "${JDK_FULL_PATH}/bin/javac" 1
+java_install_ok=$?
 
-if [ $? -ne 0 ]; then
-     echo "Advertencia: Falló el registro del JDK con update-alternatives."
-     echo "Puede necesitar configurar las alternativas manualmente usando 'sudo update-alternatives --config java'."
+update-alternatives --install /usr/bin/javac javac "${JDK_FULL_PATH}/bin/javac" 1
+javac_install_ok=$?
+
+if [ $java_install_ok -ne 0 ] || [ $javac_install_ok -ne 0 ]; then
+     echo "Advertencia: Falló el REGISTRO inicial del JDK con update-alternatives."
+     echo "El JDK fue extraído (si no existía), pero no pudo ser registrado en el sistema de alternativas."
+     # No salimos, pero avisamos que el paso crucial falló.
 else
-     echo "Registro con update-alternatives completado."
-     echo "Nota: Este script NO ha establecido este JDK como la versión predeterminada del sistema."
-     echo "Si desea hacerlo, ejecute: 'sudo update-alternatives --config java' y 'sudo update-alternatives --config javac'."
+    echo "Registro con update-alternativas completado."
+
+    # *** MODIFICACION CLAVE: Establecer este JDK como la versión predeterminada ***
+    echo "Estableciendo JDK ${JDK_VERSION_DIR} (${JDK_FULL_PATH}) como la versión predeterminada del sistema..."
+
+    update-alternatives --set java "${JDK_FULL_PATH}/bin/java"
+    java_set_ok=$?
+
+    update-alternatives --set javac "${JDK_FULL_PATH}/bin/javac"
+    javac_set_ok=$?
+
+    if [ $java_set_ok -eq 0 ] && [ $javac_set_ok -eq 0 ]; then
+        echo "JDK ${JDK_VERSION_DIR} establecido exitosamente como la versión predeterminada del sistema."
+    else
+        echo "Advertencia: Falló el ESTABLECIMIENTO automático del JDK con update-alternatives --set."
+        echo "El JDK fue registrado, pero no pudo ser establecido como predeterminado."
+        echo "Puede necesitar configurarlo manualmente: 'sudo update-alternatives --config java' y 'sudo update-alternatives --config javac'."
+    fi
 fi
 
 
 # --- Finalización ---
 
-echo "--- Instalación del JDK ${JDK_VERSION_DIR} completada ---"
-echo "Para que las variables de entorno surtan efecto en su terminal actual,"
+echo "--- Instalación/Configuración del JDK ${JDK_VERSION_DIR} completada ---"
+echo "Para que las variables de entorno (JAVA_HOME, PATH) surtan efecto en su terminal actual,"
 echo "ejecute el siguiente comando:"
 echo "source $USER_BASHRC"
 echo "Los nuevos terminales que abra cargarán la configuración automáticamente."
+echo "Puede verificar la versión predeterminada del sistema ejecutando: java -version y javac -version"
 echo "¡Listo para usar JDK 8!"
 
 exit 0
